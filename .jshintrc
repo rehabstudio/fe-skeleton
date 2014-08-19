@@ -1,0 +1,19 @@
+{
+    "globals": {
+        "console": false,
+        "define": false,
+        "require": false,
+        "Modernizr": false
+    },
+    "browser": true,
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "immed": true,
+    "newcap": true,
+    "noarg": true,
+    "quotmark": "single",
+    "strict": true,
+    "undef": true,
+    "unused": true
+}
