@@ -20,7 +20,7 @@ var gulp = require('gulp'),
 gulp.task('styles', function() {
     var combinedSettings = _.extend({
         sourcemapPath: './src'
-    }, common.sharedSassSettings);
+    }, common.sassSettings);
 
     return gulp.src(common.srcPaths)
         .pipe(sass(combinedSettings))

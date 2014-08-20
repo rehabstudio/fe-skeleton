@@ -24,7 +24,7 @@ grunt.config.set('sass', {
             ext: '.css'
         }]
     },
-    options: common.sharedSassSettings
+    options: common.sassSettings
 });
 
 grunt.config.set('autoprefixer', {

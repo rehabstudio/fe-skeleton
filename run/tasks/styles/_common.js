@@ -1,7 +1,7 @@
 module.exports = {
     srcPaths: ['./css/src/*.scss'],
 
-    sharedSassSettings: {
+    sassSettings: {
         noCache: true,
         sourcemap: true,
         style: 'compact'
