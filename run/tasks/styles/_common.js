@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     srcPaths: ['./css/src/*.scss'],
 

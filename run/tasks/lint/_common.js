@@ -1,5 +1,6 @@
+'use strict';
+
 module.exports = {
-    // Default linting paths.
     srcPaths: ['./js/src/**/*.js'],
 
     /**

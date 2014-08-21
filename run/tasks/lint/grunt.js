@@ -24,4 +24,4 @@ grunt.config.set('jshint', {
 grunt.registerTask('lint', function() {
 	grunt.config.set('jshint.all', common.buildSources(args.filePath));
 	grunt.task.run('jshint');
-})
+});

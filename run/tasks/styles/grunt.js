@@ -42,4 +42,4 @@ grunt.config.set('autoprefixer', {
 
 grunt.registerTask('styles', function() {
     grunt.task.run(['sass', 'autoprefixer']);
-})
+});

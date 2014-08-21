@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     srcPaths: ['./img/**/*'],
 
@@ -8,5 +10,4 @@ module.exports = {
         { removeUselessStrokeAndFill: false },
         { convertPathData: { straightCurves: false } }
     ]
-
-}
+};

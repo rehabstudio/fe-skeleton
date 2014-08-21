@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  *  Loseless optimization of PNG, JPG & SVG assets.
  *
