@@ -10,7 +10,7 @@
 module.exports = function(runner) {
     console.log('Task runner:', runner);
 
-    var fs = require('fs'),
+    var fs = require('fs');
     var modules = fs.readdirSync('./run/tasks').filter(function (file) {
         return fs.statSync('./run/tasks/' + file).isDirectory();
     });
