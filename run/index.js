@@ -1,26 +1,22 @@
 'use strict';
 
 /**
- * index.js
+ *  Acts as a module loader to require all tasks for a
+ *  particular task runner.
  *
- * Loads all definitions in the /tasks folder.
+ *  @param string runner - Either `gulp` or `grunt`.
  */
 
 module.exports = function(runner) {
+    console.log('Task runner:', runner);
 
-    console.log('Task runner: ', runner);
-
-    var fs = require('fs');
+    var fs = require('fs'),
     var modules = fs.readdirSync('./run/tasks').filter(function (file) {
         return fs.statSync('./run/tasks/' + file).isDirectory();
     });
 
-    modules.forEach(function(mod) {
-        console.log(' - Loading module', mod);
-        var t = require('./tasks/' + mod + '/' + runner + '.js');
+    modules.forEach(function(module) {
+        console.log(' - Loading module', module);
+        require('./tasks/' + module + '/' + runner + '.js');
     });
-
 };
-
-
-
