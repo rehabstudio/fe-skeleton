@@ -12,6 +12,7 @@
     "grunt-contrib-imagemin": "^0.8.0",
     "grunt-svgmin": "^0.4.0",
     "grunt-contrib-handlebars": "~0.7.0",
+    "grunt-contrib-requirejs": "~0.4.3",
 
     "gulp": "~3.8.7",
     "through2": "^0.6.1",
@@ -21,6 +22,7 @@
     "gulp-ruby-sass": "^0.7.1",
     "gulp-autoprefixer": "0.0.8",
     "gulp-imagemin": "^1.0.0",
-    "gulp-handlebars": "^2.2.0"
+    "gulp-handlebars": "^2.2.0",
+    "requirejs": "^2.1.14"
   }
 }
