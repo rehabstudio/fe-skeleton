@@ -21,11 +21,24 @@ gulp.task('default', function() {
             console.log('Watching styles...');
             gulp.watch(common.watchPaths.styles, ['styles']);
         },
+        scripts: function() {
+            console.log('Watching scripts...');
+            gulp.watch(common.watchPaths.scripts, ['scripts']);
+        },
         templates: function() {
             console.log('Watching templates...');
-            gulp.watch(common.watchPaths.templates, ['templates']);
+            gulp.watch(common.watchPaths.templates, ['templateWatcher']);
         }
     };
 
     common.setupWatchers(args, watchFunctions);
+});
+
+/**
+ *  This task exists to ensure that templates are called and completed
+ *  before attempting to build JS files. Gulp would run these two methods
+ *  in tandem and the build file wouldn't pick up the new template files.
+ */
+gulp.task('templateWatcher', ['templates'], function() {
+    gulp.start('scripts');
 });

@@ -32,11 +32,18 @@ grunt.registerTask('default', function() {
                 tasks: ['styles']
             });
         },
+        scripts: function() {
+            console.log('Watching scripts...');
+            grunt.config.set('watch.scripts', {
+                files: common.watchPaths.scripts,
+                tasks: ['scripts']
+            });
+        },
         templates: function() {
             console.log('Watching templates...');
             grunt.config.set('watch.templates', {
                 files: common.watchPaths.templates,
-                tasks: ['templates']
+                tasks: ['templates', 'scripts']
             });
         }
     };

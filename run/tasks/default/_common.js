@@ -5,6 +5,7 @@ var _ = require('underscore');
 module.exports = {
     watchPaths: {
         styles: ['./css/libs/**/*.scss', './css/src/**/*.scss'],
+        scripts: ['./js/libs/**/*.js', './js/src/**/*.js', '!./js/src/templates/**/*.js'],
         templates: ['./templates/**/*.hbs']
     },
 
