@@ -15,6 +15,7 @@
     "grunt-contrib-requirejs": "~0.4.3",
 
     "gulp": "~3.8.7",
+    "gulp-plumber": "^0.6.5",
     "through2": "^0.6.1",
     "jshint-stylish": "^0.4.0",
     "gulp-wrap": "^0.3.0",

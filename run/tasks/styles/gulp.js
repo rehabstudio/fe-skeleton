@@ -14,6 +14,7 @@ var gulp = require('gulp'),
     args = require('yargs').argv,
     common = require('./_common'),
     _ = require('underscore'),
+    plumber = require('gulp-plumber'),
     sass = require('gulp-ruby-sass'),
     prefix = require('gulp-autoprefixer');
 
@@ -23,6 +24,7 @@ gulp.task('styles', function() {
     }, common.sassSettings);
 
     return gulp.src(common.srcPaths)
+        .pipe(plumber())
         .pipe(sass(combinedSettings))
         .pipe(prefix(common.autoPrefixSettings.browsers), { map: false })
         .pipe(gulp.dest('./css'));
