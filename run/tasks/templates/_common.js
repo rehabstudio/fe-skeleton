@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    srcDirectory: './templates/',
+    srcDirectory: './js/src/templates/',
 
     srcPath: '**/*.hbs',
 
