@@ -12,18 +12,29 @@ var grunt = require('grunt'),
     common = require('./_common'),
     globalSettings = require('../../_global');
 
-grunt.loadNpmTasks('grunt-contrib-requirejs');
-
-grunt.registerTask('scripts', function() {
-    grunt.config.set('requirejs.options', common.defaults);
+function _requireJS() {
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.config.set('requirejs.options', common.requirejs.defaults);
     grunt.config.set('requirejs.options.logLevel', true);
 
-    for (var i = 0, length = common.bundles.length; i < length; i++) {
-        var thisBuild = common.bundles[i],
+    for (var i = 0, length = common.requirejs.bundles.length; i < length; i++) {
+        var thisBuild = common.requirejs.bundles[i],
             uniqueBuildKey = 'build-' + i + '.options';
 
         grunt.config.set('requirejs.' + uniqueBuildKey, thisBuild);
     }
 
     grunt.task.run(['requirejs']);
+}
+
+function _browserify() {
+    console.log('TODO: Browserify.');
+}
+
+grunt.registerTask('scripts', function() {
+    if (globalSettings.moduleFormat === 'requirejs') {
+        _requireJS();
+    } else {
+        _browserify();
+    }
 });
