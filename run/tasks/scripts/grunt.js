@@ -9,7 +9,8 @@
 
 var grunt = require('grunt'),
     args = require('yargs').argv,
-    common = require('./_common');
+    common = require('./_common'),
+    globalSettings = require('../../_global');
 
 grunt.loadNpmTasks('grunt-contrib-requirejs');
 

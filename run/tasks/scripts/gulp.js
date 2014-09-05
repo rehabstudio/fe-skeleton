@@ -10,6 +10,7 @@
 var gulp = require('gulp'),
     args = require('yargs').argv,
     common = require('./_common'),
+    globalSettings = require('../../_global'),
     _ = require('underscore'),
     requirejs = require('requirejs');
 
