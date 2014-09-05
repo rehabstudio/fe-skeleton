@@ -13,7 +13,8 @@
 
 var gulp = require('gulp'),
     args = require('yargs').argv,
-    common = require('./_common');
+    common = require('./_common'),
+    globalSettings = require('../../_global');
 
 gulp.task('default', function() {
     var watchFunctions = {
@@ -24,10 +25,15 @@ gulp.task('default', function() {
         scripts: function() {
             console.log('Watching scripts...');
             gulp.watch(common.watchPaths.scripts, ['scripts']);
-        },
+        }
         templates: function() {
             console.log('Watching templates...');
-            gulp.watch(common.watchPaths.templates, ['templateWatcher']);
+
+            if (globalSettings.moduleFormat === 'requirejs') {
+                gulp.watch(common.watchPaths.templates, ['templateWatcher']);
+            } else {
+                gulp.watch(common.watchPaths.templates, ['scripts']);
+            }
         }
     };
 
