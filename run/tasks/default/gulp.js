@@ -25,7 +25,7 @@ gulp.task('default', function() {
         scripts: function() {
             console.log('Watching scripts...');
             gulp.watch(common.watchPaths.scripts, ['scripts']);
-        }
+        },
         templates: function() {
             console.log('Watching templates...');
 
