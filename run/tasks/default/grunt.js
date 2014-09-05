@@ -13,7 +13,8 @@
 
 var grunt = require('grunt'),
     args = require('yargs').argv,
-    common = require('./_common');
+    common = require('./_common'),
+    globalSettings = require('../../_global');
 
 grunt.loadNpmTasks('grunt-contrib-watch');
 
@@ -41,9 +42,17 @@ grunt.registerTask('default', function() {
         },
         templates: function() {
             console.log('Watching templates...');
+
+            var specificTasks = null;
+            if (globalSettings.moduleFormat === 'requirejs') {
+                specificTasks = ['templates', 'scripts'];
+            } else {
+                specificTasks = ['scripts'];
+            }
+
             grunt.config.set('watch.templates', {
                 files: common.watchPaths.templates,
-                tasks: ['templates', 'scripts']
+                tasks: specificTasks
             });
         }
     };
