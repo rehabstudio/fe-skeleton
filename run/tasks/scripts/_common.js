@@ -9,8 +9,6 @@ module.exports = {
      *  { name: 'src/contact-us', out: 'js/contact-us.min.js' }
      */
     bundles: [
-        { name: 'src/homepage', out: 'js/homepage.min.js' },
-        { name: 'src/contact-us', out: 'js/contact-us.min.js' }
     ],
 
     // Default optimizer options.
