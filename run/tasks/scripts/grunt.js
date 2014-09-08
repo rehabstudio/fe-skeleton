@@ -28,7 +28,7 @@ function _requireJS() {
 }
 
 function _browserify() {
-    console.log('TODO: Browserify.');
+    console.log('NOTE: Use Gulp if you\'re wanting to compile via Browserify.');
 }
 
 grunt.registerTask('scripts', function() {
