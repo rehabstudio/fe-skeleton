@@ -1,7 +1,11 @@
 'use strict';
 
 module.exports = {
-    srcPaths: ['./css/src/*.scss'],
+    srcDirectory: './css/src/',
+
+    srcPath: '*.scss',
+
+    destPath: './css/',
 
     sassSettings: {
         noCache: true,

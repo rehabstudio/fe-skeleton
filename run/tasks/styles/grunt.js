@@ -18,9 +18,9 @@ grunt.config.set('sass', {
     dist: {
         files: [{
             expand: true,
-            cwd: './css/src',
-            src: ['*.scss'],
-            dest: './css',
+            cwd: common.srcDirectory,
+            src: common.srcPath,
+            dest: common.destPath,
             ext: '.css'
         }]
     },

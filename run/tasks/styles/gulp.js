@@ -23,9 +23,11 @@ gulp.task('styles', function() {
         sourcemapPath: './src'
     }, common.sassSettings);
 
-    return gulp.src(common.srcPaths)
+    var sourcePath = common.srcDirectory + common.srcPath;
+
+    return gulp.src(sourcePath)
         .pipe(plumber())
         .pipe(sass(combinedSettings))
         .pipe(prefix(common.autoPrefixSettings.browsers), { map: false })
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest(common.destPath));
 });
