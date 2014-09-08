@@ -5,6 +5,11 @@
 .DS_Store
 Thumbs.db
 .sass-cache
+.*.sw[a-z]
+
+img-min
+css/*.map
+js/*.map
 
 # Logs
 logs
