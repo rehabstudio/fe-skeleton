@@ -2,6 +2,7 @@
 
 /**
  *  Pre-compiles handlebars templates to JS file.
+ *  NOTE: Only needed for RequireJS workflow.
  *
  *  Example Usage:
  *  grunt templates
