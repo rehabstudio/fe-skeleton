@@ -44,10 +44,21 @@ function _browserify() {
             uniqueBuildKey = 'build-' + i,
             buildObj = {},
             destFile = common.browserify.destPath + thisBundle.fileName + common.browserify.buildFileSuffix,
-            srcFile = thisBundle.srcPath + thisBundle.fileName + '.js';
+            srcFile = thisBundle.srcPath + thisBundle.fileName + '.js',
+            mapOutputPath = destFile + '.map';
 
         buildObj.files = {};
         buildObj.files[destFile] = srcFile;
+        buildObj.options = {
+            plugin: [
+                ['minifyify', {
+                    map: mapOutputPath.replace('./', '/'),
+                    output: mapOutputPath,
+                    minify: true
+                }]
+            ]
+        };
+
         grunt.config.set('browserify.' + uniqueBuildKey, buildObj);
     }
 

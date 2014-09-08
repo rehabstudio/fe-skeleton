@@ -6,5 +6,5 @@
  *  moduleFormat - `requirejs`, `browserify`
  */
 module.exports = {
-    moduleFormat: 'requirejs'
+    moduleFormat: 'browserify'
 };
