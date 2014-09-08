@@ -19,7 +19,7 @@ grunt.config.set('handlebars', {
         files: [{
             expand: true,
             cwd: common.srcDirectory,
-            src: [common.srcPath],
+            src: common.srcPath,
             dest: common.destPath,
             ext: '.js'
         }]
