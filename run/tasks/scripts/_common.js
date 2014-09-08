@@ -53,5 +53,26 @@ module.exports = {
     },
 
     browserify: {
+        /**
+         *  An array of objects symbolising bundles requiring built.
+         *
+         *  Example Bundles:
+         *  { srcPath: './js/src/', fileName: 'homepage' },
+         *  { srcPath: './js/src/', fileName: 'contact-us' }
+         */
+        bundles: [
+        ],
+
+        // Settings that get fed into UglifyJS.
+        uglifySourceMapSettings: {
+            root: '/', // Sets sourceRoot in source map file.
+            orig: null // Updated during inline sourcemap extraction.
+        },
+
+        // Gets appended to a bundles `fileName` and placed into `destPath`.
+        buildFileSuffix: '.min.js',
+
+        // Where to place the built bundles.
+        destPath: './js/'
     }
 };

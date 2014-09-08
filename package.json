@@ -24,6 +24,14 @@
     "gulp-autoprefixer": "0.0.8",
     "gulp-imagemin": "^1.0.0",
     "gulp-handlebars": "^2.2.0",
-    "requirejs": "^2.1.14"
+    "requirejs": "^2.1.14",
+    "browserify": "^5.11.0",
+    "gulp-extract-sourcemap": "^0.1.1",
+    "gulp-filter": "^1.0.1",
+    "gulp-uglifyjs": "^0.4.2",
+    "handlebars": "^2.0.0-beta.1",
+    "hbsfy": "^2.1.0",
+    "vinyl-buffer": "0.0.0",
+    "vinyl-source-stream": "^0.1.1"
   }
 }
