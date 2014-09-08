@@ -28,7 +28,30 @@ function _requireJS() {
 }
 
 function _browserify() {
-    console.log('NOTE: Use Gulp if you\'re wanting to compile via Browserify.');
+    grunt.loadNpmTasks('grunt-browserify');
+
+    grunt.config.set('browserify', {
+        options: {
+            browserifyOptions: {
+                debug: true
+            },
+            transform: ['hbsfy']
+        }
+    });
+
+    for (var i = 0, length = common.browserify.bundles.length; i < length; i++) {
+        var thisBundle = common.browserify.bundles[i],
+            uniqueBuildKey = 'build-' + i,
+            buildObj = {},
+            destFile = common.browserify.destPath + thisBundle.fileName + common.browserify.buildFileSuffix,
+            srcFile = thisBundle.srcPath + thisBundle.fileName + '.js';
+
+        buildObj.files = {};
+        buildObj.files[destFile] = srcFile;
+        grunt.config.set('browserify.' + uniqueBuildKey, buildObj);
+    }
+
+    grunt.task.run(['browserify']);
 }
 
 grunt.registerTask('scripts', function() {
