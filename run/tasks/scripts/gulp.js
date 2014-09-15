@@ -18,7 +18,9 @@ function _requireJS() {
 
     for (var i = 0, length = common.requirejs.bundles.length; i < length; i++) {
         var thisBuild = common.requirejs.bundles[i],
-            combinedOptions = _.extend({}, common.requirejs.defaults, thisBuild);
+            combinedOptions = _.extend({
+                uglify2: common.uglifySettings
+            }, common.requirejs.defaults, thisBuild);
 
         requirejs.optimize(combinedOptions, function(buildOutput) {
             console.log(buildOutput);
@@ -51,6 +53,14 @@ function _browserify() {
     for (var i = 0, length = common.browserify.bundles.length; i < length; i++) {
         var thisBundle = common.browserify.bundles[i];
 
+        // Combining uglify defaults with custom options for sourcemapping.
+        var uglifyOptions = _.extend({}, common.uglifySettings, {
+            outSourceMap: true,
+            output: {
+                source_map: uglifySourceMapSettings
+            }
+        });
+
         var bundleStream = browserify({ debug: true })
             .add(thisBundle.srcPath + thisBundle.fileName + '.js')
             .transform('hbsfy')
@@ -69,12 +79,7 @@ function _browserify() {
                 uglifySourceMapSettings.orig = sourceMap;
             })
             .pipe(filter('**/*.js'))
-            .pipe(uglify(thisBundle.fileName + common.browserify.buildFileSuffix, {
-                outSourceMap: true,
-                output: {
-                    source_map: uglifySourceMapSettings
-                }
-            }))
+            .pipe(uglify(thisBundle.fileName + common.browserify.buildFileSuffix, uglifyOptions))
             .pipe(gulp.dest(common.browserify.destPath));
     }
 }

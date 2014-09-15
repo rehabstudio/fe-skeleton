@@ -25,14 +25,6 @@ module.exports = {
             // How to optimize all the JS files in the build output directory.
             optimize: 'uglify2',
 
-            // Configuration options to be passed into Uglify2.
-            uglify2: {
-                compress: {
-                    drop_console: false,
-                    drop_debugger: false
-                }
-            },
-
             // Scripts and paths are loaded relatively to this location.
             baseUrl: 'js',
 
@@ -82,5 +74,14 @@ module.exports = {
 
         // Where to place the built bundles.
         destPath: './js/'
+    },
+
+    // Settings for UglifyJS2.
+    uglifySettings: {
+        compress: {
+            drop_console: false,
+            drop_debugger: false,
+            warnings: false
+        }
     }
 };

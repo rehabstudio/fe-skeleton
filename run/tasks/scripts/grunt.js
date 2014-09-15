@@ -15,6 +15,7 @@ var grunt = require('grunt'),
 function _requireJS() {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.config.set('requirejs.options', common.requirejs.defaults);
+    grunt.config.set('requirejs.options.uglify2', common.uglifySettings);
     grunt.config.set('requirejs.options.logLevel', true);
 
     for (var i = 0, length = common.requirejs.bundles.length; i < length; i++) {
@@ -54,7 +55,8 @@ function _browserify() {
                 ['minifyify', {
                     map: mapOutputPath.replace('./', '/'),
                     output: mapOutputPath,
-                    minify: true
+                    minify: true,
+                    uglify: common.uglifySettings
                 }]
             ]
         };
