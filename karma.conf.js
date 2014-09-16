@@ -6,7 +6,10 @@ var _ = require('underscore'),
 var defaultSettings = {
     basePath: '',
     exclude: [],
-    reporters: ['progress'],
+    junitReporter: {
+        outputFile: 'fe-test-results.xml'
+    },
+    reporters: ['progress', 'junit'],
     port: 9876,
     colors: true,
     autoWatch: false,

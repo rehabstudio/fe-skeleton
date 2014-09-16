@@ -42,3 +42,6 @@ node_modules
 
 # Sphinx env artifacts
 docs/_build/doctrees/environment.pickle
+
+# Output by jUnit via Karma, for integration with Jenkins.
+fe-test-results.xml
