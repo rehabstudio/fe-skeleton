@@ -5,6 +5,11 @@ var _ = require('underscore'),
 // Browserify settings that both RequireJS and Browserify agree on.
 var defaultSettings = {
     basePath: '',
+    client: {
+        mocha: {
+            timeout: 8000
+        }
+    },
     exclude: [],
     junitReporter: {
         outputFile: 'fe-test-results.xml'
