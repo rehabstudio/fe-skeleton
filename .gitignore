@@ -8,8 +8,7 @@ Thumbs.db
 .*.sw[a-z]
 
 img-min
-css/*.map
-js/*.map
+*.map
 
 # Logs
 logs
