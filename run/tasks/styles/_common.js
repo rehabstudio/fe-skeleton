@@ -14,6 +14,6 @@ module.exports = {
     },
 
     autoPrefixSettings: {
-        browsers: ["last 2 versions", "> 1%", "ie 8", "ie 7"]
+        browsers: ['last 2 versions', 'ios 6.1', 'android >= 4']
     }
 };
