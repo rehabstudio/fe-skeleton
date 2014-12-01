@@ -5,7 +5,8 @@
  *  need to load modules other than themselves to function.
  */
 var loadingOverrides = {
-    'default': ['styles', 'scripts', 'default']
+    'default': ['styles', 'scripts', 'default'],
+    'build': ['styles', 'scripts', 'build']
 };
 
 // RequireJS has a templating module that needs loaded additionally.
