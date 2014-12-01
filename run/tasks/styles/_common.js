@@ -9,11 +9,12 @@ module.exports = {
 
     sassSettings: {
         noCache: true,
-        sourcemap: true,
+        'sourcemap=none': true, // Hack until gulp-ruby-sass v1.0 is released: http://bit.ly/1yolgzq
         style: 'compact'
     },
 
     autoPrefixSettings: {
-        browsers: ['last 2 versions', 'ios 6.1', 'android >= 4']
+        browsers: ['last 2 versions', 'ios 6.1', 'android >= 4'],
+        cascade: false
     }
 };
