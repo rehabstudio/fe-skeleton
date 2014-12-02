@@ -29,6 +29,7 @@ gulp.task('default', function() {
         templates: function() {
             console.log('Watching templates...');
 
+            // RequireJS templates need to be compiled first, before triggering scripts.
             if (globalSettings.moduleFormat === 'requirejs') {
                 gulp.watch(common.watchPaths.templates, ['templateWatcher']);
             } else {
