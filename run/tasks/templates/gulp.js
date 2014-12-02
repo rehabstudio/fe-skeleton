@@ -9,7 +9,7 @@
  */
 
 var gulp = require('gulp'),
-    args = require('yargs').argv,
+    globalSettings = require('../../_global'),
     common = require('./_common'),
     through2 = require('through2'),
     wrap = require('gulp-wrap'),
@@ -38,8 +38,12 @@ function handlebarsWrapper() {
 };
 
 gulp.task('templates', function() {
-    var sourcePath = common.srcDirectory + common.srcPath;
+    if (globalSettings.moduleFormat !== 'requirejs') {
+        console.log('Templates: Cancelling. Browserify doesn\'t need to run the templates task.');
+        return;
+    }
 
+    var sourcePath = common.srcDirectory + common.srcPath;
     return gulp.src([sourcePath])
         .pipe(handlebars())
         .pipe(handlebarsWrapper())
