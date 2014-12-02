@@ -8,7 +8,6 @@
  */
 
 var gulp = require('gulp'),
-    args = require('yargs').argv,
     common = require('./_common'),
     imagemin = require('gulp-imagemin');
 

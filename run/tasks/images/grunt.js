@@ -8,7 +8,6 @@
  */
 
 var grunt = require('grunt'),
-    args = require('yargs').argv,
     common = require('./_common');
 
 grunt.loadNpmTasks('grunt-contrib-imagemin');

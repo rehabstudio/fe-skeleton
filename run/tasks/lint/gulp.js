@@ -14,8 +14,7 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint');
 
 gulp.task('lint', function() {
-    var sourceList = common.buildSources(args.filePath);
-    return gulp.src(sourceList)
+    return gulp.src(common.buildSources(args.filePath))
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
 });
