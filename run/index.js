@@ -1,21 +1,32 @@
 'use strict';
 
 /**
- *  Acts as a module loader to require all tasks for a
+ *  Acts as an override for module loading. Certain modules
+ *  need to load modules other than themselves to function.
+ */
+var loadingOverrides = {
+    'default': ['styles', 'scripts', 'default'],
+    'build': ['styles', 'scripts', 'build']
+};
+
+// RequireJS has a templating module that needs loaded additionally.
+var globalSettings = require('./_global');
+if (globalSettings.moduleFormat === 'requirejs') {
+    loadingOverrides.default.unshift('templates');
+}
+
+/**
+ *  Acts as a module loader to require the necessary tasks for a
  *  particular task runner.
  *
  *  @param string runner - Either `gulp` or `grunt`.
  */
-
 module.exports = function(runner) {
-    console.log('Task runner:', runner);
+    var args = require('yargs').argv,
+        desiredModule = (args._[0] || 'default'),                           // If no task specified, use `default`.
+        modulesToLoad = loadingOverrides[desiredModule] || [desiredModule]; // Check for module loading overrides.
 
-    var fs = require('fs');
-    var modules = fs.readdirSync('./run/tasks').filter(function (file) {
-        return fs.statSync('./run/tasks/' + file).isDirectory();
-    });
-
-    modules.forEach(function(module) {
+    modulesToLoad.forEach(function(module) {
         console.log(' - Loading module', module);
         require('./tasks/' + module + '/' + runner + '.js');
     });
