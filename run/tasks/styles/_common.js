@@ -1,9 +1,15 @@
 'use strict';
 
 module.exports = {
-    srcDirectory: './css/src/',
-
-    srcPath: '*.scss',
+    /**
+     *  An array of objects symbolising bundles requiring built.
+     *
+     *  Example Bundles:
+     *  { srcPath: './css/src/', fileName: 'homepage' },
+     *  { srcPath: './css/src/', fileName: 'contact-us' }
+     */
+    bundles: [
+    ],
 
     destPath: './css/',
 

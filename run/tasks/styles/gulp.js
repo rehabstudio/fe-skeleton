@@ -11,7 +11,6 @@
  */
 
 var gulp = require('gulp'),
-    args = require('yargs').argv,
     common = require('./_common'),
     _ = require('underscore'),
     plumber = require('gulp-plumber'),
@@ -19,15 +18,25 @@ var gulp = require('gulp'),
     prefix = require('gulp-autoprefixer');
 
 gulp.task('styles', function() {
-    var combinedSettings = _.extend({
-        sourcemapPath: './src'
-    }, common.sassSettings);
+    for (var index = 0, length = common.bundles.length; index < length; index++) {
 
-    var sourcePath = common.srcDirectory + common.srcPath;
+        // Merging shared settings with some Gulp/Bundle specific settings.
+        // Container is important when building more than one bundle.
+        var combinedSassSettings = _.extend({
+            sourcemapPath: './src',
+            container: 'sass-tmp-container-' + index
+        }, common.sassSettings);
 
-    return gulp.src(sourcePath)
-        .pipe(plumber())
-        .pipe(sass(combinedSettings))
-        .pipe(prefix(common.autoPrefixSettings.browsers), { map: false })
-        .pipe(gulp.dest(common.destPath));
+        // Generating path to source file.
+        var thisBundle = common.bundles[index],
+            sourcePath = thisBundle.srcPath + thisBundle.fileName + '.scss';
+
+        // Compile SASS into CSS then prefix and save.
+        gulp.src(sourcePath)
+            .pipe(plumber())
+            .pipe(sass(combinedSassSettings))
+            .pipe(prefix(common.autoPrefixSettings.browsers), { map: false })
+            .pipe(gulp.dest(common.destPath));
+
+    }
 });
