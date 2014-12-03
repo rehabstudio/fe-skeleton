@@ -61,15 +61,24 @@ function _browserify() {
             }
         });
 
-        var bundleStream = browserify({ debug: true })
+
+        // Creating a browserify instance / stream.
+        var bundleStream = browserify({ debug: true });
+
+        // If this bundle is asking to explicitly exclude certain modules, do so.
+        if (thisBundle.excludes && thisBundle.excludes.length > 0) {
+            for (var j = 0, excludesLength = thisBundle.excludes.length; j < excludesLength; j++) {
+                bundleStream.exclude(thisBundle.excludes[j]);
+            }
+        }
+
+        bundleStream
             .add(thisBundle.srcPath + thisBundle.fileName + '.js')
             .transform('hbsfy')
             .bundle()
             .on('error', function(error) {
                 console.log("Browserify Failed:\n" + error.message);
-            });
-
-        bundleStream
+            })
             .pipe(source(thisBundle.fileName + '.js'))
             .pipe(buffer())
             .pipe(extractor({

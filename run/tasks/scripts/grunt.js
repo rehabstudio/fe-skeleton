@@ -48,6 +48,10 @@ function _browserify() {
             srcFile = thisBundle.srcPath + thisBundle.fileName + '.js',
             mapOutputPath = destFile + '.map';
 
+        if (thisBundle.excludes && thisBundle.excludes.length > 0) {
+            buildObj.exclude = thisBundle.excludes;
+        }
+
         buildObj.files = {};
         buildObj.files[destFile] = srcFile;
         buildObj.options = {

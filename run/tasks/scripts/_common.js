@@ -57,8 +57,8 @@ module.exports = {
          *  An array of objects symbolising bundles requiring built.
          *
          *  Example Bundles:
-         *  { srcPath: './js/src/', fileName: 'homepage' },
-         *  { srcPath: './js/src/', fileName: 'contact-us' }
+         *  { srcPath: './js/src/', fileName: 'homepage', excludes: [] },
+         *  { srcPath: './js/src/', fileName: 'contact-us', excludes: [] }
          */
         bundles: [
         ],
