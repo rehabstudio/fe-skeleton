@@ -88,7 +88,10 @@ function _browserify() {
             })
             .pipe(filter('**/*.js'))
             .pipe(uglify(thisBundle.fileName + common.browserify.buildFileSuffix, uglifyOptions))
-            .pipe(gulp.dest(common.browserify.destPath));
+            .pipe(gulp.dest(common.browserify.destPath))
+            .on('end', function() {
+                console.log('Browserify Completed: ' + thisBundle.srcPath + thisBundle.fileName + '.js');
+            });
     }
 }
 
