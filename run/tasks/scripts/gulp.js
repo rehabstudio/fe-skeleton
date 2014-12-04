@@ -8,10 +8,10 @@
  */
 
 var gulp = require('gulp'),
-    args = require('yargs').argv,
     common = require('./_common'),
     globalSettings = require('../../_global'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    When = require('when');
 
 function _requireJS() {
     var requirejs = require('requirejs');
@@ -29,18 +29,46 @@ function _requireJS() {
 }
 
 /**
+ *  Overall function that will cycle through each of the browserify bundles
+ *  and once they're all completed, trigger the completion of the gulp task.
+ *
+ *  @param {object} taskDone - Gulp task callback method.
+ */
+function _browserify(taskDone) {
+    var promises = [];
+
+    for (var index = 0, length = common.browserify.bundles.length; index < length; index++) {
+        var thisBundle = common.browserify.bundles[index];
+
+        thisBundle.deferred = new When.defer();
+        promises.push(thisBundle.deferred.promise);
+        _processBrowserifyBundle(thisBundle);
+    }
+
+    var allCompleted = new When.all(promises);
+    allCompleted.done(
+        function() {
+            taskDone();
+        },
+        function() {
+            taskDone('Something went wrong.');
+        }
+    );
+}
+
+/**
  *  Uses Browserify API to create a stream. This is then converted into
  *  a stream that Gulp understands (via `vinyl-source-stream`).
  *
  *  This is then passed to `vinyl-buffer` where the streams contents are
- *  converteed into a Buffer. The inline source map from Browserify is
+ *  converted into a Buffer. The inline source map from Browserify is
  *  extracted and added to the stream as another file / save reference
  *  in the exchange object.
  *
  *  We then filter the stream down to only target the JS file, then uglify
  *  it and generate a sourcempa based on the original data.
  */
-function _browserify() {
+function _processBrowserifyBundle(bundle) {
     var browserify = require('browserify'),
         source = require('vinyl-source-stream'),
         buffer = require('vinyl-buffer'),
@@ -48,57 +76,57 @@ function _browserify() {
         filter = require('gulp-filter'),
         uglify = require('gulp-uglifyjs');
 
+    // Make a clone of the uglify settings object so it can be added to.
     var uglifySourceMapSettings = _.extend({}, common.browserify.uglifySourceMapSettings);
 
-    for (var i = 0, length = common.browserify.bundles.length; i < length; i++) {
-        var thisBundle = common.browserify.bundles[i];
-
-        // Combining uglify defaults with custom options for sourcemapping.
-        var uglifyOptions = _.extend({}, common.uglifySettings, {
-            outSourceMap: true,
-            output: {
-                source_map: uglifySourceMapSettings
-            }
-        });
-
-        // Creating a browserify instance / stream.
-        var bundleStream = browserify({ debug: true });
-
-        // If this bundle is asking to explicitly exclude certain modules, do so.
-        if (thisBundle.excludes && thisBundle.excludes.length > 0) {
-            for (var j = 0, excludesLength = thisBundle.excludes.length; j < excludesLength; j++) {
-                bundleStream.exclude(thisBundle.excludes[j]);
-            }
+    // Combining uglify defaults with custom options for sourcemapping.
+    var uglifyOptions = _.extend({}, common.uglifySettings, {
+        outSourceMap: true,
+        output: {
+            source_map: uglifySourceMapSettings
         }
+    });
 
-        bundleStream
-            .add(thisBundle.srcPath + thisBundle.fileName + '.js')
-            .transform('hbsfy')
-            .bundle()
-            .on('error', function(error) {
-                console.log("Browserify Failed:\n" + error.message);
-            })
-            .pipe(source(thisBundle.fileName + '.js'))
-            .pipe(buffer())
-            .pipe(extractor({
-                removeSourcesContent: true
-            }))
-            .on('postextract', function(sourceMap) {
-                uglifySourceMapSettings.orig = sourceMap;
-            })
-            .pipe(filter('**/*.js'))
-            .pipe(uglify(thisBundle.fileName + common.browserify.buildFileSuffix, uglifyOptions))
-            .pipe(gulp.dest(common.browserify.destPath))
-            .on('end', function() {
-                console.log('Browserify Completed: ' + thisBundle.srcPath + thisBundle.fileName + '.js');
-            });
+    // Creating a browserify instance / stream.
+    var bundleStream = browserify({ debug: true });
+
+    // If this bundle is asking to explicitly exclude certain modules, do so.
+    if (bundle.excludes && bundle.excludes.length > 0) {
+        for (var j = 0, excludesLength = bundle.excludes.length; j < excludesLength; j++) {
+            bundleStream.exclude(bundle.excludes[j]);
+        }
     }
+
+    // Adding source file, transforming its templates, dealing with sourcemaps, then uglifying.
+    bundleStream
+        .add(bundle.srcPath + bundle.fileName + '.js')
+        .transform('hbsfy')
+        .bundle()
+        .on('error', function(error) {
+            console.log('Browserify Failed: ' + error.message);
+            bundle.deferred.reject();
+        })
+        .pipe(source(bundle.fileName + '.js'))
+        .pipe(buffer())
+        .pipe(extractor({
+            removeSourcesContent: true
+        }))
+        .on('postextract', function(sourceMap) {
+            uglifySourceMapSettings.orig = sourceMap;
+        })
+        .pipe(filter('**/*.js'))
+        .pipe(uglify(bundle.fileName + common.browserify.buildFileSuffix, uglifyOptions))
+        .pipe(gulp.dest(common.browserify.destPath))
+        .on('end', function() {
+            console.log('Browserify Completed: ' + bundle.srcPath + bundle.fileName + '.js');
+            bundle.deferred.resolve();
+        });
 }
 
-gulp.task('scripts', function() {
+gulp.task('scripts', function(taskDone) {
     if (globalSettings.moduleFormat === 'requirejs') {
         _requireJS();
     } else {
-        _browserify();
+        _browserify(taskDone);
     }
 });
