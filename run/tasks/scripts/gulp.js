@@ -61,7 +61,6 @@ function _browserify() {
             }
         });
 
-
         // Creating a browserify instance / stream.
         var bundleStream = browserify({ debug: true });
 
