@@ -24,5 +24,7 @@ grunt.registerTask('test', function() {
         karmaSettings.singleRun = false;
     }
 
-    karma.server.start(karmaSettings, this.async());
+    karma.server.start(karmaSettings, function() {
+        this.async()
+    });
 });

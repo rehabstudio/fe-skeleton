@@ -24,5 +24,7 @@ gulp.task('test', function(done) {
         karmaSettings.singleRun = false;
     }
 
-    karma.server.start(karmaSettings, done);
+    karma.server.start(karmaSettings, function() {
+        done();
+    });
 });
