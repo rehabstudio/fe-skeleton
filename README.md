@@ -62,18 +62,26 @@ Build tool methods are stored within `run` to encapsulate them away from project
 ## Task Breakdown
 Each of the tasks have documentation at the top of their source files and list any potential command-line arguments they can take. Below is a short description of each available task.
 
-`build` -
+### `build`
+Convenience method that will ensure style sheets and JavaScript are compiled.
 
-`default` -
+### `default`
+A watch method that will look for changes to source files, then re-trigger compilation. Can be called by just calling the task runner, i.e. `gulp`.
 
-`images` -
+### `images`
+Takes site image assets and optimizes them.
 
-`lint` -
+### `lint`
+Examines JavaScript source files for errors and code that doesn't conform to the specified standards or style.
 
-`scripts` -
+### `scripts`
+Compiles source files into minified, uglified payloads.
 
-`styles` -
+### `styles`
+Compiles SASS into CSS and autoprefixes where applicable.
 
-`templates` -
+### `templates`
+(RequireJS only). Converts Handlebars templates into pre-compiled JavaScript templates.
 
-`test` -
+### `test`
+Runs the test runner and any tests within the front-end tests folder. Also outputs JUnit XML for Jenkins.
