@@ -17,13 +17,13 @@ It is a collection of build tools, configuration files, folder structures and mo
 - Convenience methods for building front-end style sheets and scripts.
 
 ## Installation
-All tooling dependencies are node based, and can be installed by running:
+All tooling dependencies are node based, and can be installed by running the appropriate `Makefile` method:
 
 ```
-npm install;
+make fe-setup;
 ```
 
-You may potentially have to run the previous command with `sudo` depending on your system setup. For the SASS compilation you will also need the Ruby gem `sass` which can be installed with the following command:
+This will ensure the dependencies are installed and that the build files are compiled and ready for usage. For the SASS compilation you will also need the Ruby gem `sass` which can be installed with the following command:
 
 ```
 gem install sass;
