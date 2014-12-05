@@ -1,0 +1,6 @@
+help:
+	@echo "fe-setup - Installs node dependencies and triggers compilation of build files."
+
+fe-setup:
+	sudo npm install;
+	gulp build;
