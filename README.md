@@ -44,18 +44,18 @@ There are a multitude of settings files included in the root of the repository.
 
 `karma.conf.js` houses configuration for [Karma](http://karma-runner.github.io/). It can also contain settings for Mocha, Chai and Sinon.
 
-`run/_global.js` is a global file for the build tool methods so settings can be shared across the multitude of methods. One such setting indicates if the project is using RequireJS or Browserify for its module format.
+`run/_global.js` is a global file for the build tool methods so settings can be shared across the multitude of methods. One such setting indicates if the project is using RequireJS or Browserify for its module format. Another specifies the path where assets should be copied when building CSS / JS or moving imagery or fonts.
 
 ## Folder Structure
 Both style sheets and scripts follow the same structure. Library files are placed in `libs`. These library files do not have to be minifed and in best practice probably shouldn't be. This is because during development, errors within them are easier to debug, and also that the build process will be minifying them anyway.
 
-All source files are placed within `src` and are split into modular files to aid in decoupling and organisation. Build files that are the end result of compilation are placed within the root of the `css` or `js` folders.
+All source files are placed within `src` and are split into modular files to aid in decoupling and organisation. Build files that are the end result of compilation are placed wherever the `destPath` of global settings points to, then nested inside `css` or `js` folders respectively.
 
 JavaScript test files are places within `js/tests` and should have the suffix `.spec.js` so they're picked up by the test runner.
 
-Images are placed within an `img` folder and should be maintained by grouping related imagery (features, sections etc..) into sub-folders.
+Images are placed within an `img` folder and should be maintained by grouping related imagery (features, sections etc..) into sub-folders. They are copied over to `destPath` during the `build` task.
 
-Fonts reside within `fonts` and should be grouped into individual folders per font (which house all of that fonts different file formats).
+Fonts reside within `fonts` and should be grouped into individual folders per font (which house all of that fonts different file formats). They are copied over to `destPath` during the `build` task.
 
 Build tool methods are stored within `run` to encapsulate them away from project source files. They are split into folders per method, with each folder containing different build tool files along with an additional file (`_common.js`) which is used to share settings and keep things DRY.
 
@@ -63,7 +63,7 @@ Build tool methods are stored within `run` to encapsulate them away from project
 Each of the tasks have documentation at the top of their source files and list any potential command-line arguments they can take. Below is a short description of each available task.
 
 ### `build`
-Convenience method that will ensure style sheets and JavaScript are compiled.
+Convenience method that will ensure style sheets and JavaScript are compiled. After this, all assets (style sheets, images, fonts and scripts) are copied over to the `destPath`.
 
 ### `default`
 A watch method that will look for changes to source files, then re-trigger compilation. Can be called by just calling the task runner, i.e. `gulp`.
