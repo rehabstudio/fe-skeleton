@@ -69,11 +69,11 @@ module.exports = {
             orig: null // Updated during inline sourcemap extraction.
         },
 
-        // Gets appended to a bundles `fileName` and placed into `destPath`.
+        // Gets appended to a bundles `fileName` and placed into `outputFolder`.
         buildFileSuffix: '.min.js',
 
-        // Where to place the built bundles.
-        destPath: './js/'
+        // Where to place the built bundles. Is prefixed with `destPath` from global settings.
+        outputFolder: './js/'
     },
 
     // Settings for UglifyJS2.

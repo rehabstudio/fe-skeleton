@@ -44,7 +44,7 @@ function _browserify() {
         var thisBundle = common.browserify.bundles[i],
             uniqueBuildKey = 'build-' + i,
             buildObj = {},
-            destFile = common.browserify.destPath + thisBundle.fileName + common.browserify.buildFileSuffix,
+            destFile = globalSettings.destPath + common.browserify.outputFolder + thisBundle.fileName + common.browserify.buildFileSuffix,
             srcFile = thisBundle.srcPath + thisBundle.fileName + '.js',
             mapOutputPath = destFile + '.map';
 

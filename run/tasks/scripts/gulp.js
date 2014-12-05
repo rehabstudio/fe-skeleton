@@ -116,7 +116,7 @@ function _processBrowserifyBundle(bundle) {
         })
         .pipe(filter('**/*.js'))
         .pipe(uglify(bundle.fileName + common.browserify.buildFileSuffix, uglifyOptions))
-        .pipe(gulp.dest(common.browserify.destPath))
+        .pipe(gulp.dest(globalSettings.destPath + common.browserify.outputFolder))
         .on('end', function() {
             console.log('Browserify Completed: ' + bundle.srcPath + bundle.fileName + '.js');
             bundle.deferred.resolve();

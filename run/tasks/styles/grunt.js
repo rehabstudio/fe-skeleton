@@ -8,7 +8,8 @@
  */
 
 var grunt = require('grunt'),
-    common = require('./_common');
+    common = require('./_common'),
+    globalSettings = require('../../_global');
 
 grunt.loadNpmTasks('grunt-contrib-sass');
 grunt.loadNpmTasks('grunt-autoprefixer');
@@ -21,8 +22,8 @@ grunt.config.set('autoprefixer', {
     dist: {
         expand: true,
         flatten: true,
-        src: 'css/*.css',
-        dest: 'css/'
+        src: globalSettings.destPath + common.outputFolder + '*.css',
+        dest: globalSettings.destPath + common.outputFolder
     },
     options: {
         browsers: common.autoPrefixSettings.browsers,
@@ -37,7 +38,7 @@ grunt.registerTask('styles', function() {
             thisBundle = common.bundles[index];
 
         // Generate paths for this row.
-        var destPath = common.destPath + thisBundle.fileName + '.css',
+        var destPath = globalSettings.destPath + common.outputFolder + thisBundle.fileName + '.css',
             sourcePath = thisBundle.srcPath + thisBundle.fileName + '.scss',
             buildObject = {};
 

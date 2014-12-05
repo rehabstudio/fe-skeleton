@@ -12,6 +12,7 @@
 
 var gulp = require('gulp'),
     common = require('./_common'),
+    globalSettings = require('../../_global'),
     _ = require('underscore'),
     plumber = require('gulp-plumber'),
     sass = require('gulp-ruby-sass'),
@@ -65,7 +66,7 @@ function processBundle(bundle, index) {
         .pipe(plumber())
         .pipe(sass(combinedSassSettings))
         .pipe(prefix(common.autoPrefixSettings.browsers), { map: false })
-        .pipe(gulp.dest(common.destPath));
+        .pipe(gulp.dest(globalSettings.destPath + common.outputFolder));
 
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
     stream
