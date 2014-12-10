@@ -1,5 +1,8 @@
 'use strict';
 
+// Adding promises to nodes global scope.
+require('es6-promise').polyfill();
+
 /**
  *  Acts as an override for module loading. Certain modules
  *  need to load modules other than themselves to function.

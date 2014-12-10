@@ -15,22 +15,21 @@ var gulp = require('gulp'),
     _ = require('underscore'),
     plumber = require('gulp-plumber'),
     sass = require('gulp-ruby-sass'),
-    prefix = require('gulp-autoprefixer'),
-    When = require('when');
+    prefix = require('gulp-autoprefixer');
 
 gulp.task('styles', function(taskDone) {
     var promises = [];
 
     for (var index = 0, length = common.bundles.length; index < length; index++) {
-        var thisBundle = common.bundles[index];
+        var thisBundle = common.bundles[index],
+            scopedProcessingMethod = _processBundle.bind(thisBundle);
 
-        thisBundle.deferred = new When.defer();
-        promises.push(thisBundle.deferred.promise);
-        processBundle(thisBundle, index);
+        thisBundle.index = index;
+        thisBundle.promise = new Promise(scopedProcessingMethod);
+        promises.push(thisBundle.promise);
     }
 
-    var allCompleted = new When.all(promises);
-    allCompleted.done(
+    Promise.all(promises).then(
         function() {
             taskDone();
         },
@@ -45,20 +44,22 @@ gulp.task('styles', function(taskDone) {
  *  CSS and prefixes as necessary. Completion of the task is
  *  signalled via resolving or rejecting the bundles deferred.
  *
- *  @param {object} bundle - Object from the bundles array.
- *  @param {number} index - The index of the bundle within the array.
+ *  @param {function} resolve - Promise resolution callback.
+ *  @param {function} reject - Promise rejection callback.
  *  @return null.
  */
-function processBundle(bundle, index) {
+function _processBundle(resolve, reject) {
+    var self = this;
+
     // Merging shared settings with some Gulp/Bundle specific settings.
     // Container is important when building more than one bundle.
     var combinedSassSettings = _.extend({
         sourcemapPath: './src',
-        container: 'sass-tmp-container-' + index
+        container: 'sass-tmp-container-' + self.index
     }, common.sassSettings);
 
     // Generating path to source file.
-    var sourcePath = bundle.srcPath + bundle.fileName + '.scss';
+    var sourcePath = self.srcPath + self.fileName + '.scss';
 
     // Compile SASS into CSS then prefix and save.
     var stream = gulp.src(sourcePath)
@@ -70,9 +71,9 @@ function processBundle(bundle, index) {
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
     stream
         .on('error', function() {
-            bundle.deferred.reject();
+            reject();
         })
         .on('end', function() {
-            bundle.deferred.resolve();
+            resolve();
         });
 }
