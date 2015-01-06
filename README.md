@@ -60,7 +60,7 @@ Fonts reside within `fonts` and should be grouped into individual folders per fo
 Build tool methods are stored within `run` to encapsulate them away from project source files. They are split into folders per method, with each folder containing different build tool files along with an additional file (`_common.js`) which is used to share settings and keep things DRY.
 
 ## Test Suite
-As previously stated, test specifications should be placed into `js/tests/` with a prefix of `.spec.js`. This ensures they will be automatically picked up by Karma whenever it is run. The test specs themselves are piped through Browserify or RequireJS (depending on your global setting in `run/_global.js`), so be sure to write the spec file syntactically as you would any other JavaScript module in your project.
+As previously stated, test specifications should be placed into `js/tests/` with a suffix of `.spec.js`. This ensures they will be automatically picked up by Karma whenever it is run. The test specs themselves are piped through Browserify or RequireJS (depending on your global setting in `run/_global.js`), so be sure to write the spec file syntactically as you would any other JavaScript module in your project.
 
 The testing stack is Mocha, Chai and Sinon, with Karma as the test runner. This gives you a full toolset of test frameworks, assertion libraries, spies and more. Each component of the testing stack is already loaded into the scope of the test spec so you can just their global/top-level functions automagically.
 
