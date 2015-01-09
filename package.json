@@ -6,7 +6,7 @@
     "private": true,
     "repository": {
         "type": "git",
-        "url": "ssh://git@stash.rehabstudio.com:7999/rs/fe-skeleton.git"
+        "url": "ssh://git@github.com:rehabstudio/fe-skeleton.git"
     },
     "authors": [
         "Anthony Hastings <anthony@rehabstudio.com>",
