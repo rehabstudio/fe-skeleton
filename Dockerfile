@@ -25,5 +25,9 @@ RUN npm install -g npm
 # install global task runners and phantomjs
 RUN npm install -g grunt-cli gulp phantomjs
 
+# install gulp sass requirements
+RUN apt-get install -y ruby
+RUN gem install sass
+
 VOLUME ['/src']
 WORKDIR /src
