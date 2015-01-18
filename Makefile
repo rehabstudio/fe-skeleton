@@ -17,6 +17,7 @@ help:
 	@echo "\tmake docker-build - Trigger 'make build' via docker" 
 	@echo "\tmake docker-watch - Trigger 'make watch' via docker" 
 	@echo "\tmake docker-test - Trigger 'make test' via docker" 
+	@echo "\tmake docker-shell - Launch `bash` in a new container for debugging" 
 
 default: help
 
@@ -111,4 +112,4 @@ docker-shell: .dockerbuild
 	docker run -ti --rm -v $(CURDIR):/src $(IMAGE_NAME) bash
 
 # makefile ettiquette; mark rules without on-disk targets as PHONY
-.PHONY: default help setup fe-setup build watch test docker-build docker-watch docker-test
+.PHONY: default help setup fe-setup build watch test docker-build docker-watch docker-test docker-shell
