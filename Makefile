@@ -53,6 +53,9 @@ BASE_CONTAINER_NAME = $(IMAGE_NAME)-$(runner)
 	docker build -t $(IMAGE_NAME) .
 	touch $@
 
+# default docker command
+cmd=build
+
 # Here we check if a container with the correct name already exists and if
 # it does we run it again. Otherwise we run a new one and have it call
 # `make $(cmd) runner=$(runner)`
