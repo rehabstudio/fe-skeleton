@@ -7,7 +7,7 @@
  *  https://github.com/Metrime/gulp-autoprefixer/issues/3
  *
  *  Example Usage:
- *  grunt styles
+ *  gulp styles
  */
 
 var gulp = require('gulp'),
@@ -66,7 +66,7 @@ function _processBundle(resolve, reject) {
     var stream = gulp.src(sourcePath)
         .pipe(plumber())
         .pipe(sass(combinedSassSettings))
-        .pipe(prefix(common.autoPrefixSettings.browsers), { map: false })
+        .pipe(prefix(common.autoPrefixSettings), { map: false })
         .pipe(gulp.dest(globalSettings.destPath + common.outputFolder));
 
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
