@@ -1,3 +1,6 @@
+# ignore docker make flag
+.dockerbuild
+
 *.pyc
 *.pyo
 .coverage
