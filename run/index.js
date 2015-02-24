@@ -23,7 +23,7 @@ if (globalSettings.moduleFormat === 'requirejs') {
  *  Acts as a module loader to require the necessary tasks for a
  *  particular task runner.
  *
- *  @param string runner - Either `gulp` or `grunt`.
+ *  @param string runner - The name of the task runner.
  */
 module.exports = function(runner) {
     var args = require('yargs').argv,
