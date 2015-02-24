@@ -93,6 +93,9 @@ Each of the tasks have documentation at the top of their source files and list a
 Convenience method that will ensure style sheets and JavaScript are compiled. After this, all assets (style sheets, images, fonts and scripts) are copied over to the `destPath`.
 
 ### `default`
+An alias for `build`.
+
+### `watch`
 A watch method that will look for changes to source files, then re-trigger compilation. Can be called by just calling the task runner, i.e. `gulp`.
 
 ### `images`
