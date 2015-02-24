@@ -5,6 +5,10 @@ module.exports = {
         /**
          *  An array of objects symbolising bundles requiring built.
          *
+         *  Bundle Options:
+         *  `name` - Module path and name of initial script file. Relative to `/js/`.
+         *  `out` - Path and filename of bundled script. Relative to `package.json` and `gulpfile.js`.
+         *
          *  Example Bundles:
          *  { name: 'src/homepage', out: 'js/homepage.min.js' },
          *  { name: 'src/contact-us', out: 'js/contact-us.min.js' }
@@ -55,6 +59,11 @@ module.exports = {
     browserify: {
         /**
          *  An array of objects symbolising bundles requiring built.
+         *
+         *  Bundle Options:
+         *  `srcPath` - Folder where source files can be found. Relative to `package.json` and `gulpfile.js`.
+         *  `fileName` - File within `srcPath` which is the bundle starting point.
+         *  `excludes` - Any package names that need to be excluded from bundle i.e. `jquery`.
          *
          *  Example Bundles:
          *  { srcPath: './js/src/', fileName: 'homepage', excludes: [] },

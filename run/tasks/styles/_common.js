@@ -4,6 +4,10 @@ module.exports = {
     /**
      *  An array of objects symbolising bundles requiring built.
      *
+     *  Bundle Options:
+     *  `srcPath` - Folder where source files can be found. Relative to `package.json` and `gulpfile.js`.
+     *  `fileName` - File within `srcPath` which is the bundle starting point.
+     *
      *  Example Bundles:
      *  { srcPath: './css/src/', fileName: 'homepage' },
      *  { srcPath: './css/src/', fileName: 'contact-us' }

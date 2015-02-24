@@ -86,6 +86,11 @@ describe('The Feature model', function() {
 });
 ```
 
+## Style and Script Bundles
+Because projects frequently have multiple bundled payloads of styles and scripts (often for different sections of a web application), the skeleton tasks for `scripts` and `styles` have been designed to cycle through an array of bundles and build each bundle independently.
+
+If you want to compile CSS or JS you will need to define the relevant bundles. You can do so in the styles settings (`run/tasks/styles/_common.js`) and the scripts settings (`run/tasks/scripts/_common.js`) where you will find further instructions.
+
 ## Task Breakdown
 Each of the tasks have documentation at the top of their source files and list any potential command-line arguments they can take. Below is a short description of each available task.
 
