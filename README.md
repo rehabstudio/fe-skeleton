@@ -3,7 +3,7 @@
 ## Introduction
 The intention of this skeleton is to give a base platform for you to build your project on top of.
 
-All build tools are supplied through Node. The skeletons primary focus for tooling is via Gulp, however, support for Grunt is included where applicable.
+All build tools are supplied through Node and uses Gulp as a task runner.
 
 It is a collection of build tools, configuration files, folder structures and more. Below are some of the features provided:
 
