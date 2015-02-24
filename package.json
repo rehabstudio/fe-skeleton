@@ -28,7 +28,7 @@
         "karma-requirejs": "^0.2.2",
         "karma-browserify": "^1.0.0",
 
-        "gulp": "~3.8.10",
+        "gulp": "~3.8.11",
         "gulp-plumber": "^0.6.5",
         "through2": "^0.6.1",
         "jshint-stylish": "^1.0.0",
