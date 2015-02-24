@@ -8,14 +8,15 @@ require('es6-promise').polyfill();
  *  need to load modules other than themselves to function.
  */
 var loadingOverrides = {
-    'default': ['styles', 'scripts', 'default'],
-    'build': ['styles', 'scripts', 'build']
+    'watch': ['styles', 'scripts', 'watch'],
+    'build': ['styles', 'scripts', 'build'],
+    'default': ['styles', 'scripts', 'build', 'default']
 };
 
 // RequireJS has a templating module that needs loaded additionally.
 var globalSettings = require('./_global');
 if (globalSettings.moduleFormat === 'requirejs') {
-    loadingOverrides.default.unshift('templates');
+    loadingOverrides.watch.unshift('templates');
 }
 
 /**

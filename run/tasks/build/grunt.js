@@ -6,7 +6,7 @@
  *  primarily used during deployment or initial setup.
  *
  *  Example Usage:
- *  gulp build
+ *  grunt build
  */
 
 var grunt = require('grunt'),
