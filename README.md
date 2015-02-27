@@ -66,6 +66,8 @@ The testing stack is Mocha, Chai and Sinon, with Karma as the test runner. This 
 
 An example test spec is shown below, which loads in a contrived model and runs some tests.
 ```
+'use strict';
+
 // Loading dependencies.
 var FeatureModel = require('../src/models/FeatureModel');
 
@@ -79,7 +81,7 @@ describe('The Feature model', function() {
         this.testModel = null;
     });
 
-    it('should have defaults', function(done) {
+    it('should have defaults', function() {
         expect(this.testModel.to.have.ownProperty('defaults');
     });
 
