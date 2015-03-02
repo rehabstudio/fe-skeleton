@@ -16,6 +16,19 @@ It is a collection of build tools, configuration files, folder structures and mo
 - Optimize image assets of various formats.
 - Convenience methods for building front-end style sheets and scripts.
 
+## Cloning
+There are many options available in how you use this repository to best suit your project.
+
+You can use this repo as the basis of your own by re-pointing the origin to your own repo URL (as long as it's freshly-made and blank). Use the code below, replacing the path and branch name as necessary:
+
+```
+git remote rm origin;
+git remote add origin git@path-to-your-own-repo.git;
+git push origin master
+```
+
+You can also copy the files and folders of this repository into your own, excluding the `.git` folder so it doesn't overwrite your own. Be aware that this will not preserve any git history of this repo.
+
 ## Installation
 Because this skeleton has support for multiple task runners you'll probably want to remove some packages from `package.json` before installing. The `devDependencies` key has been split into multiple groups. The first group is general dependencies and test suite dependencies, none of which should be deleted. The latter groups are for a specific task runner each and should be easily identifiable. If you don't intend to use a particular task runner, then be sure to delete its group of dependencies before going any further.
 
