@@ -13,8 +13,8 @@
  *  https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json
  *
  *  Example Usage:
- *  gulp style-check
- *  gulp style-check --filePath js/src/app.js
+ *  gulp js-style
+ *  gulp js-style --filePath js/src/app.js
  */
 
 var gulp = require('gulp'),
@@ -22,7 +22,7 @@ var gulp = require('gulp'),
     common = require('./_common'),
     jscs = require('gulp-jscs');
 
-gulp.task('js-style-check', function () {
+gulp.task('js-style', function () {
     return gulp.src(common.buildSources(args.filePath))
         .pipe(jscs());
 });

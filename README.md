@@ -121,7 +121,7 @@ A watch method that will look for changes to source files, then re-trigger compi
 ### `images`
 Takes site image assets and optimizes them.
 
-### `js-style-check`
+### `js-style`
 Analyzes JavaScript source files to ensure their coding style adheres to a particular set of conventions.
 
 ### `lint`
