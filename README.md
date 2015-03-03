@@ -30,8 +30,6 @@ git push origin master
 You can also copy the files and folders of this repository into your own, excluding the `.git` folder so it doesn't overwrite your own. Be aware that this will not preserve any git history of this repo.
 
 ## Installation
-Because this skeleton has support for multiple task runners you'll probably want to remove some packages from `package.json` before installing. The `devDependencies` key has been split into multiple groups. The first group is general dependencies and test suite dependencies, none of which should be deleted. The latter groups are for a specific task runner each and should be easily identifiable. If you don't intend to use a particular task runner, then be sure to delete its group of dependencies before going any further.
-
 Style sheet compilation involves using the `sass` Ruby gem. This needs to be installed prior to running the setup method ahead. Assuming you have Ruby on your system, the gem can be installed with the following command:
 
 ```
