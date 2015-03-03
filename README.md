@@ -53,6 +53,8 @@ There are a multitude of settings files included in the root of the repository.
 
 `.jshintignore` and `.jshintrc` are used in conjunction with the linting tool and can be used to customise the standards and rules which the JavaScript source code must adhere to.
 
+`.jscsrc` is used with the style checking tool [JSCS](http://jscs.info/) to ensure that JS source files adhere to agreed coding conventions and are styled in a consistent manner.
+
 `karma.conf.js` houses configuration for [Karma](http://karma-runner.github.io/). It can also contain settings for Mocha, Chai and Sinon.
 
 `run/_global.js` is a global file for the build tool methods so settings can be shared across the multitude of methods. One such setting indicates if the project is using RequireJS or Browserify for its module format. Another specifies the path where assets should be copied when building CSS / JS or moving imagery or fonts.
@@ -119,8 +121,11 @@ A watch method that will look for changes to source files, then re-trigger compi
 ### `images`
 Takes site image assets and optimizes them.
 
+### `js-style`
+Analyzes JavaScript source files to ensure their coding style adheres to a particular set of conventions.
+
 ### `lint`
-Examines JavaScript source files for errors and code that doesn't conform to the specified standards or style.
+Examines JavaScript source files for errors and code that doesn't conform to the specified standards.
 
 ### `scripts`
 Compiles source files into minified, uglified payloads.
