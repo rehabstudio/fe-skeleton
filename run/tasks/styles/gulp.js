@@ -3,6 +3,14 @@
 /**
  *  Compiles, minifies and prefixes SASS.
  *
+ *  Until Node-Sass starts using libsass 3.2 sourcemaps are fundamentally broken:
+ *  https://github.com/sass/node-sass/issues/619
+ *  https://github.com/sass/libsass/issues/837
+ *  https://github.com/sass/libsass/pull/910
+ *
+ *  libsass 3.2 progress:
+ *  https://github.com/sass/libsass/milestones/3.2
+ *
  *  Example Usage:
  *  gulp styles
  */
