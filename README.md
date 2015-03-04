@@ -30,13 +30,7 @@ git push origin master
 You can also copy the files and folders of this repository into your own, excluding the `.git` folder so it doesn't overwrite your own. Be aware that this will not preserve any git history of this repo.
 
 ## Installation
-Style sheet compilation involves using the `sass` Ruby gem. This needs to be installed prior to running the setup method ahead. Assuming you have Ruby on your system, the gem can be installed with the following command:
-
-```
-gem install sass;
-```
-
-Once you have done this, you're ready to start the overall tooling installation via the `Makefile` method below:
+The entire toolchain is node based so ensure you are using a stable version of node such as `0.10.x` or `0.12.x`. Also ensure your version of NPM is at least `2.6.x`. Once you have met these requirements, you're ready to start the overall tooling installation via the `Makefile` method below:
 
 ```
 make fe-setup;
