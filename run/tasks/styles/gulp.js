@@ -3,9 +3,6 @@
 /**
  *  Compiles, minifies and prefixes SASS.
  *
- *  Note: Sourcemaps are WIP in the AutoPrefixer.
- *  https://github.com/Metrime/gulp-autoprefixer/issues/3
- *
  *  Example Usage:
  *  gulp styles
  */
@@ -15,7 +12,7 @@ var gulp = require('gulp'),
     globalSettings = require('../../_global'),
     _ = require('underscore'),
     plumber = require('gulp-plumber'),
-    sass = require('gulp-ruby-sass'),
+    sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer');
 
 gulp.task('styles', function(taskDone) {
@@ -52,21 +49,14 @@ gulp.task('styles', function(taskDone) {
 function _processBundle(resolve, reject) {
     var self = this;
 
-    // Merging shared settings with some Gulp/Bundle specific settings.
-    // Container is important when building more than one bundle.
-    var combinedSassSettings = _.extend({
-        sourcemapPath: './src',
-        container: 'sass-tmp-container-' + self.index
-    }, common.sassSettings);
-
     // Generating path to source file.
     var sourcePath = self.srcPath + self.fileName + '.scss';
 
     // Compile SASS into CSS then prefix and save.
     var stream = gulp.src(sourcePath)
         .pipe(plumber())
-        .pipe(sass(combinedSassSettings))
-        .pipe(prefix(common.autoPrefixSettings), { map: false })
+        .pipe(sass(common.sassSettings))
+        .pipe(prefix(common.autoPrefixSettings))
         .pipe(gulp.dest(globalSettings.destPath + common.outputFolder));
 
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
