@@ -21,8 +21,8 @@ var gulp = require('gulp'),
 function _browserify(taskDone) {
     var promises = [];
 
-    for (var index = 0, length = common.browserify.bundles.length; index < length; index++) {
-        var thisBundle = common.browserify.bundles[index],
+    for (var index = 0, length = common.bundles.length; index < length; index++) {
+        var thisBundle = common.bundles[index],
             scopedProcessingMethod = _processBrowserifyBundle.bind(thisBundle);
 
         thisBundle.promise = new Promise(scopedProcessingMethod);

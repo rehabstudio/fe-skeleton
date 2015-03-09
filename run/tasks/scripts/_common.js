@@ -20,7 +20,7 @@ module.exports = {
     buildFileSuffix: '.min.js',
 
     // Where to place the built bundles. Is prefixed with `destPath` from global settings.
-    outputFolder: './js/'
+    outputFolder: './js/',
 
     // Settings that get fed into UglifyJS.
     uglifySourceMapSettings: {
