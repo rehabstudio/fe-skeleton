@@ -12,21 +12,6 @@ var gulp = require('gulp'),
     globalSettings = require('../../_global'),
     _ = require('underscore');
 
-function _requireJS() {
-    var requirejs = require('requirejs');
-
-    for (var i = 0, length = common.requirejs.bundles.length; i < length; i++) {
-        var thisBuild = common.requirejs.bundles[i],
-            combinedOptions = _.extend({
-                uglify2: common.uglifySettings
-            }, common.requirejs.defaults, thisBuild);
-
-        requirejs.optimize(combinedOptions, function(buildOutput) {
-            console.log(buildOutput);
-        });
-    }
-}
-
 /**
  *  Overall function that will cycle through each of the browserify bundles
  *  and once they're all completed, trigger the completion of the gulp task.
@@ -36,8 +21,8 @@ function _requireJS() {
 function _browserify(taskDone) {
     var promises = [];
 
-    for (var index = 0, length = common.browserify.bundles.length; index < length; index++) {
-        var thisBundle = common.browserify.bundles[index],
+    for (var index = 0, length = common.bundles.length; index < length; index++) {
+        var thisBundle = common.bundles[index],
             scopedProcessingMethod = _processBrowserifyBundle.bind(thisBundle);
 
         thisBundle.promise = new Promise(scopedProcessingMethod);
@@ -64,7 +49,7 @@ function _browserify(taskDone) {
  *  in the exchange object.
  *
  *  We then filter the stream down to only target the JS file, then uglify
- *  it and generate a sourcempa based on the original data.
+ *  it and generate a sourcemap based on the original data.
  *
  *  @param {function} resolve - Promise resolution callback.
  *  @param {function} reject - Promise rejection callback.
@@ -79,7 +64,7 @@ function _processBrowserifyBundle(resolve, reject) {
         self = this;
 
     // Make a clone of the uglify settings object so it can be added to.
-    var uglifySourceMapSettings = _.extend({}, common.browserify.uglifySourceMapSettings);
+    var uglifySourceMapSettings = _.extend({}, common.uglifySourceMapSettings);
 
     // Combining uglify defaults with custom options for sourcemapping.
     var uglifyOptions = _.extend({}, common.uglifySettings, {
@@ -117,8 +102,8 @@ function _processBrowserifyBundle(resolve, reject) {
             uglifySourceMapSettings.orig = sourceMap;
         })
         .pipe(filter('**/*.js'))
-        .pipe(uglify(self.fileName + common.browserify.buildFileSuffix, uglifyOptions))
-        .pipe(gulp.dest(globalSettings.destPath + common.browserify.outputFolder))
+        .pipe(uglify(self.fileName + common.buildFileSuffix, uglifyOptions))
+        .pipe(gulp.dest(globalSettings.destPath + common.outputFolder))
         .on('end', function() {
             console.log('Browserify Completed: ' + self.srcPath + self.fileName + '.js');
             resolve();
@@ -126,9 +111,5 @@ function _processBrowserifyBundle(resolve, reject) {
 }
 
 gulp.task('scripts', function(taskDone) {
-    if (globalSettings.moduleFormat === 'requirejs') {
-        _requireJS();
-    } else {
-        _browserify(taskDone);
-    }
+    _browserify(taskDone);
 });

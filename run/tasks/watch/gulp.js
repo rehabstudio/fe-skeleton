@@ -13,8 +13,7 @@
 
 var gulp = require('gulp'),
     args = require('yargs').argv,
-    common = require('./_common'),
-    globalSettings = require('../../_global');
+    common = require('./_common');
 
 gulp.task('watch', function() {
     var watchFunctions = {
@@ -28,24 +27,9 @@ gulp.task('watch', function() {
         },
         templates: function() {
             console.log('Watching templates...');
-
-            // RequireJS templates need to be compiled first, before triggering scripts.
-            if (globalSettings.moduleFormat === 'requirejs') {
-                gulp.watch(common.watchPaths.templates, ['templateWatcher']);
-            } else {
-                gulp.watch(common.watchPaths.templates, ['scripts']);
-            }
+            gulp.watch(common.watchPaths.templates, ['scripts']);
         }
     };
 
     common.setupWatchers(args, watchFunctions);
-});
-
-/**
- *  This task exists to ensure that templates are called and completed
- *  before attempting to build JS files. Gulp would run these two methods
- *  in tandem and the build file wouldn't pick up the new template files.
- */
-gulp.task('templateWatcher', ['templates'], function() {
-    gulp.start('scripts');
 });

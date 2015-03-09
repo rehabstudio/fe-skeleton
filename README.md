@@ -51,7 +51,7 @@ There are a multitude of settings files included in the root of the repository.
 
 `karma.conf.js` houses configuration for [Karma](http://karma-runner.github.io/). It can also contain settings for Mocha, Chai and Sinon.
 
-`run/_global.js` is a global file for the build tool methods so settings can be shared across the multitude of methods. One such setting indicates if the project is using RequireJS or Browserify for its module format. Another specifies the path where assets should be copied when building CSS / JS or moving imagery or fonts.
+`run/_global.js` is a global file for the build tool methods so settings can be shared across the multitude of methods. An example setting specifies the path where assets should be copied when building CSS / JS or moving imagery or fonts.
 
 ## Folder Structure
 Both style sheets and scripts follow the same structure. Library files are placed in `libs`. These library files do not have to be minifed and in best practice probably shouldn't be. This is because during development, errors within them are easier to debug, and also that the build process will be minifying them anyway.
@@ -67,7 +67,7 @@ Fonts reside within `fonts` and should be grouped into individual folders per fo
 Build tool methods are stored within `run` to encapsulate them away from project source files. They are split into folders per method, with each folder containing different build tool files along with an additional file (`_common.js`) which is used to share settings and keep things DRY.
 
 ## Test Suite
-As previously stated, test specifications should be placed into `js/tests/` with a suffix of `.spec.js`. This ensures they will be automatically picked up by Karma whenever it is run. The test specs themselves are piped through Browserify or RequireJS (depending on your global setting in `run/_global.js`), so be sure to write the spec file syntactically as you would any other JavaScript module in your project.
+As previously stated, test specifications should be placed into `js/tests/` with a suffix of `.spec.js`. This ensures they will be automatically picked up by Karma whenever it is run. The test specs themselves are piped through Browserify so be sure to write the spec file syntactically as you would any other JavaScript module in your project.
 
 The testing stack is Mocha, Chai and Sinon, with Karma as the test runner. This gives you a full toolset of test frameworks, assertion libraries, spies and more. Each component of the testing stack is already loaded into the scope of the test spec so you can just their global/top-level functions automagically.
 
@@ -126,9 +126,6 @@ Compiles source files into minified, uglified payloads.
 
 ### `styles`
 Compiles SASS into CSS and autoprefixes where applicable.
-
-### `templates`
-(RequireJS only). Converts Handlebars templates into pre-compiled JavaScript templates.
 
 ### `test`
 Runs the test runner and any tests within the front-end tests folder. Also outputs JUnit XML for Jenkins.
