@@ -13,12 +13,6 @@ var loadingOverrides = {
     'default': ['styles', 'scripts', 'build', 'default']
 };
 
-// RequireJS has a templating module that needs loaded additionally.
-var globalSettings = require('./_global');
-if (globalSettings.moduleFormat === 'requirejs') {
-    loadingOverrides.watch.unshift('templates');
-}
-
 /**
  *  Acts as a module loader to require the necessary tasks for a
  *  particular task runner.
