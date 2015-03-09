@@ -18,11 +18,9 @@ module.exports = {
     // Where to place the built bundles. Is prefixed with `destPath` from global settings.
     outputFolder: './css/',
 
-    // Settings for Ruby Sass gem.
+    // Settings to be passed through to gulp-sass and node-sass.
     sassSettings: {
-        noCache: true,
-        'sourcemap=none': true, // Hack until gulp-ruby-sass v1.0 is released: http://bit.ly/1yolgzq
-        style: 'compact'
+        outputStyle: 'compressed'
     },
 
     // Settings for AutoPrefixer.
