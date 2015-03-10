@@ -24,6 +24,12 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer');
 
+/**
+ *  Overall function that will cycle through each of the styles bundles
+ *  and once they're all completed, trigger the completion of the gulp task.
+ *
+ *  @param {object} taskDone - Gulp task callback method.
+ */
 gulp.task('styles', function(taskDone) {
     var promises = [];
 

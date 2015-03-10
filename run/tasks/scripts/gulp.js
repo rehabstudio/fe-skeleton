@@ -10,7 +10,13 @@
 var gulp = require('gulp'),
     common = require('./_common'),
     globalSettings = require('../../_global'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    browserify = require('browserify'),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer'),
+    extractor = require('gulp-extract-sourcemap'),
+    filter = require('gulp-filter'),
+    uglify = require('gulp-uglifyjs');
 
 /**
  *  Overall function that will cycle through each of the browserify bundles
@@ -18,12 +24,12 @@ var gulp = require('gulp'),
  *
  *  @param {object} taskDone - Gulp task callback method.
  */
-function _browserify(taskDone) {
+gulp.task('scripts', function(taskDone) {
     var promises = [];
 
     for (var index = 0, length = common.bundles.length; index < length; index++) {
         var thisBundle = common.bundles[index],
-            scopedProcessingMethod = _processBrowserifyBundle.bind(thisBundle);
+            scopedProcessingMethod = _processBundle.bind(thisBundle);
 
         thisBundle.promise = new Promise(scopedProcessingMethod);
         promises.push(thisBundle.promise);
@@ -37,7 +43,7 @@ function _browserify(taskDone) {
             taskDone('Something went wrong.');
         }
     );
-}
+});
 
 /**
  *  Uses Browserify API to create a stream. This is then converted into
@@ -54,14 +60,8 @@ function _browserify(taskDone) {
  *  @param {function} resolve - Promise resolution callback.
  *  @param {function} reject - Promise rejection callback.
  */
-function _processBrowserifyBundle(resolve, reject) {
-    var browserify = require('browserify'),
-        source = require('vinyl-source-stream'),
-        buffer = require('vinyl-buffer'),
-        extractor = require('gulp-extract-sourcemap'),
-        filter = require('gulp-filter'),
-        uglify = require('gulp-uglifyjs'),
-        self = this;
+function _processBundle(resolve, reject) {
+    var self = this;
 
     // Make a clone of the uglify settings object so it can be added to.
     var uglifySourceMapSettings = _.extend({}, common.uglifySourceMapSettings);
@@ -109,7 +109,3 @@ function _processBrowserifyBundle(resolve, reject) {
             resolve();
         });
 }
-
-gulp.task('scripts', function(taskDone) {
-    _browserify(taskDone);
-});
