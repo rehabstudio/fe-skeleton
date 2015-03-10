@@ -10,34 +10,13 @@
 var gulp = require('gulp'),
     common = require('./_common'),
     globalSettings = require('../../_global'),
-    _ = require('underscore');
-
-/**
- *  Overall function that will cycle through each of the browserify bundles
- *  and once they're all completed, trigger the completion of the gulp task.
- *
- *  @param {object} taskDone - Gulp task callback method.
- */
-function _browserify(taskDone) {
-    var promises = [];
-
-    for (var index = 0, length = common.bundles.length; index < length; index++) {
-        var thisBundle = common.bundles[index],
-            scopedProcessingMethod = _processBrowserifyBundle.bind(thisBundle);
-
-        thisBundle.promise = new Promise(scopedProcessingMethod);
-        promises.push(thisBundle.promise);
-    }
-
-    Promise.all(promises).then(
-        function() {
-            taskDone();
-        },
-        function() {
-            taskDone('Something went wrong.');
-        }
-    );
-}
+    _ = require('underscore'),
+    browserify = require('browserify'),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer'),
+    extractor = require('gulp-extract-sourcemap'),
+    filter = require('gulp-filter'),
+    uglify = require('gulp-uglifyjs');
 
 /**
  *  Uses Browserify API to create a stream. This is then converted into
@@ -55,13 +34,7 @@ function _browserify(taskDone) {
  *  @param {function} reject - Promise rejection callback.
  */
 function _processBrowserifyBundle(resolve, reject) {
-    var browserify = require('browserify'),
-        source = require('vinyl-source-stream'),
-        buffer = require('vinyl-buffer'),
-        extractor = require('gulp-extract-sourcemap'),
-        filter = require('gulp-filter'),
-        uglify = require('gulp-uglifyjs'),
-        self = this;
+    var self = this;
 
     // Make a clone of the uglify settings object so it can be added to.
     var uglifySourceMapSettings = _.extend({}, common.uglifySourceMapSettings);
@@ -110,6 +83,29 @@ function _processBrowserifyBundle(resolve, reject) {
         });
 }
 
+/**
+ *  Overall function that will cycle through each of the browserify bundles
+ *  and once they're all completed, trigger the completion of the gulp task.
+ *
+ *  @param {object} taskDone - Gulp task callback method.
+ */
 gulp.task('scripts', function(taskDone) {
-    _browserify(taskDone);
+    var promises = [];
+
+    for (var index = 0, length = common.bundles.length; index < length; index++) {
+        var thisBundle = common.bundles[index],
+            scopedProcessingMethod = _processBrowserifyBundle.bind(thisBundle);
+
+        thisBundle.promise = new Promise(scopedProcessingMethod);
+        promises.push(thisBundle.promise);
+    }
+
+    Promise.all(promises).then(
+        function() {
+            taskDone();
+        },
+        function() {
+            taskDone('Something went wrong.');
+        }
+    );
 });
