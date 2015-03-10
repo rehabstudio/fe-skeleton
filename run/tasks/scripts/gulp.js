@@ -19,6 +19,33 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglifyjs');
 
 /**
+ *  Overall function that will cycle through each of the browserify bundles
+ *  and once they're all completed, trigger the completion of the gulp task.
+ *
+ *  @param {object} taskDone - Gulp task callback method.
+ */
+gulp.task('scripts', function(taskDone) {
+    var promises = [];
+
+    for (var index = 0, length = common.bundles.length; index < length; index++) {
+        var thisBundle = common.bundles[index],
+            scopedProcessingMethod = _processBundle.bind(thisBundle);
+
+        thisBundle.promise = new Promise(scopedProcessingMethod);
+        promises.push(thisBundle.promise);
+    }
+
+    Promise.all(promises).then(
+        function() {
+            taskDone();
+        },
+        function() {
+            taskDone('Something went wrong.');
+        }
+    );
+});
+
+/**
  *  Uses Browserify API to create a stream. This is then converted into
  *  a stream that Gulp understands (via `vinyl-source-stream`).
  *
@@ -33,7 +60,7 @@ var gulp = require('gulp'),
  *  @param {function} resolve - Promise resolution callback.
  *  @param {function} reject - Promise rejection callback.
  */
-function _processBrowserifyBundle(resolve, reject) {
+function _processBundle(resolve, reject) {
     var self = this;
 
     // Make a clone of the uglify settings object so it can be added to.
@@ -82,30 +109,3 @@ function _processBrowserifyBundle(resolve, reject) {
             resolve();
         });
 }
-
-/**
- *  Overall function that will cycle through each of the browserify bundles
- *  and once they're all completed, trigger the completion of the gulp task.
- *
- *  @param {object} taskDone - Gulp task callback method.
- */
-gulp.task('scripts', function(taskDone) {
-    var promises = [];
-
-    for (var index = 0, length = common.bundles.length; index < length; index++) {
-        var thisBundle = common.bundles[index],
-            scopedProcessingMethod = _processBrowserifyBundle.bind(thisBundle);
-
-        thisBundle.promise = new Promise(scopedProcessingMethod);
-        promises.push(thisBundle.promise);
-    }
-
-    Promise.all(promises).then(
-        function() {
-            taskDone();
-        },
-        function() {
-            taskDone('Something went wrong.');
-        }
-    );
-});
