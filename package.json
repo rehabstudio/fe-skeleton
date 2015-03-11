@@ -29,6 +29,7 @@
 
         "gulp": "^3.8.11",
         "gulp-plumber": "^0.6.6",
+        "gulp-sourcemaps": "^1.5.0",
         "gulp-jscs": "^1.4.0",
         "gulp-jshint": "^1.9.2",
         "jshint-stylish": "^1.0.1",
@@ -36,9 +37,7 @@
         "gulp-autoprefixer": "2.1.0",
         "gulp-imagemin": "^2.2.1",
         "browserify": "^9.0.3",
-        "gulp-extract-sourcemap": "^0.1.2",
-        "gulp-filter": "^2.0.2",
-        "gulp-uglifyjs": "^0.6.1",
+        "gulp-uglify": "^1.1.0",
         "handlebars": "^3.0.0",
         "hbsfy": "^2.2.1",
         "vinyl-buffer": "^1.0.0",
