@@ -14,9 +14,8 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
-    extractor = require('gulp-extract-sourcemap'),
-    filter = require('gulp-filter'),
-    uglify = require('gulp-uglifyjs');
+    sourcemaps = require('gulp-sourcemaps'),
+    uglify = require('gulp-uglify');
 
 /**
  *  Overall function that will cycle through each of the browserify bundles
@@ -46,16 +45,16 @@ gulp.task('scripts', function(taskDone) {
 });
 
 /**
- *  Uses Browserify API to create a stream. This is then converted into
- *  a stream that Gulp understands (via `vinyl-source-stream`).
+ *  Uses Browserify API to create a node stream. This is then converted
+ *  into a stream that Gulp understands (via `vinyl-source-stream`).
  *
  *  This is then passed to `vinyl-buffer` where the streams contents are
  *  converted into a Buffer. The inline source map from Browserify is
- *  extracted and added to the stream as another file / save reference
- *  in the exchange object.
+ *  picked up by `gulp-sourcemaps`.
  *
- *  We then filter the stream down to only target the JS file, then uglify
- *  it and generate a sourcemap based on the original data.
+ *  We then uglify the contents of the stream, via `gulp-uglify` which has
+ *  `gulp-sourcemaps` support and updates the original map. The map is then
+ *  saved out to the desired location and the process completes.
  *
  *  @param {function} resolve - Promise resolution callback.
  *  @param {function} reject - Promise rejection callback.
@@ -63,16 +62,12 @@ gulp.task('scripts', function(taskDone) {
 function _processBundle(resolve, reject) {
     var self = this;
 
-    // Make a clone of the uglify settings object so it can be added to.
-    var uglifySourceMapSettings = _.extend({}, common.uglifySourceMapSettings);
-
-    // Combining uglify defaults with custom options for sourcemapping.
-    var uglifyOptions = _.extend({}, common.uglifySettings, {
-        outSourceMap: true,
-        output: {
-            source_map: uglifySourceMapSettings
-        }
-    });
+    // Apply particular options if global settings dictate source files should be referenced inside sourcemaps.
+    var sourcemapOptions = {};
+    if (globalSettings.sourcemapType === 'External_ReferencedFiles') {
+        sourcemapOptions.includeContent = false;
+        sourcemapOptions.sourceRoot = '/';
+    }
 
     // Creating a browserify instance / stream.
     var bundleStream = browserify({ debug: true });
@@ -93,16 +88,11 @@ function _processBundle(resolve, reject) {
             console.log('Browserify Failed: ' + error.message);
             reject();
         })
-        .pipe(source(self.fileName + '.js'))
+        .pipe(source(self.fileName + common.buildFileSuffix))
         .pipe(buffer())
-        .pipe(extractor({
-            removeSourcesContent: true
-        }))
-        .on('postextract', function(sourceMap) {
-            uglifySourceMapSettings.orig = sourceMap;
-        })
-        .pipe(filter('**/*.js'))
-        .pipe(uglify(self.fileName + common.buildFileSuffix, uglifyOptions))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(uglify(common.uglifySettings))
+        .pipe(sourcemaps.write('./', sourcemapOptions))
         .pipe(gulp.dest(globalSettings.destPath + common.outputFolder))
         .on('end', function() {
             console.log('Browserify Completed: ' + self.srcPath + self.fileName + '.js');

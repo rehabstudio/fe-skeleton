@@ -22,12 +22,6 @@ module.exports = {
     // Where to place the built bundles. Is prefixed with `destPath` from global settings.
     outputFolder: './js/',
 
-    // Settings that get fed into UglifyJS.
-    uglifySourceMapSettings: {
-        root: '/', // Sets sourceRoot in source map file.
-        orig: null // Updated during inline sourcemap extraction.
-    },
-
     // Settings for UglifyJS2.
     uglifySettings: {
         compress: {
