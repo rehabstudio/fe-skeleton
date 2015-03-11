@@ -104,7 +104,7 @@ If you want to compile CSS or JS you will need to define the relevant bundles. Y
 Each of the tasks have documentation at the top of their source files and list any potential command-line arguments they can take. Below is a short description of each available task.
 
 ### `build`
-Convenience method that will ensure style sheets and JavaScript are compiled. After this, all assets (style sheets, images, fonts and scripts) are copied over to the `destPath`.
+Convenience method that will ensure style sheets and javascript are compiled. After this, all assets (style sheets, images, html, fonts and scripts) are copied over to the `destPath`.
 
 ### `default`
 An alias for `build`.
