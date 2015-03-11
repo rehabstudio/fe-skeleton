@@ -11,9 +11,15 @@
 
 var gulp = require('gulp'),
     args = require('yargs').argv,
-    globalSettings = require('../../_global');
+    globalSettings = require('../../_global'),
+    mergeStream = require('merge-stream');
 
 gulp.task('build', ['styles', 'scripts'], function() {
-    return gulp.src(['./fonts/**/*', './img/**/*'], { base: './' })
-               .pipe(gulp.dest(globalSettings.destPath));
+    var htmlStream = gulp.src(['./html/**/*.html'])
+                         .pipe(gulp.dest(globalSettings.destPath));
+
+    var assetStream = gulp.src(['./fonts/**/!(dir.txt)', './img/**/!(dir.txt)'], { base: './' })
+                          .pipe(gulp.dest(globalSettings.destPath));
+
+    return mergeStream(htmlStream, assetStream);
 });
