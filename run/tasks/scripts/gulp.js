@@ -64,9 +64,9 @@ function _processBundle(resolve, reject) {
 
     // Apply particular options if global settings dictate source files should be referenced inside sourcemaps.
     var sourcemapOptions = {};
-    if (globalSettings.sourcemapType === 'External_ReferencedFiles') {
+    if (globalSettings.sourcemapOptions.type === 'External_ReferencedFiles') {
         sourcemapOptions.includeContent = false;
-        sourcemapOptions.sourceRoot = '/';
+        sourcemapOptions.sourceRoot = globalSettings.sourcemapOptions.sourceRoot;
     }
 
     // Creating a browserify instance / stream.
