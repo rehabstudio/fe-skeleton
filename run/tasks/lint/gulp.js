@@ -16,5 +16,6 @@ var gulp = require('gulp'),
 gulp.task('lint', function() {
     return gulp.src(common.buildSources(args.filePath))
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter('fail'));
 });
