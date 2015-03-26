@@ -12,6 +12,8 @@
         "Anthony Hastings <anthony@rehabstudio.com>",
         "Neil McCallion <neil@rehabstudio.com>"
     ],
+    "dependencies": {
+    },
     "devDependencies": {
         "yargs": "^3.3.1",
         "es6-promise": "^2.0.1",
