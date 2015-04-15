@@ -38,6 +38,19 @@ make fe-setup;
 
 This will ensure the tooling dependencies are installed and that the build files are compiled and ready for usage within the browser.
 
+
+#### (Optional) Docker Setup
+
+If you have [docker installed](http://devdocs.rehabstudio.com/en/latest/tools/docker.html) you can build the skeleton's toolchain without installing node or any of the skeleton's dependencies on your local machine. This can be done simply with the following make command:
+
+```
+make docker cmd=build
+```
+
+The `cmd` variable can be any command in the makefile, for example `watch` or `lint`. The default command is `build` so running `make docker` is equivalent to above command.
+
+
+
 ## Settings and Configuration
 There are a multitude of settings files included in the root of the repository.
 
