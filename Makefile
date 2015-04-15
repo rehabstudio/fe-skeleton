@@ -1,5 +1,6 @@
+APP_NAME = fe-skeleton
 # can be overridden at runtime eg. `make build runner=grunt`
-runner=gulp
+runner = gulp
 
 help:
 	@echo "fe-skeleton"
@@ -41,17 +42,8 @@ node_modules: package.json
 
 
 # Variables for docker based building
-IMAGE_NAME = fe-skeleton
-BASE_CONTAINER_NAME = $(IMAGE_NAME)-$(runner)
-
-# use a target flag file (.dockerbuild) so image is only rebuilt when
-# Dockerfile has been changed more recently than last build
-.dockerbuild: Dockerfile
-	-docker rm $(BASE_CONTAINER_NAME)-build
-	-docker rm $(BASE_CONTAINER_NAME)-watch
-	-docker rm $(BASE_CONTAINER_NAME)-test
-	docker build -t $(IMAGE_NAME) .
-	touch $@
+IMAGE_NAME = rehabstudio/frontend-build
+BASE_CONTAINER_NAME = $(APP_NAME)-$(runner)
 
 # default docker command
 cmd=build
@@ -59,7 +51,7 @@ cmd=build
 # Here we check if a container with the correct name already exists and if
 # it does we run it again. Otherwise we run a new one and have it call
 # `make $(cmd) runner=$(runner)`
-docker: .dockerbuild
+docker:
 	@EXISTS=$$(docker ps -a | grep "$(BASE_CONTAINER_NAME)-$(cmd)" | awk '{ print $$1 }'); \
 	if [ $$EXISTS ]; then \
 		echo "Reusing existing container..."; \
