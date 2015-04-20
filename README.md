@@ -134,6 +134,9 @@ Analyzes JavaScript source files to ensure their coding style adheres to a parti
 ### `lint`
 Examines JavaScript source files for errors and code that doesn't conform to the specified standards.
 
+### `server`
+Hosts the `dist` folder via a node webserver.
+
 ### `scripts`
 Compiles source files into minified, uglified payloads.
 
