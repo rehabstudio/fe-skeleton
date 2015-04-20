@@ -135,7 +135,7 @@ Analyzes JavaScript source files to ensure their coding style adheres to a parti
 Examines JavaScript source files for errors and code that doesn't conform to the specified standards.
 
 ### `server`
-Hosts the `dist` via a node webserver.
+Hosts the `dist` folder via a node webserver.
 
 ### `scripts`
 Compiles source files into minified, uglified payloads.
