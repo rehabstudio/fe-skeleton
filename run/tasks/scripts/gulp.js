@@ -9,6 +9,7 @@
 
 var gulp = require('gulp'),
     common = require('./_common'),
+    chalk = require('chalk'),
     globalSettings = require('../../_global'),
     _ = require('underscore'),
     browserify = require('browserify'),
@@ -85,7 +86,7 @@ function _processBundle(resolve, reject) {
         .transform('hbsfy')
         .bundle()
         .on('error', function(error) {
-            console.log('Browserify Failed: ' + error.message);
+            console.log(chalk.bgRed.white(' FE Skeleton: Browserify Failed - ' + error.message));
             reject();
         })
         .pipe(source(self.fileName + common.buildFileSuffix))
@@ -95,7 +96,7 @@ function _processBundle(resolve, reject) {
         .pipe(sourcemaps.write('./', sourcemapOptions))
         .pipe(gulp.dest(globalSettings.destPath + common.outputFolder))
         .on('end', function() {
-            console.log('Browserify Completed: ' + self.srcPath + self.fileName + '.js');
+            console.log(chalk.bgGreen.white(' FE Skeleton: Browserify Completed - ' + self.srcPath + self.fileName + '.js'));
             resolve();
         });
 }
