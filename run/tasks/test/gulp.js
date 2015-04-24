@@ -24,7 +24,7 @@ gulp.task('test', function(done) {
         karmaSettings.singleRun = false;
     }
 
-    karma.server.start(karmaSettings, function() {
-        done();
-    });
+    // Karma will start the tests and trigger the callback with
+    // the correct exit code (0 for success, 1 for error).
+    karma.server.start(karmaSettings, done);
 });
