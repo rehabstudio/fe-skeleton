@@ -13,20 +13,21 @@
 
 var gulp = require('gulp'),
     args = require('yargs').argv,
+    chalk = require('chalk'),
     common = require('./_common');
 
 gulp.task('watch', function() {
     var watchFunctions = {
         styles: function() {
-            console.log('Watching styles...');
+            console.log(chalk.bgYellow.gray(' FE Skeleton: Watching styles.'));
             gulp.watch(common.watchPaths.styles, ['styles']);
         },
         scripts: function() {
-            console.log('Watching scripts...');
+            console.log(chalk.bgYellow.gray(' FE Skeleton: Watching scripts.'));
             gulp.watch(common.watchPaths.scripts, ['scripts']);
         },
         templates: function() {
-            console.log('Watching templates...');
+            console.log(chalk.bgYellow.gray(' FE Skeleton: Watching templates.'));
             gulp.watch(common.watchPaths.templates, ['scripts']);
         }
     };

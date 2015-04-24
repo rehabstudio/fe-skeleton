@@ -18,6 +18,7 @@
 
 var gulp = require('gulp'),
     common = require('./_common'),
+    chalk = require('chalk'),
     globalSettings = require('../../_global'),
     _ = require('underscore'),
     plumber = require('gulp-plumber'),
@@ -77,9 +78,11 @@ function _processBundle(resolve, reject) {
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
     stream
         .on('error', function() {
+            console.log(chalk.bgRed.white(' FE Skeleton: Stylesheet Failed.'));
             reject();
         })
         .on('end', function() {
+            console.log(chalk.bgGreen.white(' FE Skeleton: Stylesheet Completed - ' + sourcePath));
             resolve();
         });
 }
