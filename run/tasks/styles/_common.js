@@ -20,7 +20,8 @@ module.exports = {
 
     // Settings to be passed through to gulp-sass and node-sass.
     sassSettings: {
-        outputStyle: 'compressed'
+        outputStyle: 'compressed',
+        errLogToConsole: true
     },
 
     // Settings for AutoPrefixer.
