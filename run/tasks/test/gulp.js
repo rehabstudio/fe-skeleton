@@ -10,11 +10,21 @@
  */
 
 var gulp = require('gulp'),
+    chalk = require('chalk'),
     args = require('yargs').argv,
-    common = require('./_common'),
-    karma = require('karma');
+    common = require('./_common');
+
+// Attempt to load test suite package to see if it is present or not.
+var testSuiteWrapper = false;
+try { testSuiteWrapper = require('fe-skeleton-testsuite'); } catch(e) {}
 
 gulp.task('test', function(done) {
+    if (!testSuiteWrapper) {
+        console.log(chalk.bgRed.white(' FE Skeleton: Missing `fe-skeleton-testsuite` package. Please install in `devDependencies`.'));
+        done(1);
+        return;
+    }
+
     var karmaSettings = {
         configFile: common.configPath
     };
@@ -24,7 +34,5 @@ gulp.task('test', function(done) {
         karmaSettings.singleRun = false;
     }
 
-    // Karma will start the tests and trigger the callback with
-    // the correct exit code (0 for success, 1 for error).
-    karma.server.start(karmaSettings, done);
+    testSuiteWrapper.runTests(karmaSettings, done);
 });
