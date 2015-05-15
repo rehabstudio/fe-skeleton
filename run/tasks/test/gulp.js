@@ -20,8 +20,8 @@ try { testSuiteWrapper = require('fe-skeleton-testsuite'); } catch(e) {}
 
 gulp.task('test', function(done) {
     if (!testSuiteWrapper) {
-        console.log(chalk.bgRed.white(' FE Skeleton: Missing `fe-skeleton-testsuite` package. Please install in `devDependencies`.'));
-        console.log(chalk.bgRed.white('              You can do so via `npm install --save-dev fe-skeleton-testsuite`.'));
+        console.log(chalk.bgRed.white(' FE Skeleton: Missing `rehab-fe-skeleton-testsuite` package. Please install in `devDependencies`.'));
+        console.log(chalk.bgRed.white('              You can do so via `npm install rehab-fe-skeleton-testsuite --save-dev`.'));
         done(1);
         return;
     }
