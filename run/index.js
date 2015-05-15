@@ -1,8 +1,5 @@
 'use strict';
 
-// Loading dependencies.
-var chalk = require('chalk');
-
 // Adding promises to nodes global scope.
 require('es6-promise').polyfill();
 
@@ -28,7 +25,7 @@ module.exports = function(runner) {
         modulesToLoad = loadingOverrides[desiredModule] || [desiredModule]; // Check for module loading overrides.
 
     modulesToLoad.forEach(function(module) {
-        console.log(chalk.bgYellow.gray(' FE Skeleton: Loading module - ' + module));
+        console.log(' FE Skeleton: Loading module - ' + module);
         require('./tasks/' + module + '/' + runner + '.js');
     });
 };

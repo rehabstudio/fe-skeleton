@@ -10,11 +10,22 @@
  */
 
 var gulp = require('gulp'),
+    chalk = require('chalk'),
     args = require('yargs').argv,
     globalSettings = require('../../_global'),
+    scriptSettings = require('../scripts/_common'),
+    styleSettings = require('../styles/_common'),
     mergeStream = require('merge-stream');
 
 gulp.task('build', ['styles', 'scripts'], function() {
+    if (scriptSettings.bundles.length === 0) {
+        console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no script bundles defined.'));
+    }
+
+    if (styleSettings.bundles.length === 0) {
+        console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no style bundles defined.'));
+    }
+
     var htmlStream = gulp.src(['./html/**/*.html'])
                          .pipe(gulp.dest(globalSettings.destPath));
 
