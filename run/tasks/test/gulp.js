@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 
 // Attempt to load test suite package to see if it is present or not.
 var testSuiteWrapper = false;
-try { testSuiteWrapper = require('fe-skeleton-testsuite'); } catch(e) {}
+try { testSuiteWrapper = require('rehab-fe-skeleton-testsuite'); } catch(e) {}
 
 gulp.task('test', function(done) {
     if (!testSuiteWrapper) {
