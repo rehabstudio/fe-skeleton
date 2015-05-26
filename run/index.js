@@ -26,6 +26,6 @@ module.exports = function(runner) {
 
     modulesToLoad.forEach(function(module) {
         console.log(' FE Skeleton: Loading module - ' + module);
-        require('./tasks/' + module + '/' + runner + '.js');
+        require('./tasks/' + module + '/');
     });
 };
