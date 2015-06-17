@@ -10,4 +10,4 @@
     To add a new task, simply add a new task file to run/tasks.
 */
 
-require('./run/')('gulp');
+require('./run/')();
