@@ -21,6 +21,7 @@ var gulp = require('gulp'),
     chalk = require('chalk'),
     globalSettings = require('../../_global'),
     _ = require('underscore'),
+    sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer');
@@ -65,14 +66,23 @@ gulp.task('styles', function(taskDone) {
 function _processBundle(resolve, reject) {
     var self = this;
 
+    // Apply particular options if global settings dictate source files should be referenced inside sourcemaps.
+    var sourcemapOptions = {};
+    if (globalSettings.sourcemapOptions.type === 'External_ReferencedFiles') {
+        sourcemapOptions.includeContent = false;
+        sourcemapOptions.sourceRoot = globalSettings.sourcemapOptions.sourceRoot;
+    }
+
     // Generating path to source file.
     var sourcePath = self.srcPath + self.fileName + '.scss';
 
     // Compile SASS into CSS then prefix and save.
     var stream = gulp.src(sourcePath)
         .pipe(plumber())
-        .pipe(sass(common.sassSettings))
+        .pipe(sourcemaps.init())
+        .pipe(sass(common.sassSettings).on('error', sass.logError))
         .pipe(prefix(common.autoPrefixSettings))
+        .pipe(sourcemaps.write('./', sourcemapOptions))
         .pipe(gulp.dest(globalSettings.destPath + common.outputFolder));
 
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
