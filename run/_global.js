@@ -21,7 +21,7 @@ module.exports = {
          *  'External_EmbeddedFiles'
          *  'External_ReferencedFiles'
          */
-        type: 'External_ReferencedFiles',
+        type: 'External_EmbeddedFiles',
 
         /**
          *  Sets the path where source files are hosted. This path is relative
