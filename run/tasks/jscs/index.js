@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- *  Style checks chosen JS source files and reports any errors.
+ *  Checks chosen JS source files and reports any errors.
  *
  *  NOTE: JSCS is not a linter; it enforces coding style only and
  *  doesn't check for coding errors, abnormalities or misuse.
@@ -10,11 +10,11 @@
  *  http://jscs.info/rules.html
  *
  *  Current options based upon airbnb:
- *  https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json
+ *  https://github.com/jscs-dev/node-jscs/blob/master/presets/google.json
  *
  *  Example Usage:
- *  gulp js-style
- *  gulp js-style --filePath js/src/app.js
+ *  gulp jscs
+ *  gulp jscs --filePath js/src/app.js
  */
 
 var gulp = require('gulp'),
@@ -22,7 +22,7 @@ var gulp = require('gulp'),
     common = require('./_common'),
     jscs = require('gulp-jscs');
 
-gulp.task('js-style', function () {
+gulp.task('jscs', function () {
     return gulp.src(common.buildSources(args.filePath))
         .pipe(jscs());
 });
