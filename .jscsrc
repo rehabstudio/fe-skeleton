@@ -24,6 +24,7 @@
     "disallowTrailingWhitespace": true,
     "disallowSpaceAfterPrefixUnaryOperators": true,
     "disallowSpaceBeforePostfixUnaryOperators": true,
+    "disallowSpaceBeforeSemicolon": true,
     "disallowMultipleVarDecl": true,
     "disallowKeywordsOnNewLine": ["else"],
 
