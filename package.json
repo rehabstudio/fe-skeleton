@@ -31,7 +31,7 @@
     "gulp": "^3.9.0",
     "gulp-plumber": "^1.0.1",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-jscs": "^1.6.0",
+    "gulp-jscs": "^2.0.0",
     "gulp-jshint": "^1.11.2",
     "jshint-stylish": "^2.0.1",
     "gulp-imagemin": "^2.3.0",
