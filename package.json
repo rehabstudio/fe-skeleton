@@ -15,11 +15,13 @@
   "scripts": {
     "jscs": "gulp jscs",
     "lint": "gulp lint",
-    "validate": "gulp lint && gulp jscs"
+    "jscs-via-commit": "gulp jscs --via-commit",
+    "lint-via-commit": "gulp lint --via-commit",
+    "validate": "gulp jscs --via-commit && gulp lint --via-commit"
   },
   "pre-commit": [
-    "jscs",
-    "lint"
+    "jscs-via-commit",
+    "lint-via-commit"
   ],
   "dependencies": {},
   "devDependencies": {
