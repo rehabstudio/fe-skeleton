@@ -22,6 +22,7 @@
     "disallowMultipleLineStrings": true,
     "disallowMixedSpacesAndTabs": true,
     "disallowTrailingWhitespace": true,
+    "disallowTrailingComma": true,
     "disallowSpaceAfterPrefixUnaryOperators": true,
     "disallowSpaceBeforePostfixUnaryOperators": true,
     "disallowSpaceBeforeSemicolon": true,
