@@ -1,40 +1,51 @@
 {
-    "name": "rehab-fe-skeleton",
-    "description": "A collection of tools, file structures and settings for front-end development.",
-    "version": "1.0.0",
-    "license": "MIT",
-    "private": true,
-    "repository": {
-        "type": "git",
-        "url": "ssh://git@github.com:rehabstudio/fe-skeleton.git"
-    },
-    "authors": [
-        "Anthony Hastings <anthony@rehabstudio.com>",
-        "Neil McCallion <neil@rehabstudio.com>"
-    ],
-    "dependencies": {
-    },
-    "devDependencies": {
-        "chalk": "^1.1.0",
-        "yargs": "^3.15.0",
-        "es6-promise": "^2.3.0",
-        "underscore": "^1.8.3",
-        "gulp": "^3.9.0",
-        "gulp-plumber": "^1.0.1",
-        "gulp-sourcemaps": "^1.5.2",
-        "gulp-jscs": "^1.6.0",
-        "gulp-jshint": "^1.11.2",
-        "jshint-stylish": "^2.0.1",
-        "gulp-imagemin": "^2.3.0",
-        "gulp-webserver": "^0.9.1",
-        "vinyl-buffer": "^1.0.0",
-        "vinyl-source-stream": "^1.1.0",
-        "merge-stream": "0.1.8",
-        "gulp-sass": "^2.0.3",
-        "gulp-autoprefixer": "2.3.1",
-        "browserify": "^10.2.6",
-        "gulp-uglify": "^1.2.0",
-        "handlebars": "^3.0.3",
-        "hbsfy": "^2.2.1"
-    }
+  "name": "rehab-fe-skeleton",
+  "description": "A collection of tools, file structures and settings for front-end development.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:rehabstudio/fe-skeleton.git"
+  },
+  "authors": [
+    "Anthony Hastings <anthony@rehabstudio.com>",
+    "Neil McCallion <neil@rehabstudio.com>"
+  ],
+  "scripts": {
+    "jscs": "gulp jscs",
+    "lint": "gulp lint",
+    "jscs-via-commit": "gulp jscs --via-commit",
+    "lint-via-commit": "gulp lint --via-commit",
+    "validate": "gulp jscs --via-commit && gulp lint --via-commit"
+  },
+  "pre-commit": [
+    "jscs-via-commit",
+    "lint-via-commit"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "precommit-hook": "^3.0.0",
+    "chalk": "^1.1.0",
+    "yargs": "^3.15.0",
+    "es6-promise": "^2.3.0",
+    "underscore": "^1.8.3",
+    "gulp": "^3.9.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-jscs": "^2.0.0",
+    "gulp-jshint": "^1.11.2",
+    "jshint-stylish": "^2.0.1",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-webserver": "^0.9.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "merge-stream": "0.1.8",
+    "gulp-sass": "^2.0.3",
+    "gulp-autoprefixer": "2.3.1",
+    "browserify": "^10.2.6",
+    "gulp-uglify": "^1.2.0",
+    "handlebars": "^3.0.3",
+    "hbsfy": "^2.2.1"
+  }
 }
