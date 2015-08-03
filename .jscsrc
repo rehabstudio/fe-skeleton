@@ -23,6 +23,7 @@
     "disallowMixedSpacesAndTabs": true,
     "disallowTrailingWhitespace": true,
     "disallowSpaceAfterPrefixUnaryOperators": true,
+    "disallowSpaceBeforePostfixUnaryOperators": true,
     "disallowMultipleVarDecl": true,
     "disallowKeywordsOnNewLine": ["else"],
 
