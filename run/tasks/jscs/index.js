@@ -9,7 +9,7 @@
  *  Potential Options:
  *  http://jscs.info/rules.html
  *
- *  Current options based upon airbnb:
+ *  Current options based upon Google preset:
  *  https://github.com/jscs-dev/node-jscs/blob/master/presets/google.json
  *
  *  Example Usage:
