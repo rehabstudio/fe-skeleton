@@ -11,6 +11,7 @@
     "requireBlocksOnNewline": true,
     "requireCommaBeforeLineBreak": true,
     "requireLineBreakAfterVariableAssignment": true,
+    "requireSemicolons": true,
     "requireOperatorBeforeLineBreak": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
     "maximumLineLength": {
@@ -46,6 +47,11 @@
       "return",
       "try",
       "catch"
+    ],
+    "requireSpaceBeforeKeywords": [
+        "else",
+        "while",
+        "catch"
     ],
     "requireSpaceBeforeBinaryOperators": [
         "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
