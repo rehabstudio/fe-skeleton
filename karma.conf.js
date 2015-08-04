@@ -13,16 +13,22 @@ module.exports = function(config) {
             'js/tests/**/*.spec.js': ['browserify']
         },
         browserify: {
-            transform: [require('hbsfy'), require('rehab-fe-skeleton-testsuite/node_modules/browserify-istanbul')],
+            transform: [
+                require('hbsfy'),
+                [
+                    require('rehab-fe-skeleton-testsuite/node_modules/browserify-istanbul'),
+                    {
+                        ignore: ['**/node_modules/**', '**/bower_components/**', '**/*.spec.js'],
+                        defaultIgnore: false
+                    }
+                ]
+            ],
             watch: false
         },
         files: [
             'js/tests/**/*.spec.js'
         ],
         exclude: [],
-        junitReporter: {
-            outputFile: 'fe-test-results.xml'
-        },
         coverageReporter: {
             dir: './',
             reporters: [
@@ -30,7 +36,7 @@ module.exports = function(config) {
                 { type: 'text' }
             ]
         },
-        reporters: ['progress', 'junit', 'coverage'],
+        reporters: ['progress', 'coverage'],
         port: 9876,
         colors: true,
         autoWatch: false,
