@@ -90,5 +90,22 @@
     "requireSpaceBeforeObjectValues": true,
     "requireCapitalizedConstructors": true,
     "requireDotNotation": true,
-    "validateParameterSeparator": ", "
+    "validateParameterSeparator": ", ",
+    "jsDoc": {
+        "checkAnnotations": {
+            "preset": "closurecompiler",
+            "extra": {
+                "ngInject": false
+            }
+        },
+        "checkParamNames": true,
+        "requireParamTypes": true,
+        "checkRedundantParams": true,
+        "checkReturnTypes": true,
+        "checkRedundantReturns": true,
+        "requireReturnTypes": true,
+        "checkTypes": "capitalizedNativeCase",
+        "checkRedundantAccess": true,
+        "requireNewlineAfterDescription": true
+    }
 }
