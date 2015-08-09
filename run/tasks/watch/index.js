@@ -18,6 +18,10 @@ var gulp = require('gulp'),
 
 gulp.task('watch', function() {
     var watchFunctions = {
+        html: function() {
+            console.log(chalk.bgYellow.gray(' FE Skeleton: Watching HTML.'));
+            gulp.watch(common.watchPaths.html, ['html']);
+        },
         styles: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching styles.'));
             gulp.watch(common.watchPaths.styles, ['styles']);

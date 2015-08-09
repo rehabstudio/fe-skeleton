@@ -17,7 +17,7 @@ var gulp = require('gulp'),
     styleSettings = require('../styles/_common'),
     mergeStream = require('merge-stream');
 
-gulp.task('build', ['styles', 'scripts'], function() {
+gulp.task('build', ['html', 'styles', 'scripts'], function() {
     if (scriptSettings.bundles.length === 0) {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no script bundles defined.'));
     }
@@ -26,11 +26,8 @@ gulp.task('build', ['styles', 'scripts'], function() {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no style bundles defined.'));
     }
 
-    var htmlStream = gulp.src(['./html/**/*.html'])
-                         .pipe(gulp.dest(globalSettings.destPath));
-
     var assetStream = gulp.src(['./fonts/**/!(dir.txt)', './img/**/!(dir.txt)'], { base: './' })
                           .pipe(gulp.dest(globalSettings.destPath));
 
-    return mergeStream(htmlStream, assetStream);
+    return mergeStream(assetStream);
 });
