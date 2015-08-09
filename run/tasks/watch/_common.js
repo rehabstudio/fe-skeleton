@@ -4,6 +4,7 @@ var _ = require('underscore');
 
 module.exports = {
     watchPaths: {
+        html: ['./html/**/*.html'],
         styles: ['./css/libs/**/*.scss', './css/src/**/*.scss'],
         scripts: ['./js/libs/**/*.js', './js/src/**/*.js', '!./js/src/templates/**/*.js'],
         templates: ['./js/src/templates/**/*.hbs']

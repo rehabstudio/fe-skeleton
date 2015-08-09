@@ -8,9 +8,9 @@ require('es6-promise').polyfill();
  *  need to load modules other than themselves to function.
  */
 var loadingOverrides = {
-    'watch': ['styles', 'scripts', 'watch'],
-    'build': ['styles', 'scripts', 'build'],
-    'default': ['styles', 'scripts', 'build', 'default']
+    'watch': ['html', 'styles', 'scripts', 'watch'],
+    'build': ['html', 'styles', 'scripts', 'build'],
+    'default': ['html', 'styles', 'scripts', 'build', 'default']
 };
 
 /**
