@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-    srcPaths: ['./img/**/*'],
+    srcPaths: ['./img/**/!(dir.txt)'],
 
-    destPath: './img-min/',
+    destPath: './img/',
 
     svgoPlugins: [
         { removeViewBox: false },
