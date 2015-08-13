@@ -26,6 +26,7 @@ module.exports = function(config) {
             watch: false
         },
         files: [
+            'run/tasks/test/_shims.js',
             'js/tests/**/*.spec.js'
         ],
         exclude: [],
