@@ -22,11 +22,13 @@ var gulp = require('gulp'),
     args = require('yargs').argv,
     chalk = require('chalk'),
     common = require('./_common'),
+    debug = require('gulp-debug'),
     jscs = require('gulp-jscs');
 
 gulp.task('jscs', function() {
     return gulp.src(common.buildSources(args.filePath))
         .pipe(jscs())
+        .pipe(debug({ title: 'JSCS:' }))
         .on('error', function() {
             if (args.viaCommit) {
                 setTimeout(function() {
