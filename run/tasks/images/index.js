@@ -9,6 +9,7 @@
 
 var gulp = require('gulp'),
     common = require('./_common'),
+    globalSettings = require('../../_global'),
     imagemin = require('gulp-imagemin');
 
 gulp.task('images', function() {
@@ -16,5 +17,5 @@ gulp.task('images', function() {
         .pipe(imagemin({
             svgoPlugins: common.svgoPlugins
         }))
-        .pipe(gulp.dest(common.destPath));
+        .pipe(gulp.dest(globalSettings.destPath + common.destPath));
 });

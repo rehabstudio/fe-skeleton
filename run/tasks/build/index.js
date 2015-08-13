@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- *  Builds all necessary front-end static files and moves imagery
- *  and fonts into the distribution folder also. This method is
- *  primarily used during deployment or initial setup.
+ *  Builds all necessary front-end static files and moves fonts
+ *  into the distribution folder also. This method is primarily
+ *  used during deployment or initial setup.
  *
  *  Example Usage:
  *  gulp build
@@ -17,7 +17,7 @@ var gulp = require('gulp'),
     styleSettings = require('../styles/_common'),
     mergeStream = require('merge-stream');
 
-gulp.task('build', ['html', 'styles', 'scripts'], function() {
+gulp.task('build', ['html', 'images', 'styles', 'scripts'], function() {
     if (scriptSettings.bundles.length === 0) {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no script bundles defined.'));
     }
@@ -26,7 +26,7 @@ gulp.task('build', ['html', 'styles', 'scripts'], function() {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no style bundles defined.'));
     }
 
-    var assetStream = gulp.src(['./fonts/**/!(dir.txt)', './img/**/!(dir.txt)'], { base: './' })
+    var assetStream = gulp.src(['./fonts/**/!(dir.txt)'], { base: './' })
                           .pipe(gulp.dest(globalSettings.destPath));
 
     return mergeStream(assetStream);
