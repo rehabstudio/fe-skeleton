@@ -12,11 +12,13 @@ var gulp = require('gulp'),
     args = require('yargs').argv,
     chalk = require('chalk'),
     common = require('./_common'),
+    debug = require('gulp-debug'),
     jshint = require('gulp-jshint');
 
 gulp.task('lint', function() {
     return gulp.src(common.buildSources(args.filePath))
         .pipe(jshint())
+        .pipe(debug({ title: 'Lint:' }))
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('fail'))
         .on('error', function() {
