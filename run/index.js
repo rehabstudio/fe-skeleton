@@ -9,8 +9,8 @@ require('es6-promise').polyfill();
  */
 var loadingOverrides = {
     'watch': ['html', 'styles', 'scripts', 'watch'],
-    'build': ['html', 'styles', 'scripts', 'build'],
-    'default': ['html', 'styles', 'scripts', 'build', 'default']
+    'build': ['html', 'images', 'styles', 'scripts', 'build'],
+    'default': ['html', 'images', 'styles', 'scripts', 'build', 'default']
 };
 
 /**
