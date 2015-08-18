@@ -19,8 +19,9 @@ module.exports = {
     outputFolder: './css/',
 
     // Settings to be passed through to gulp-sass and node-sass.
+    // Note: `compact` is used over `compressed` due to a sourcemaps bug.
     sassSettings: {
-        outputStyle: 'compressed'
+        outputStyle: 'compact'
     },
 
     // Settings for AutoPrefixer.
