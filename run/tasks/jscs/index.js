@@ -27,8 +27,8 @@ var gulp = require('gulp'),
 
 gulp.task('jscs', function() {
     return gulp.src(common.buildSources(args.filePath))
-        .pipe(jscs())
         .pipe(debug({ title: 'JSCS:' }))
+        .pipe(jscs())
         .on('error', function() {
             if (args.viaCommit) {
                 setTimeout(function() {
