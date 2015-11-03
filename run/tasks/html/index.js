@@ -14,7 +14,7 @@ var gulp = require('gulp'),
     globalSettings = require('../../_global');
 
 gulp.task('html', function() {
-    return gulp.src(common.srcPaths)
+    return gulp.src(common.srcPaths, { base: './' })
         .pipe(gulp.dest(globalSettings.destPath))
         .on('finish', function() {
             console.log(chalk.bgGreen.white(' FE Skeleton: HTML assets moved.'));
