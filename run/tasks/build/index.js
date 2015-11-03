@@ -14,8 +14,7 @@ var gulp = require('gulp'),
     args = require('yargs').argv,
     globalSettings = require('../../_global'),
     scriptSettings = require('../scripts/_common'),
-    styleSettings = require('../styles/_common'),
-    mergeStream = require('merge-stream');
+    styleSettings = require('../styles/_common');
 
 gulp.task('build', ['html', 'images', 'styles', 'scripts'], function() {
     if (scriptSettings.bundles.length === 0) {
@@ -26,8 +25,6 @@ gulp.task('build', ['html', 'images', 'styles', 'scripts'], function() {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no style bundles defined.'));
     }
 
-    var assetStream = gulp.src(['./fonts/**/!(dir.txt)'], { base: './' })
-                          .pipe(gulp.dest(globalSettings.destPath));
-
-    return mergeStream(assetStream);
+    return gulp.src(['./fonts/**/!(dir.txt)'], { base: './' })
+               .pipe(gulp.dest(globalSettings.destPath));
 });
