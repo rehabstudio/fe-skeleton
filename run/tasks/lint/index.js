@@ -2,6 +2,7 @@
 
 /**
  *  Lints chosen source files and reports any errors.
+ *  Configure via `.jshintrc` file in project root.
  *
  *  Example Usage:
  *  gulp lint
