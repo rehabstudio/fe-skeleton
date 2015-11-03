@@ -25,6 +25,6 @@ gulp.task('build', ['html', 'images', 'styles', 'scripts'], function() {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no style bundles defined.'));
     }
 
-    return gulp.src(['./fonts/**/!(dir.txt)'], { base: './' })
+    return gulp.src(globalSettings.taskConfiguration.build.sourcePaths, { base: './' })
                .pipe(gulp.dest(globalSettings.destPath));
 });

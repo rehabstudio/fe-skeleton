@@ -10,14 +10,16 @@
  */
 
 var gulp = require('gulp'),
-    args = require('yargs').argv,
     chalk = require('chalk'),
-    common = require('./_common'),
+    args = require('yargs').argv,
+    globalSettings = require('../../_global'),
     debug = require('gulp-debug'),
     jshint = require('gulp-jshint');
 
 gulp.task('lint', function() {
-    return gulp.src(common.buildSources(args.filePath))
+    var sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] : globalSettings.scriptSourcePaths;
+
+    return gulp.src(sourceFiles)
         .pipe(jshint())
         .pipe(debug({ title: 'Lint:' }))
         .pipe(jshint.reporter('jshint-stylish'))

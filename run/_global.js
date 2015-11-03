@@ -56,6 +56,39 @@ module.exports = {
      *
      * @type {String}
      */
-    destPath: './dist/'
+    destPath: './dist/',
+
+    /**
+     * Configuration settings for any task which needs them.
+     * Keys should match the task name for consistency.
+     *
+     * @type {Object}
+     */
+    taskConfiguration: {
+        build: {
+            sourcePaths: ['./fonts/**/!(dir.txt)']
+        },
+        html: {
+            sourcePaths: ['./html/**/*.html']
+        },
+        images: {
+            sourcePaths: ['./img/**/!(dir.txt)'],
+            imageminOptions: {
+                svgoPlugins: [
+                    { removeViewBox: false },
+                    { removeUselessStrokeAndFill: false },
+                    { convertPathData: { straightCurves: false } },
+                    { cleanupIDs: false }
+                ]
+            }
+        },
+        server: {
+            webserverSettings: {
+                port: 4321,
+                https: false,
+                open: true
+            }
+        }
+    }
 
 };
