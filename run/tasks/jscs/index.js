@@ -2,15 +2,13 @@
 
 /**
  *  Checks chosen JS source files and reports any errors.
+ *  Configure via `.jscsrc` file in project root.
  *
  *  NOTE: JSCS is not a linter; it enforces coding style only and
  *  doesn't check for coding errors, abnormalities or misuse.
  *
  *  Potential Options:
  *  http://jscs.info/rules.html
- *
- *  Current options based upon Google preset:
- *  https://github.com/jscs-dev/node-jscs/blob/master/presets/google.json
  *
  *  Example Usage:
  *  gulp jscs

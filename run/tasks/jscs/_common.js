@@ -1,13 +1,13 @@
 'use strict';
 
-module.exports = {
-    srcPaths: ['./js/src/**/*.js'],
+var globalSettings = require('../../_global');
 
+module.exports = {
     /**
      *  Sets paths to be as specified else falls back to defaults.
      *
-     *  @param string specifiedPath - Path of JS files relative to root.
-     *  @return array
+     *  @param {String} specifiedPath - Path of JS files relative to root.
+     *  @return {Array}
      */
     buildSources: function(specifiedPath) {
         var sourceList = [];
@@ -15,7 +15,7 @@ module.exports = {
         if (specifiedPath) {
             sourceList.push(specifiedPath);
         } else {
-            sourceList = this.srcPaths;
+            sourceList = globalSettings.scriptSourcePaths;
         }
 
         return sourceList;
