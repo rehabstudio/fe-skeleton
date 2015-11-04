@@ -8,7 +8,6 @@
  */
 
 var gulp = require('gulp'),
-    common = require('./_common'),
     chalk = require('chalk'),
     globalSettings = require('../../_global'),
     _ = require('underscore'),
@@ -26,8 +25,8 @@ var gulp = require('gulp'),
 gulp.task('styles', function(taskDone) {
     var promises = [];
 
-    for (var index = 0, length = common.bundles.length; index < length; index++) {
-        var thisBundle = common.bundles[index],
+    for (var index = 0, length = globalSettings.taskConfiguration.styles.bundles.length; index < length; index++) {
+        var thisBundle = globalSettings.taskConfiguration.styles.bundles[index],
             scopedProcessingMethod = _processBundle.bind(thisBundle);
 
         thisBundle.index = index;
@@ -71,10 +70,10 @@ function _processBundle(resolve, reject) {
     var stream = gulp.src(sourcePath)
         .pipe(plumber())
         .pipe(sourcemaps.init())
-        .pipe(sass(common.sassSettings).on('error', sass.logError))
-        .pipe(prefix(common.autoPrefixSettings))
+        .pipe(sass(globalSettings.taskConfiguration.styles.sassSettings).on('error', sass.logError))
+        .pipe(prefix(globalSettings.taskConfiguration.styles.autoPrefixSettings))
         .pipe(sourcemaps.write('./', sourcemapOptions))
-        .pipe(gulp.dest(globalSettings.destPath + common.outputFolder));
+        .pipe(gulp.dest(globalSettings.destPath + globalSettings.taskConfiguration.styles.outputFolder));
 
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
     stream
