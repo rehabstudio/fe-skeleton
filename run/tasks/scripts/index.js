@@ -10,7 +10,6 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     globalSettings = require('../../_global'),
-    _ = require('underscore'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),

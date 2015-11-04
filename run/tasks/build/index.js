@@ -12,16 +12,14 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     args = require('yargs').argv,
-    globalSettings = require('../../_global'),
-    scriptSettings = require('../scripts/_common'),
-    styleSettings = require('../styles/_common');
+    globalSettings = require('../../_global');
 
 gulp.task('build', ['html', 'images', 'styles', 'scripts'], function() {
-    if (scriptSettings.bundles.length === 0) {
+    if (globalSettings.taskConfiguration.scripts.bundles.length === 0) {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no script bundles defined.'));
     }
 
-    if (styleSettings.bundles.length === 0) {
+    if (globalSettings.taskConfiguration.styles.bundles.length === 0) {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no style bundles defined.'));
     }
 

@@ -10,7 +10,6 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     globalSettings = require('../../_global'),
-    _ = require('underscore'),
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     sass = require('gulp-sass'),

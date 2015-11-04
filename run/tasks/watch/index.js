@@ -14,27 +14,40 @@
 var gulp = require('gulp'),
     args = require('yargs').argv,
     chalk = require('chalk'),
-    common = require('./_common');
+    globalSettings = require('../../_global');
 
 gulp.task('watch', function() {
     var watchFunctions = {
         html: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching HTML.'));
-            gulp.watch(common.watchPaths.html, ['html']);
+            gulp.watch(globalSettings.taskConfiguration.watch.sourcePaths.html, ['html']);
         },
         styles: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching styles.'));
-            gulp.watch(common.watchPaths.styles, ['styles']);
+            gulp.watch(globalSettings.taskConfiguration.watch.sourcePaths.styles, ['styles']);
         },
         scripts: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching scripts.'));
-            gulp.watch(common.watchPaths.scripts, ['scripts']);
+            gulp.watch(globalSettings.taskConfiguration.watch.sourcePaths.scripts, ['scripts']);
         },
         templates: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching templates.'));
-            gulp.watch(common.watchPaths.templates, ['scripts']);
+            gulp.watch(globalSettings.taskConfiguration.watch.sourcePaths.templates, ['scripts']);
         }
     };
 
-    common.setupWatchers(args, watchFunctions);
+    // If no arguments were supplied then we start all watches.
+    // Else cycle supplied argumentss and build an array of method names.
+    if (!args.watchType) {
+        var watchMethods = Object.keys(watchFunctions);
+    } else {
+        var watchMethods = args.watchType.split(',').map(function(currentValue) {
+            return currentValue.trim();
+        });
+    }
+
+    // Cycle through the method names requiring watchers setup and call them.
+    watchMethods.forEach(function(methodName) {
+        watchFunctions[methodName]();
+    });
 });

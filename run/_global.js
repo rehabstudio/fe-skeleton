@@ -153,6 +153,14 @@ module.exports = {
         },
         test: {
             configPath: __dirname + '/../karma.conf.js'
+        },
+        watch: {
+            sourcePaths: {
+                html: ['./html/**/*.html'],
+                styles: ['./css/libs/**/*.scss', './css/src/**/*.scss'],
+                scripts: ['./js/libs/**/*.js', './js/src/**/*.js', '!./js/src/templates/**/*.js'],
+                templates: ['./js/src/templates/**/*.hbs']
+            }
         }
     }
 
