@@ -150,6 +150,9 @@ module.exports = {
                 browsers: ['last 2 versions', 'ios 6.1', 'android >= 4'],
                 cascade: false
             }
+        },
+        test: {
+            configPath: __dirname + '/../karma.conf.js'
         }
     }
 

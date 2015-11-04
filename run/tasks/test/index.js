@@ -12,7 +12,7 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     args = require('yargs').argv,
-    common = require('./_common');
+    globalSettings = require('../../_global');
 
 // Attempt to load test suite package to see if it is present or not.
 var testSuiteWrapper = false;
@@ -27,7 +27,7 @@ gulp.task('test', function(done) {
     }
 
     var karmaSettings = {
-        configFile: common.configPath
+        configFile: globalSettings.taskConfiguration.test.configPath
     };
 
     if (args.watch) {
