@@ -45,6 +45,7 @@
     "browserify": "^10.2.6",
     "gulp-uglify": "^1.2.0",
     "handlebars": "^3.0.3",
-    "hbsfy": "^2.2.1"
+    "hbsfy": "^2.2.1",
+    "webpack-stream": "^2.1.1"
   }
 }
