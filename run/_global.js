@@ -164,7 +164,7 @@ module.exports = {
              * @type {Object}
              */
             autoPrefixSettings: {
-                browsers: ['last 2 versions', 'ios 6.1', 'android >= 4'],
+                browsers: ['last 2 versions', 'iOS >= 7.1', 'Android >= 4'],
                 cascade: false
             }
         },
