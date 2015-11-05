@@ -123,29 +123,46 @@ module.exports = {
         },
         styles: {
             /**
-             *  An array of objects symbolising bundles requiring built.
+             * A folder path that is prefixed with the global `destPath` to give a
+             * standard destination for CSS bundles. This can be overridden per
+             * bundle if for example some bundles need to go somewhere else.
              *
-             *  Bundle Options:
-             *  `srcPath` - Folder where source files can be found. Relative to `package.json` and `gulpfile.js`.
-             *  `fileName` - File within `srcPath` which is the bundle starting point.
+             * @type {String}
+             */
+            genericOutputFolder: './css/',
+
+            /**
+             * A manifest of CSS bundles needing to be created and output
              *
-             *  Example Bundles:
-             *  { srcPath: './css/src/', fileName: 'homepage' },
-             *  { srcPath: './css/src/', fileName: 'contact-us' }
+             * Bundle Object Keys:
+             * `sourceFilePath` - The path to the SCSS entry file (relative to `gulpfile.js`).
+             * `outputFileName` - The extensionless name of the output file.
+             * `outputFolder` (Optional) - Overrides `genericOutputFolder`. Is relative to `gulpfile.js`.
+             *
+             * Example Bundles:
+             * { sourceFilePath: './css/src/homepage.scss', outputFileName: 'homepage' },
+             * { sourceFilePath: './css/src/about.scss', outputFileName: 'main', outputFolder: './modules/about-page/css/' }
+             *
+             * @type {Array}
              */
             bundles: [
             ],
 
-            // Where to place the built bundles. Is prefixed with `destPath` from global settings.
-            outputFolder: './css/',
-
-            // Settings to be passed through to gulp-sass and node-sass.
-            // Note: `compact` is used over `compressed` due to a sourcemaps bug.
+            /**
+             * Settings to be passed through to `gulp-sass` and `node-sass`.
+             * NOTE: `compact` used instead of `compressed` to due sourcemap bug.
+             *
+             * @type {Object}
+             */
             sassSettings: {
                 outputStyle: 'compact'
             },
 
-            // Settings for AutoPrefixer.
+            /**
+             * Settings to be passed through to `gulp-autoprefixer`.
+             *
+             * @type {Object}
+             */
             autoPrefixSettings: {
                 browsers: ['last 2 versions', 'ios 6.1', 'android >= 4'],
                 cascade: false

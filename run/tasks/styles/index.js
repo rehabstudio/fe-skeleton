@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     globalSettings = require('../../_global'),
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
+    rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer');
 
@@ -19,7 +20,7 @@ var gulp = require('gulp'),
  *  Overall function that will cycle through each of the styles bundles
  *  and once they're all completed, trigger the completion of the gulp task.
  *
- *  @param {object} taskDone - Gulp task callback method.
+ *  @param {Object} taskDone - Gulp task callback method.
  */
 gulp.task('styles', function(taskDone) {
     var promises = [];
@@ -48,9 +49,8 @@ gulp.task('styles', function(taskDone) {
  *  CSS and prefixes as necessary. Completion of the task is
  *  signalled via resolving or rejecting the bundles deferred.
  *
- *  @param {function} resolve - Promise resolution callback.
- *  @param {function} reject - Promise rejection callback.
- *  @return null.
+ *  @param {Function} resolve - Promise resolution callback.
+ *  @param {Function} reject - Promise rejection callback.
  */
 function _processBundle(resolve, reject) {
     var self = this;
@@ -62,17 +62,26 @@ function _processBundle(resolve, reject) {
         sourcemapOptions.sourceRoot = globalSettings.sourcemapOptions.sourceRoot;
     }
 
-    // Generating path to source file.
-    var sourcePath = self.srcPath + self.fileName + '.scss';
+    // Determine the output folder. Use a specified folder if one
+    // is set, else use the generic output folder.
+    var outputDirectory;
+    if (self.outputFolder) {
+        outputDirectory = self.outputFolder;
+    } else {
+        outputDirectory = globalSettings.destPath + globalSettings.taskConfiguration.styles.genericOutputFolder;
+    }
 
     // Compile SASS into CSS then prefix and save.
-    var stream = gulp.src(sourcePath)
+    var stream = gulp.src(self.sourceFilePath)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass(globalSettings.taskConfiguration.styles.sassSettings).on('error', sass.logError))
         .pipe(prefix(globalSettings.taskConfiguration.styles.autoPrefixSettings))
+        .pipe(rename(function(path) {
+            path.basename = self.outputFileName;
+        }))
         .pipe(sourcemaps.write('./', sourcemapOptions))
-        .pipe(gulp.dest(globalSettings.destPath + globalSettings.taskConfiguration.styles.outputFolder));
+        .pipe(gulp.dest(outputDirectory));
 
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
     stream
@@ -81,7 +90,8 @@ function _processBundle(resolve, reject) {
             reject();
         })
         .on('end', function() {
-            console.log(chalk.bgGreen.white(' FE Skeleton: Stylesheet Completed - ' + sourcePath));
+            console.log(chalk.bgGreen.white(' FE Skeleton: Stylesheet Completed - ' + self.sourceFilePath));
+            console.log(chalk.bgGreen.white('              Output location - ' + outputDirectory + self.outputFileName + '.css'));
             resolve();
         });
 }
