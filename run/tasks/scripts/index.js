@@ -78,7 +78,7 @@ function _processBundle(resolve, reject) {
         }
     }
 
-    // Adding source file, transforming its templates, dealing with sourcemaps, then uglifying.
+    // Adding entry point file, bundling other files, converting to a stream, dealing with sourcemaps then uglifying and saving to file system.
     bundleStream
         .add(self.srcPath + self.fileName + '.js')
         .bundle()

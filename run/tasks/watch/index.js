@@ -8,7 +8,7 @@
  *  Example Usage:
  *  gulp watch
  *  gulp watch --watchType styles
- *  gulp watch --watchType styles,templates
+ *  gulp watch --watchType styles,html
  */
 
 var gulp = require('gulp'),
@@ -29,10 +29,6 @@ gulp.task('watch', function() {
         scripts: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching scripts.'));
             gulp.watch(globalSettings.taskConfiguration.watch.sourcePaths.scripts, ['scripts']);
-        },
-        templates: function() {
-            console.log(chalk.bgYellow.gray(' FE Skeleton: Watching templates.'));
-            gulp.watch(globalSettings.taskConfiguration.watch.sourcePaths.templates, ['scripts']);
         }
     };
 
