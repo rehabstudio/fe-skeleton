@@ -8,10 +8,8 @@
  */
 
 var gulp = require('gulp'),
-    common = require('./_common'),
     chalk = require('chalk'),
     globalSettings = require('../../_global'),
-    _ = require('underscore'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
@@ -27,8 +25,8 @@ var gulp = require('gulp'),
 gulp.task('scripts', function(taskDone) {
     var promises = [];
 
-    for (var index = 0, length = common.bundles.length; index < length; index++) {
-        var thisBundle = common.bundles[index],
+    for (var index = 0, length = globalSettings.taskConfiguration.scripts.bundles.length; index < length; index++) {
+        var thisBundle = globalSettings.taskConfiguration.scripts.bundles[index],
             scopedProcessingMethod = _processBundle.bind(thisBundle);
 
         thisBundle.promise = new Promise(scopedProcessingMethod);
@@ -89,12 +87,12 @@ function _processBundle(resolve, reject) {
             console.log(chalk.bgRed.white(' FE Skeleton: Browserify Failed - ' + error.message));
             reject();
         })
-        .pipe(source(self.fileName + common.buildFileSuffix))
+        .pipe(source(self.fileName + globalSettings.taskConfiguration.scripts.buildFileSuffix))
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(uglify(common.uglifySettings))
+        .pipe(uglify(globalSettings.taskConfiguration.scripts.uglifySettings))
         .pipe(sourcemaps.write('./', sourcemapOptions))
-        .pipe(gulp.dest(globalSettings.destPath + common.outputFolder))
+        .pipe(gulp.dest(globalSettings.destPath + globalSettings.taskConfiguration.scripts.outputFolder))
         .on('end', function() {
             console.log(chalk.bgGreen.white(' FE Skeleton: Browserify Completed - ' + self.srcPath + self.fileName + '.js'));
             resolve();

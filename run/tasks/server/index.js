@@ -10,7 +10,6 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     fs = require('fs'),
-    common = require('./_common'),
     globalSettings = require('../../_global'),
     webserver = require('gulp-webserver');
 
@@ -24,5 +23,5 @@ gulp.task('server', function() {
     }
 
     return gulp.src(globalSettings.destPath)
-               .pipe(webserver(common.webserverSettings));
+               .pipe(webserver(globalSettings.taskConfiguration.server.webserverSettings));
 });

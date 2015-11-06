@@ -8,14 +8,11 @@
  */
 
 var gulp = require('gulp'),
-    common = require('./_common'),
     globalSettings = require('../../_global'),
     imagemin = require('gulp-imagemin');
 
 gulp.task('images', function() {
-    return gulp.src(common.srcPaths)
-        .pipe(imagemin({
-            svgoPlugins: common.svgoPlugins
-        }))
-        .pipe(gulp.dest(globalSettings.destPath + common.destPath));
+    return gulp.src(globalSettings.taskConfiguration.images.sourcePaths, { base: './' })
+                .pipe(imagemin(globalSettings.taskConfiguration.images.imageminOptions))
+                .pipe(gulp.dest(globalSettings.destPath));
 });
