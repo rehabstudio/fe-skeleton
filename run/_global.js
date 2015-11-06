@@ -103,7 +103,6 @@ module.exports = {
              *  { srcPath: './js/src/', fileName: 'contact-us', excludes: [] }
              */
             bundles: [
-                { srcPath: './js/src/', fileName: 'index', excludes: [] }
             ],
 
             // Gets appended to a bundles `fileName` and placed into `outputFolder`.
