@@ -103,7 +103,6 @@ module.exports = {
              *  { srcPath: './js/src/', fileName: 'contact-us', excludes: [] }
              */
             bundles: [
-                { srcPath: './js/src/', fileName: 'index', excludes: [] }
             ],
 
             // Gets appended to a bundles `fileName` and placed into `outputFolder`.
@@ -175,8 +174,7 @@ module.exports = {
             sourcePaths: {
                 html: ['./html/**/*.html'],
                 styles: ['./css/libs/**/*.scss', './css/src/**/*.scss'],
-                scripts: ['./js/libs/**/*.js', './js/src/**/*.js', '!./js/src/templates/**/*.js'],
-                templates: ['./js/src/templates/**/*.hbs']
+                scripts: ['./js/libs/**/*.js', './js/src/**/*.js']
             }
         }
     }
