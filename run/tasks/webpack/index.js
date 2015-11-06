@@ -12,7 +12,7 @@ var gulp = require('gulp'),
     args = require('yargs').argv,
     globalSettings = require('../../_global'),
     webpackStream = require('webpack-stream'),
-    configGenerator = require('./config-generator');
+    configGenerator = require('./_config');
 
 /**
  * Wrapper task that calls the webpack-stream package with
@@ -41,6 +41,9 @@ gulp.task('webpack-watch', function() {
  * @param {Object} taskOptions - Options from gulp tasks.
  */
 function _runWebpack(taskOptions) {
+    // Ensure there is an options object (incase none were supplied to this function).
+    taskOptions = taskOptions || {};
+
     // Check for the existence of a particular production flag and set accordingly.
     taskOptions.isProduction = (args.hasOwnProperty('is-production') && args['is-production'] === true);
 
