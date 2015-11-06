@@ -99,7 +99,7 @@ var baseConfig = {
          * @type {Array}
          */
         plugins: [
-        ],
+        ]
 
     }
 };
@@ -139,6 +139,14 @@ module.exports = {
         }
 
         // Will need to clone this object of course, and add to it.
+        return baseConfig.webpackSettings;
+    },
+
+    /**
+     * Returns the webpack configuration in its default state.
+     * @return {Object}
+     */
+    getBaseConfig: function() {
         return baseConfig.webpackSettings;
     }
 };
