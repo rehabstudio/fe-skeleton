@@ -81,7 +81,6 @@ function _processBundle(resolve, reject) {
     // Adding source file, transforming its templates, dealing with sourcemaps, then uglifying.
     bundleStream
         .add(self.srcPath + self.fileName + '.js')
-        .transform('hbsfy')
         .bundle()
         .on('error', function(error) {
             console.log(chalk.bgRed.white(' FE Skeleton: Browserify Failed - ' + error.message));
