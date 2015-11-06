@@ -41,12 +41,11 @@ gulp.task('webpack-watch', function() {
  * @param {Object} taskOptions - Options from gulp tasks.
  */
 function _runWebpack(taskOptions) {
-    // Take a copy of the task specific options and add production flags to them.
-    var taskOptionsCopy = JSON.parse(JSON.stringify((taskOptions || {})));
-    taskOptionsCopy.isProduction = (args.hasOwnProperty('is-production') && args['is-production'] === true);
+    // Check for the existence of a particular production flag and set accordingly.
+    taskOptions.isProduction = (args.hasOwnProperty('is-production') && args['is-production'] === true);
 
     // Open a stream, trigger webpack-stream compilation and push output to file system.
     return gulp.src([])
-        .pipe(webpackStream(configGenerator.generateAppConfig(taskOptionsCopy)))
+        .pipe(webpackStream(configGenerator.generateAppConfig(taskOptions)))
         .pipe(gulp.dest(globalSettings.destPath));
 }
