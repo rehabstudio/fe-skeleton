@@ -1,99 +1,54 @@
 'use strict';
 
 /**
- *  Concatenates and minifys JS source files.
+ *  Bundles JS source files via Webpack.
  *
  *  Example Usage:
  *  gulp scripts
+ *  gulp scripts --is-production
  */
 
 var gulp = require('gulp'),
-    chalk = require('chalk'),
+    args = require('yargs').argv,
     globalSettings = require('../../_global'),
-    browserify = require('browserify'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
-    sourcemaps = require('gulp-sourcemaps'),
-    uglify = require('gulp-uglify');
+    webpackStream = require('webpack-stream'),
+    configGenerator = require('./_config');
 
 /**
- *  Overall function that will cycle through each of the browserify bundles
- *  and once they're all completed, trigger the completion of the gulp task.
+ * Wrapper task that calls the webpack-stream package with
+ * configuration and outputs bundles.
  *
- *  @param {object} taskDone - Gulp task callback method.
+ * @return {Object} - Stream.
  */
-gulp.task('scripts', function(taskDone) {
-    var promises = [];
-
-    for (var index = 0, length = globalSettings.taskConfiguration.scripts.bundles.length; index < length; index++) {
-        var thisBundle = globalSettings.taskConfiguration.scripts.bundles[index],
-            scopedProcessingMethod = _processBundle.bind(thisBundle);
-
-        thisBundle.promise = new Promise(scopedProcessingMethod);
-        promises.push(thisBundle.promise);
-    }
-
-    Promise.all(promises).then(
-        function() {
-            taskDone();
-        },
-        function() {
-            taskDone('Something went wrong.');
-        }
-    );
+gulp.task('scripts', function() {
+    return _runWebpack();
 });
 
 /**
- *  Uses Browserify API to create a node stream. This is then converted
- *  into a stream that Gulp understands (via `vinyl-source-stream`).
+ * Wrapper task that calls the webpack-stream package with
+ * configuration and outputs bundles. This variation will
+ * pass through an option which turns on watch mode.
  *
- *  This is then passed to `vinyl-buffer` where the streams contents are
- *  converted into a Buffer. The inline source map from Browserify is
- *  picked up by `gulp-sourcemaps`.
- *
- *  We then uglify the contents of the stream, via `gulp-uglify` which has
- *  `gulp-sourcemaps` support and updates the original map. The map is then
- *  saved out to the desired location and the process completes.
- *
- *  @param {function} resolve - Promise resolution callback.
- *  @param {function} reject - Promise rejection callback.
+ * @return {Object} - Stream.
  */
-function _processBundle(resolve, reject) {
-    var self = this;
+gulp.task('scripts:watch', function() {
+    return _runWebpack({ watch: true });
+});
 
-    // Apply particular options if global settings dictate source files should be referenced inside sourcemaps.
-    var sourcemapOptions = {};
-    if (globalSettings.sourcemapOptions.type === 'External_ReferencedFiles') {
-        sourcemapOptions.includeContent = false;
-        sourcemapOptions.sourceRoot = globalSettings.sourcemapOptions.sourceRoot;
-    }
+/**
+ * DRY method used by watchers and direct compilation tasks.
+ *
+ * @param {Object} taskOptions - Options from gulp tasks.
+ */
+function _runWebpack(taskOptions) {
+    // Ensure there is an options object (incase none were supplied to this function).
+    taskOptions = taskOptions || {};
 
-    // Creating a browserify instance / stream.
-    var bundleStream = browserify({ debug: true });
+    // Check for the existence of a particular production flag and set accordingly.
+    taskOptions.isProduction = (args.hasOwnProperty('is-production') && args['is-production'] === true);
 
-    // If this bundle is asking to explicitly exclude certain modules, do so.
-    if (self.excludes && self.excludes.length > 0) {
-        for (var j = 0, excludesLength = self.excludes.length; j < excludesLength; j++) {
-            bundleStream.exclude(self.excludes[j]);
-        }
-    }
-
-    // Adding entry point file, bundling other files, converting to a stream, dealing with sourcemaps then uglifying and saving to file system.
-    bundleStream
-        .add(self.srcPath + self.fileName + '.js')
-        .bundle()
-        .on('error', function(error) {
-            console.log(chalk.bgRed.white(' FE Skeleton: Browserify Failed - ' + error.message));
-            reject();
-        })
-        .pipe(source(self.fileName + globalSettings.taskConfiguration.scripts.buildFileSuffix))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(uglify(globalSettings.taskConfiguration.scripts.uglifySettings))
-        .pipe(sourcemaps.write('./', sourcemapOptions))
-        .pipe(gulp.dest(globalSettings.destPath + globalSettings.taskConfiguration.scripts.outputFolder))
-        .on('end', function() {
-            console.log(chalk.bgGreen.white(' FE Skeleton: Browserify Completed - ' + self.srcPath + self.fileName + '.js'));
-            resolve();
-        });
+    // Open a stream, trigger webpack-stream compilation and push output to file system.
+    return gulp.src([])
+        .pipe(webpackStream(configGenerator.generateAppConfig(taskOptions)))
+        .pipe(gulp.dest(globalSettings.destPath));
 }

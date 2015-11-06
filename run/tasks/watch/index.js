@@ -28,7 +28,7 @@ gulp.task('watch', function() {
         },
         scripts: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching scripts.'));
-            gulp.watch(globalSettings.taskConfiguration.watch.sourcePaths.scripts, ['scripts']);
+            gulp.run('scripts:watch');
         }
     };
 
