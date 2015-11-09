@@ -49,6 +49,6 @@ function _runWebpack(taskOptions) {
 
     // Open a stream, trigger webpack-stream compilation and push output to file system.
     return gulp.src([])
-        .pipe(webpackStream(configGenerator.generateAppConfig(taskOptions)))
-        .pipe(gulp.dest(globalSettings.destPath));
+        .pipe(webpackStream(configGenerator.generateWebpackAppConfig(taskOptions)))
+        .pipe(gulp.dest(globalSettings.destPath + configGenerator.getBaseConfig().genericOutputFolder));
 }

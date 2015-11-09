@@ -12,6 +12,14 @@ var webpackStream = require('webpack-stream'),
  */
 var baseConfig = {
     /**
+     * A folder path that is prefixed with the global `destPath` to give a
+     * standard destination for JS bundles.
+     *
+     * @type {String}
+     */
+    genericOutputFolder: './js/',
+
+    /**
      * Settings for webpacks uglify plugin.
      *
      * @type {Object}
@@ -118,7 +126,7 @@ module.exports = {
      * @param {Boolean} options.watch        - If true, process stays alive and watches.
      * @return {Object}
      */
-    generateAppConfig: function(taskOptions) {
+    generateWebpackAppConfig: function(taskOptions) {
         // Outputs sourcemaps for all bundles.
         baseConfig.webpackSettings.plugins.push(
             new webpack.SourceMapDevToolPlugin({
@@ -146,7 +154,17 @@ module.exports = {
      * Returns the webpack configuration in its default state.
      * @return {Object}
      */
-    getBaseConfig: function() {
+    getWebpackBaseConfig: function() {
         return baseConfig.webpackSettings;
+    },
+
+    /**
+     * Returns the overall base configuration object.
+     *
+     * @return {Object}
+     */
+    getBaseConfig: function() {
+        return baseConfig;
     }
+
 };
