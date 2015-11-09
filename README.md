@@ -77,16 +77,16 @@ Build tool methods are stored within `run` to encapsulate them away from project
 Remember that everything here is configurable and easily changed; your project will have specific requirements and you should be adapting this structure to suit your needs!
 
 ## Test Suite
-As previously stated, test specifications should be placed into `js/tests/` with a suffix of `.spec.js`. This ensures they will be automatically picked up by Karma whenever it is run. The test specs themselves are piped through Browserify so be sure to write the spec file syntactically as you would any other JavaScript module in your project.
+As previously stated, test specifications should be placed into `js/tests/` with a suffix of `.spec.js`. This ensures they will be automatically picked up by Karma whenever it is run. The test specs themselves are piped through Webpack so be sure to write the spec file syntactically as you would any other JavaScript module in your project.
 
-The testing stack is Mocha, Chai and Sinon, with Karma as the test runner. This gives you a full toolset of test frameworks, assertion libraries, spies and more. Each component of the testing stack is already loaded into the scope of the test spec so you can just their global/top-level functions automagically.
+The testing stack is Mocha, Chai and Sinon, with Karma as the test runner. This gives you a full toolset of test frameworks, assertion libraries, spies and more. Each component of the testing stack is already loaded into the scope of the test spec so you can just their global/top-level functions automagically (i.e. `assert`, `expect`).
 
 An example test spec is shown below, which loads in a contrived model and runs some tests.
 ```
 'use strict';
 
 // Loading dependencies.
-var FeatureModel = require('../src/models/FeatureModel');
+import FeatureModel from '../src/models/FeatureModel';
 
 describe('The Feature model', function() {
 
