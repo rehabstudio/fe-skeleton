@@ -10,7 +10,7 @@
 
 var gulp = require('gulp'),
     chalk = require('chalk'),
-    globalSettings = require('../../_global');
+    globalSettings = require('../../config');
 
 gulp.task('html', function() {
     return gulp.src(globalSettings.taskConfiguration.html.sourcePaths)

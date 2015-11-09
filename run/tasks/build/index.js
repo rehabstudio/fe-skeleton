@@ -12,7 +12,7 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     args = require('yargs').argv,
-    globalSettings = require('../../_global');
+    globalSettings = require('../../config');
 
 gulp.task('build', ['html', 'images', 'styles', 'scripts'], function() {
     if (globalSettings.taskConfiguration.scripts.bundles.length === 0) {

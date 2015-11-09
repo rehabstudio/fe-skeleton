@@ -8,7 +8,7 @@
  */
 
 var gulp = require('gulp'),
-    globalSettings = require('../../_global'),
+    globalSettings = require('../../config'),
     imagemin = require('gulp-imagemin');
 
 gulp.task('images', function() {

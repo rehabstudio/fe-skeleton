@@ -10,7 +10,7 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     fs = require('fs'),
-    globalSettings = require('../../_global'),
+    globalSettings = require('../../config'),
     webserver = require('gulp-webserver');
 
 gulp.task('server', function() {

@@ -14,7 +14,7 @@
 var gulp = require('gulp'),
     args = require('yargs').argv,
     chalk = require('chalk'),
-    globalSettings = require('../../_global');
+    globalSettings = require('../../config');
 
 gulp.task('watch', function() {
     var watchFunctions = {
@@ -28,7 +28,7 @@ gulp.task('watch', function() {
         },
         scripts: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching scripts.'));
-            gulp.watch(globalSettings.taskConfiguration.watch.sourcePaths.scripts, ['scripts']);
+            gulp.run('scripts:watch');
         }
     };
 

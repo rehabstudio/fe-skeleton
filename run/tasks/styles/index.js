@@ -9,7 +9,7 @@
 
 var gulp = require('gulp'),
     chalk = require('chalk'),
-    globalSettings = require('../../_global'),
+    globalSettings = require('../../config'),
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     rename = require('gulp-rename'),
