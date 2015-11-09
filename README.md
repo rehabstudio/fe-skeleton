@@ -59,7 +59,7 @@ There are a multitude of settings files included in the root of the repository.
 
 `karma.conf.js` houses configuration for [Karma](http://karma-runner.github.io/). It can also contain settings for Mocha, Chai and Sinon.
 
-`run/_global.js` is a global file included into each of the build tool tasks and acts as a central place for task configuration.
+`run/config.js` is a global file included into each of the build tool tasks and acts as a central place for task configuration.
 
 ## Folder Structure
 Both style sheets and scripts follow the same structure. Library files are placed in `libs`. These library files do not have to be minifed and in best practice probably shouldn't be. This is because during development, errors within them are easier to debug, and also that the build process will be minifying them anyway.

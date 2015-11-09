@@ -14,7 +14,7 @@
 var gulp = require('gulp'),
     args = require('yargs').argv,
     chalk = require('chalk'),
-    globalSettings = require('../../_global');
+    globalSettings = require('../../config');
 
 gulp.task('watch', function() {
     var watchFunctions = {

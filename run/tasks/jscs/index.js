@@ -19,7 +19,7 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     args = require('yargs').argv,
-    globalSettings = require('../../_global'),
+    globalSettings = require('../../config'),
     debug = require('gulp-debug'),
     jscs = require('gulp-jscs');
 

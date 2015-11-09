@@ -12,7 +12,7 @@
 var gulp = require('gulp'),
     chalk = require('chalk'),
     args = require('yargs').argv,
-    globalSettings = require('../../_global');
+    globalSettings = require('../../config');
 
 // Attempt to load test suite package to see if it is present or not.
 var testSuiteWrapper = false;

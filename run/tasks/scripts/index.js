@@ -10,7 +10,7 @@
 
 var gulp = require('gulp'),
     args = require('yargs').argv,
-    globalSettings = require('../../_global'),
+    globalSettings = require('../../config'),
     webpackStream = require('webpack-stream'),
     webpack = webpackStream.webpack;
 
