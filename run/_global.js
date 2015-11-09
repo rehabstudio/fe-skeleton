@@ -136,6 +136,105 @@ module.exports = {
                 cascade: false
             }
         },
+        scripts: {
+            /**
+             * A folder path that is prefixed with the global `destPath` to give a
+             * standard destination for JS bundles.
+             *
+             * @type {String}
+             */
+            genericOutputFolder: './js/',
+
+            /**
+             * Settings for webpacks uglify plugin.
+             *
+             * @type {Object}
+             */
+            uglifySettings: {
+                compress: {
+                    drop_console: false,
+                    drop_debugger: false,
+                    warnings: false
+                }
+            },
+
+            /**
+             * Base settings for webpack.
+             *
+             * NOTE: For a full list of options, please visit:
+             * https://webpack.github.io/docs/configuration.html
+             *
+             * @type {Object}
+             */
+            webpackSettings: {
+                /**
+                 * Whether to watch for bundle changes or not.
+                 * Note: Only recompiles bundles affected by changes.
+                 *
+                 * @type {Boolean}
+                 */
+                watch: false,
+
+                /**
+                 * Defines entry points for bundles.
+                 * This acts as a mapping of Chunk Name -> Entry File.
+                 *
+                 * Example Bundles:
+                 * entry: {
+                 *     main: './js/src/bundle-main.js'
+                 *     about:'./js/src/bundle-about.js'
+                 *     vendor: ['angular', 'angular-aria', 'angular-animate', 'angular-material']
+                 * }
+                 *
+                 * @type {Object}
+                 */
+                entry: {
+                },
+
+                /**
+                 * Bundle output settings.
+                 *
+                 * @type {Object}
+                 */
+                output: {
+                    /**
+                     * Acts as a template for naming bundled scripts.
+                     *
+                     * @type {String}
+                     */
+                    filename: '[name].js'
+                },
+
+                /**
+                 * Options affecting normal modules.
+                 *
+                 * @type {Object}
+                 */
+                module: {
+                    /**
+                     * Loaders that will be automatically applied to loaded modules.
+                     *
+                     * @type {Array}
+                     */
+                    loaders: [
+                        /**
+                         * Runs project source files through Babel.
+                         *
+                         * @type {Object}
+                         */
+                        { test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel?presets[]=es2015' }
+                    ]
+                },
+
+                /**
+                 * Plugins needing run whenever building bundles.
+                 *
+                 * @type {Array}
+                 */
+                plugins: [
+                ]
+            }
+        },
         test: {
             configPath: __dirname + '/../karma.conf.js'
         },
