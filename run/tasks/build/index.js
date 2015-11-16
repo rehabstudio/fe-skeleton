@@ -15,7 +15,7 @@ var gulp = require('gulp'),
     globalSettings = require('../../config');
 
 gulp.task('build', ['html', 'images', 'styles', 'scripts'], function() {
-    if (globalSettings.taskConfiguration.scripts.bundles.length === 0) {
+    if (Object.keys(globalSettings.taskConfiguration.scripts.webpackSettings.entry).length === 0) {
         console.log(chalk.bgYellow.gray(' FE Skeleton: Warning - There are no script bundles defined.'));
     }
 
