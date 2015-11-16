@@ -171,6 +171,7 @@ module.exports = {
                 entry: {
                 },
                 output: {
+                    filename: '[name].js'
                 },
                 module: {
                     loaders: [
