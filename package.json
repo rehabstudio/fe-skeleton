@@ -13,8 +13,6 @@
     "Neil McCallion <neil@rehabstudio.com>"
   ],
   "scripts": {
-    "jscs": "gulp jscs",
-    "lint": "gulp lint",
     "jscs-via-commit": "gulp jscs --via-commit",
     "lint-via-commit": "gulp lint --via-commit",
     "validate": "gulp jscs --via-commit && gulp lint --via-commit"

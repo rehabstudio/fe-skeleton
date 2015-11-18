@@ -84,7 +84,8 @@ module.exports = {
         },
         server: {
             webserverSettings: {
-                port: 4321,
+                host: '0.0.0.0',
+                port: process.env.PORT || 4321,
                 https: false,
                 open: true
             }
