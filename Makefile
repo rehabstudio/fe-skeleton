@@ -1,5 +1,3 @@
-GULP = ./node_modules/bin/gulp
-
 help:
 	@echo "fe-skeleton"
 	@echo ""
@@ -12,13 +10,9 @@ help:
 
 default: help
 
-# watch the frontend application for changes, builds it first
-watch: node_modules
-	$(GULP) watch;
-
 # this allows any of the gulp commands to be called, e.g. `make scripts`
-build test images lint scripts styles templates: node_modules
-	$(GULP) $@;
+build test images lint scripts styles templates watch: node_modules
+	npm run gulp -- $@;
 
 # just install node_modules, also callable as `make node_modules`
 setup: node_modules
