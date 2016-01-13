@@ -1,0 +1,189 @@
+application: rebabstudio-fe-skeleton
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /(.*\.(appcache|manifest))
+  mime_type: text/cache-manifest
+  static_files: dist/\1
+  upload: dist/(.*\.(appcache|manifest))
+  expiration: "0m"
+
+- url: /(.*\.atom)
+  mime_type: application/atom+xml
+  static_files: dist/\1
+  upload: dist/(.*\.atom)
+  expiration: "0m"
+
+- url: /(.*\.crx)
+  mime_type: application/x-chrome-extension
+  static_files: dist/\1
+  upload: dist/(.*\.crx)
+
+- url: /(.*\.css)
+  mime_type: text/css
+  static_files: dist/\1
+  upload: dist/(.*\.css)
+
+- url: /(.*\.eot)
+  mime_type: application/vnd.ms-fontobject
+  static_files: dist/\1
+  upload: dist/(.*\.eot)
+
+- url: /(.*\.htc)
+  mime_type: text/x-component
+  static_files: dist/\1
+  upload: dist/(.*\.htc)
+
+- url: /(.*\.html)
+  mime_type: text/html
+  static_files: dist/\1
+  upload: dist/(.*\.html)
+  expiration: "0m"
+
+- url: /(.*\.ico)
+  mime_type: image/x-icon
+  static_files: dist/\1
+  upload: dist/(.*\.ico)
+  expiration: "0m"
+
+- url: /(.*\.js)
+  mime_type: text/javascript
+  static_files: dist/\1
+  upload: dist/(.*\.js)
+
+- url: /(.*\.json)
+  mime_type: application/json
+  static_files: dist/\1
+  upload: dist/(.*\.json)
+  expiration: "0m"
+
+- url: /(.*\.m4v)
+  mime_type: video/m4v
+  static_files: dist/\1
+  upload: dist/(.*\.m4v)
+
+- url: /(.*\.mp4)
+  mime_type: video/mp4
+  static_files: dist/\1
+  upload: dist/(.*\.mp4)
+
+- url: /(.*\.(ogg|oga))
+  mime_type: audio/ogg
+  static_files: dist/\1
+  upload: dist/(.*\.(ogg|oga))
+
+- url: /(.*\.ogv)
+  mime_type: video/ogg
+  static_files: dist/\1
+  upload: dist/(.*\.ogv)
+
+- url: /(.*\.otf)
+  mime_type: font/opentype
+  static_files: dist/\1
+  upload: dist/(.*\.otf)
+
+- url: /(.*\.rss)
+  mime_type: application/rss+xml
+  static_files: dist/\1
+  upload: dist/(.*\.rss)
+  expiration: "0m"
+
+- url: /(.*\.safariextz)
+  mime_type: application/octet-stream
+  static_files: dist/\1
+  upload: dist/(.*\.safariextz)
+
+- url: /(.*\.(svg|svgz))
+  mime_type: images/svg+xml
+  static_files: dist/\1
+  upload: dist/(.*\.(svg|svgz))
+
+- url: /(.*\.swf)
+  mime_type: application/x-shockwave-flash
+  static_files: dist/\1
+  upload: dist/(.*\.swf)
+
+- url: /(.*\.ttf)
+  mime_type: font/truetype
+  static_files: dist/\1
+  upload: dist/(.*\.ttf)
+
+- url: /(.*\.txt)
+  mime_type: text/plain
+  static_files: dist/\1
+  upload: dist/(.*\.txt)
+
+- url: /(.*\.unity3d)
+  mime_type: application/vnd.unity
+  static_files: dist/\1
+  upload: dist/(.*\.unity3d)
+
+- url: /(.*\.webm)
+  mime_type: video/webm
+  static_files: dist/\1
+  upload: dist/(.*\.webm)
+
+- url: /(.*\.webp)
+  mime_type: image/webp
+  static_files: dist/\1
+  upload: dist/(.*\.webp)
+
+- url: /(.*\.woff)
+  mime_type: application/x-font-woff
+  static_files: dist/\1
+  upload: dist/(.*\.woff)
+
+- url: /(.*\.xml)
+  mime_type: application/xml
+  static_files: dist/\1
+  upload: dist/(.*\.xml)
+  expiration: "0m"
+
+- url: /(.*\.xpi)
+  mime_type: application/x-xpinstall
+  static_files: dist/\1
+  upload: dist/(.*\.xpi)
+
+# image files
+- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  static_files: dist/\1
+  upload: dist/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+
+# audio files
+- url: /(.*\.(mid|midi|mp3|wav))
+  static_files: dist/\1
+  upload: dist/(.*\.(mid|midi|mp3|wav))  
+
+# windows files
+- url: /(.*\.(doc|exe|ppt|rtf|xls))
+  static_files: dist/\1
+  upload: dist/(.*\.(doc|exe|ppt|rtf|xls))
+
+# compressed files
+- url: /(.*\.(bz2|gz|rar|tar|tgz|zip))
+  static_files: dist/\1
+  upload: dist/(.*\.(bz2|gz|rar|tar|tgz|zip))
+
+# index files
+- url: /(.+)/
+  static_files: dist/\1/index.html
+  upload: dist/(.+)/index.html
+  expiration: "0m"
+
+# This shows pages without trailing slashes
+# It is disabled because it breaks relative assets in the HTML
+# Enable at your own confusion
+#- url: /(.+)
+#  static_files: dist/\1/index.html
+#  upload: dist/(.+)/index.html
+#  expiration: "0m"
+#  login: admin
+
+# site root
+- url: /
+  static_files: dist/index.html
+  upload: dist/index.html
+  expiration: "0m"
