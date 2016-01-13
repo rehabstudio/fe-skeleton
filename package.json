@@ -16,8 +16,7 @@
     "gulp": "gulp",
     "jscs-via-commit": "gulp jscs --via-commit",
     "lint-via-commit": "gulp lint --via-commit",
-    "validate": "gulp jscs --via-commit && gulp lint --via-commit",
-    "lint": "jshint ."
+    "validate": "gulp jscs --via-commit && gulp lint --via-commit"
   },
   "pre-commit": [
     "jscs-via-commit",
