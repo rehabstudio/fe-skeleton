@@ -39,7 +39,7 @@ module.exports = function(config) {
 
         /**
          * Files for Karma to load. By default we're searching
-         * for any file that has out test suffix.
+         * for any file that has our chosen test file suffix.
          *
          * @type {Array}
          */
