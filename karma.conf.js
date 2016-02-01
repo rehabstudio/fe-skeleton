@@ -38,14 +38,12 @@ module.exports = function(config) {
         ],
 
         /**
-         * Tells Karma to load all test specifications and
-         * also the file of JS shims to cover holes within
-         * the PhantomJS browser engine.
+         * Files for Karma to load. By default we're searching
+         * for any file that has our chosen test file suffix.
          *
          * @type {Array}
          */
         files: [
-            'run/tasks/test/_shims.js',
             'js/tests/**/*.spec.js'
         ],
 
