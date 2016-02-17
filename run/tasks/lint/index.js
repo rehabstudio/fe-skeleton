@@ -17,7 +17,7 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint');
 
 gulp.task('lint', function() {
-    var sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] : globalSettings.scriptSourcePaths;
+    var sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] : globalSettings.lintingSourcePaths;
 
     return gulp.src(sourceFiles)
         .pipe(jshint())

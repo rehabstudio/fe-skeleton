@@ -24,7 +24,7 @@ var gulp = require('gulp'),
     jscs = require('gulp-jscs');
 
 gulp.task('jscs', function() {
-    var sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] : globalSettings.scriptSourcePaths;
+    var sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] : globalSettings.lintingSourcePaths;
 
     return gulp.src(sourceFiles)
         .pipe(debug({ title: 'JSCS:' }))
