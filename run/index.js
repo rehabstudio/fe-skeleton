@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- *  Acts as an override for module loading. Certain modules
- *  need to load modules other than themselves to function.
+ * Acts as an override for module loading. Certain modules
+ * need to load modules other than themselves to function.
  *
  * @type {Object}
  */
