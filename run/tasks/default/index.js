@@ -1,14 +1,13 @@
 'use strict';
 
 /**
- *  The default method of the task runner triggers a build task.
+ * The default method of the task runner triggers a build task.
  *
- *  Example Usage:
- *  gulp
+ * Example Usage:
+ * gulp
  */
 
-var gulp = require('gulp'),
-    args = require('yargs').argv;
+var gulp = require('gulp');
 
 gulp.task('default', function() {
     gulp.start('build');

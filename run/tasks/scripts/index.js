@@ -1,18 +1,18 @@
 'use strict';
 
 /**
- *  Bundles JS source files via Webpack.
+ * Bundles JS source files via Webpack.
  *
- *  Example Usage:
- *  gulp scripts
- *  gulp scripts --is-production
+ * Example Usage:
+ * gulp scripts
+ * gulp scripts --is-production
  */
 
-var gulp = require('gulp'),
-    args = require('yargs').argv,
-    globalSettings = require('../../config'),
-    webpackStream = require('webpack-stream'),
-    webpack = webpackStream.webpack;
+var gulp = require('gulp');
+var args = require('yargs').argv;
+var globalSettings = require('../../config');
+var webpackStream = require('webpack-stream');
+var webpack = webpackStream.webpack;
 
 /**
  * Wrapper task that calls the webpack-stream package with
@@ -32,7 +32,7 @@ gulp.task('scripts', function() {
  * @return {Object} - Stream.
  */
 gulp.task('scripts:watch', function() {
-    return _runWebpack({ watch: true });
+    return _runWebpack({watch: true});
 });
 
 /**

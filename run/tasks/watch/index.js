@@ -1,20 +1,20 @@
 'use strict';
 
 /**
- *  Watches specific types of assets, or all, based on a CLI parameter.
- *  When any of these source files associated with an asset type changes
- *  this triggers compilation methods.
+ * Watches specific types of assets, or all, based on a CLI parameter.
+ * When any of these source files associated with an asset type changes
+ * this triggers compilation methods.
  *
- *  Example Usage:
- *  gulp watch
- *  gulp watch --watchType styles
- *  gulp watch --watchType styles,html
+ * Example Usage:
+ * gulp watch
+ * gulp watch --watchType styles
+ * gulp watch --watchType styles,html
  */
 
-var gulp = require('gulp'),
-    args = require('yargs').argv,
-    chalk = require('chalk'),
-    globalSettings = require('../../config');
+var gulp = require('gulp');
+var args = require('yargs').argv;
+var chalk = require('chalk');
+var globalSettings = require('../../config');
 
 gulp.task('watch', function() {
     var watchFunctions = {
@@ -34,10 +34,11 @@ gulp.task('watch', function() {
 
     // If no arguments were supplied then we start all watches.
     // Else cycle supplied argumentss and build an array of method names.
+    var watchMethods;
     if (!args.watchType) {
-        var watchMethods = Object.keys(watchFunctions);
+        watchMethods = Object.keys(watchFunctions);
     } else {
-        var watchMethods = args.watchType.split(',').map(function(currentValue) {
+        watchMethods = args.watchType.split(',').map(function(currentValue) {
             return currentValue.trim();
         });
     }

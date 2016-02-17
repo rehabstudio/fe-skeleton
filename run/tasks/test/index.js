@@ -1,27 +1,33 @@
 'use strict';
 
 /**
- *  Starts the test runner which in turn loads test frameworks,
- *  assertion libraries and then executes tests.
+ * Starts the test runner which in turn loads test frameworks,
+ * assertion libraries and then executes tests.
  *
- *  Example Usage:
- *  gulp test
- *  gulp test --watch
+ * Example Usage:
+ * gulp test
+ * gulp test --watch
  */
 
-var gulp = require('gulp'),
-    chalk = require('chalk'),
-    args = require('yargs').argv,
-    globalSettings = require('../../config');
+var gulp = require('gulp');
+var chalk = require('chalk');
+var args = require('yargs').argv;
+var globalSettings = require('../../config');
 
 // Attempt to load test suite package to see if it is present or not.
 var testSuiteWrapper = false;
-try { testSuiteWrapper = require('rehab-fe-skeleton-testsuite'); } catch(e) {}
+try {
+    testSuiteWrapper = require('rehab-fe-skeleton-testsuite');
+} catch (e) {}
 
 gulp.task('test', function(done) {
     if (!testSuiteWrapper) {
-        console.log(chalk.bgRed.white(' FE Skeleton: Missing `rehab-fe-skeleton-testsuite` package. Please install in `devDependencies`.'));
-        console.log(chalk.bgRed.white('              You can do so via `npm install rehab-fe-skeleton-testsuite --save-dev`.'));
+        console.log(chalk.bgRed.white(
+            ' FE Skeleton: Missing `rehab-fe-skeleton-testsuite` package. Please install in `devDependencies`.'
+        ));
+        console.log(chalk.bgRed.white(
+            '              You can do so via `npm install rehab-fe-skeleton-testsuite --save-dev`.'
+        ));
         done(1);
         return;
     }
