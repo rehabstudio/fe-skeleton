@@ -1,8 +1,10 @@
 'use strict';
 
 /**
- *  Acts as an override for module loading. Certain modules
- *  need to load modules other than themselves to function.
+ * Acts as an override for module loading. Certain modules
+ * need to load modules other than themselves to function.
+ *
+ * @type {Object}
  */
 var loadingOverrides = {
     'watch': ['html', 'styles', 'scripts', 'watch'],
@@ -11,15 +13,13 @@ var loadingOverrides = {
 };
 
 /**
- *  Acts as a module loader to require the necessary tasks for a
- *  particular task runner.
- *
- *  @param string runner - The name of the task runner.
+ * Acts as a module loader which gives us the ability to override certain
+ * tasks and load more modules or a totally different set of modules.
  */
-module.exports = function(runner) {
-    var args = require('yargs').argv,
-        desiredModule = (args._[0] || 'default'),                           // If no task specified, use `default`.
-        modulesToLoad = loadingOverrides[desiredModule] || [desiredModule]; // Check for module loading overrides.
+module.exports = function() {
+    var args = require('yargs').argv;
+    var desiredModule = (args._[0] || 'default');
+    var modulesToLoad = loadingOverrides[desiredModule] || [desiredModule];
 
     modulesToLoad.forEach(function(module) {
         console.log(' FE Skeleton: Loading module - ' + module);

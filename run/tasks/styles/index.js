@@ -1,33 +1,33 @@
 'use strict';
 
 /**
- *  Compiles, minifies and prefixes SASS.
+ * Compiles, minifies and prefixes SASS.
  *
- *  Example Usage:
- *  gulp styles
+ * Example Usage:
+ * gulp styles
  */
 
-var gulp = require('gulp'),
-    chalk = require('chalk'),
-    globalSettings = require('../../config'),
-    sourcemaps = require('gulp-sourcemaps'),
-    plumber = require('gulp-plumber'),
-    rename = require('gulp-rename'),
-    sass = require('gulp-sass'),
-    prefix = require('gulp-autoprefixer');
+var gulp = require('gulp');
+var chalk = require('chalk');
+var globalSettings = require('../../config');
+var sourcemaps = require('gulp-sourcemaps');
+var plumber = require('gulp-plumber');
+var rename = require('gulp-rename');
+var sass = require('gulp-sass');
+var prefix = require('gulp-autoprefixer');
 
 /**
- *  Overall function that will cycle through each of the styles bundles
- *  and once they're all completed, trigger the completion of the gulp task.
+ * Overall function that will cycle through each of the styles bundles
+ * and once they're all completed, trigger the completion of the gulp task.
  *
- *  @param {Object} taskDone - Gulp task callback method.
+ * @param {Object} taskDone - Gulp task callback method.
  */
 gulp.task('styles', function(taskDone) {
     var promises = [];
 
     for (var index = 0, length = globalSettings.taskConfiguration.styles.bundles.length; index < length; index++) {
-        var thisBundle = globalSettings.taskConfiguration.styles.bundles[index],
-            scopedProcessingMethod = _processBundle.bind(thisBundle);
+        var thisBundle = globalSettings.taskConfiguration.styles.bundles[index];
+        var scopedProcessingMethod = _processBundle.bind(thisBundle);
 
         thisBundle.index = index;
         thisBundle.promise = new Promise(scopedProcessingMethod);
@@ -45,12 +45,12 @@ gulp.task('styles', function(taskDone) {
 });
 
 /**
- *  Processes a bundle from the array and converts the SASS into
- *  CSS and prefixes as necessary. Completion of the task is
- *  signalled via resolving or rejecting the bundles deferred.
+ * Processes a bundle from the array and converts the SASS into
+ * CSS and prefixes as necessary. Completion of the task is
+ * signalled via resolving or rejecting the bundles deferred.
  *
- *  @param {Function} resolve - Promise resolution callback.
- *  @param {Function} reject - Promise rejection callback.
+ * @param {Function} resolve - Promise resolution callback.
+ * @param {Function} reject - Promise rejection callback.
  */
 function _processBundle(resolve, reject) {
     var self = this;
@@ -91,7 +91,10 @@ function _processBundle(resolve, reject) {
         })
         .on('end', function() {
             console.log(chalk.bgGreen.white(' FE Skeleton: Stylesheet Completed - ' + self.sourceFilePath));
-            console.log(chalk.bgGreen.white('              Output location - ' + outputDirectory + self.outputFileName + '.css'));
+            console.log(chalk.bgGreen.white(
+                '              Output location - ' +
+                outputDirectory + self.outputFileName + '.css'
+            ));
             resolve();
         });
 }

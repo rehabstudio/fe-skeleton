@@ -1,16 +1,16 @@
 'use strict';
 
 /**
- *  Moves HTML assets (maintaining folder structure) to
- *  the global `destPath` directory.
+ * Moves HTML assets (maintaining folder structure) to
+ * the global `destPath` directory.
  *
- *  Example Usage:
- *  gulp html
+ * Example Usage:
+ * gulp html
  */
 
-var gulp = require('gulp'),
-    chalk = require('chalk'),
-    globalSettings = require('../../config');
+var gulp = require('gulp');
+var chalk = require('chalk');
+var globalSettings = require('../../config');
 
 gulp.task('html', function() {
     return gulp.src(globalSettings.taskConfiguration.html.sourcePaths)

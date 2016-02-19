@@ -9,7 +9,10 @@ module.exports = {
      *
      * @type {Array}
      */
-    scriptSourcePaths: ['./js/src/**/*.js'],
+    lintingSourcePaths: [
+        './js/src/**/*.js',
+        './run/**/*.js'
+    ],
 
     /**
      * Settings for sourcemaps across JS and CSS bundles.
@@ -75,10 +78,10 @@ module.exports = {
             sourcePaths: ['./img/**/!(dir.txt)'],
             imageminOptions: {
                 svgoPlugins: [
-                    { removeViewBox: false },
-                    { removeUselessStrokeAndFill: false },
-                    { convertPathData: { straightCurves: false } },
-                    { cleanupIDs: false }
+                    {removeViewBox: false},
+                    {removeUselessStrokeAndFill: false},
+                    {convertPathData: {straightCurves: false}},
+                    {cleanupIDs: false}
                 ]
             }
         },
@@ -153,9 +156,9 @@ module.exports = {
              */
             uglifySettings: {
                 compress: {
-                    drop_console: false,
-                    drop_debugger: false,
-                    warnings: false
+                    'drop_console': false,
+                    'drop_debugger': false,
+                    'warnings': false
                 }
             },
 
@@ -176,7 +179,7 @@ module.exports = {
                 },
                 module: {
                     loaders: [
-                        { test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel?presets[]=es2015' }
+                        {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel?presets[]=es2015'}
                     ]
                 },
                 plugins: [
