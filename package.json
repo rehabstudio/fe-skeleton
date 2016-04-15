@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "gulp": "gulp",
+    "postinstall": "gulp build --is-production",
     "lint": "gulp lint && gulp jscs",
     "jscs-via-commit": "gulp jscs --via-commit",
     "lint-via-commit": "gulp lint --via-commit",
