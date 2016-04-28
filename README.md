@@ -42,7 +42,7 @@ tooling installation via the `Makefile` method below:
 make setup;
 ```
 
-This will ensure the tooling dependencies are installed and that the build files 
+This will ensure the tooling dependencies are installed and that the build files
 are compiled and ready for usage within the browser.
 
 
@@ -170,6 +170,7 @@ An alias for `build`.
 ### `watch`
 A watch method that will look for changes to source files, then re-trigger
 compilation.
+Hosts the `dist` folder via Webpack BrowserSyncPlugin.
 
 ### `images`
 Takes site image assets and optimizes them.
@@ -181,9 +182,6 @@ particular set of conventions.
 ### `lint`
 Examines JavaScript source files for errors and code that doesn't conform to the
 specified standards.
-
-### `server`
-Hosts the `dist` folder via a node webserver.
 
 ### `scripts`
 Compiles source files into minified, uglified payloads.

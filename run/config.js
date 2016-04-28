@@ -1,4 +1,4 @@
-'use strict';
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
 
@@ -183,6 +183,11 @@ module.exports = {
                     ]
                 },
                 plugins: [
+                    new BrowserSyncPlugin({
+                        host: 'localhost',
+                        port: process.env.PORT || 4321,
+                        server: {baseDir: ['dist']}
+                    })
                 ]
             }
         },
