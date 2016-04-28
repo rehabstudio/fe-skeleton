@@ -170,7 +170,7 @@ An alias for `build`.
 ### `watch`
 A watch method that will look for changes to source files, then re-trigger
 compilation.
-Hosts the `dist` folder via Webpack BrowserSyncPlugin.
+Hosts the `dist` folder via Webpack BrowserSync.
 
 ### `images`
 Takes site image assets and optimizes them.
