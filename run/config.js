@@ -4,7 +4,7 @@ module.exports = {
 
     /**
      * Locations of JavaScript source files. This array is used in
-     * conjunction with linting and jscs tasks (keeping things DRY).
+     * conjunction with JSHint and JSCS tasks (keeping things DRY).
      * Paths should be relative to the top-level gulpfile.
      *
      * @type {Array}
