@@ -1,0 +1,33 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jasmine": true,
+    "mocha": true,
+    "node": true,
+    "phantomjs": true,
+    "serviceworker": true,
+    "worker": true
+  },
+  "globals": {
+      "console": false,
+      "Modernizr": false
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "root": true,
+  "rules": {
+    "curly": ["error", "all"],
+    "eqeqeq": ["error", "allow-null"],
+    "new-cap": "error",
+    "no-caller": "error",
+    "no-undef": "error",
+    "no-unused-vars": "error",
+    "quotes": ["error", "single"],
+    "strict": ["error", "global"],
+    "wrap-iife": ["error", "inside"],
+  }
+}
