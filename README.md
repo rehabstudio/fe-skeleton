@@ -197,8 +197,3 @@ Compiles SASS into CSS and autoprefixes where applicable.
 ### `test`
 Runs the test runner and any tests within the front-end tests folder. Also
 outputs JUnit XML for Jenkins.
-
-
-### SourceTree
-In case you use sourcetree you need to open through Terminal, with command :
-`open /Applications/SourceTree.app/Contents/MacOS/SourceTree` , otherwise the pre-commit hook will lok the software

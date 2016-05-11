@@ -14,16 +14,9 @@
   ],
   "scripts": {
     "gulp": "gulp",
-    "postinstall": "gulp build --is-production",
-    "lint": "gulp lint && gulp jscs",
-    "jscs-via-commit": "gulp jscs --via-commit",
-    "lint-via-commit": "gulp lint --via-commit",
-    "validate": "gulp jscs --via-commit && gulp lint --via-commit"
+    "lint": "gulp lint",
+    "postinstall": "gulp build --is-production"
   },
-  "pre-commit": [
-    "jscs-via-commit",
-    "lint-via-commit"
-  ],
   "dependencies": {},
   "devDependencies": {
     "babel-core": "6.1.2",
@@ -42,7 +35,6 @@
     "gulp-sourcemaps": "1.5.2",
     "gulp-webserver": "0.9.1",
     "jshint-stylish": "2.0.1",
-    "precommit-hook": "3.0.0",
     "webpack-stream": "2.1.1",
     "yargs": "3.15.0"
   }
