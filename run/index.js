@@ -10,7 +10,7 @@ var loadingOverrides = {
     'build': ['html', 'images', 'styles', 'scripts', 'build'],
     'default': ['html', 'images', 'styles', 'scripts', 'build', 'default'],
     'lint': ['jshint', 'jscs', 'lint'],
-    'watch': ['html', 'styles', 'scripts', 'watch']
+    'watch': ['html', 'images', 'styles', 'scripts', 'build', 'watch']
 };
 
 /**

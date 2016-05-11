@@ -16,7 +16,7 @@ var args = require('yargs').argv;
 var chalk = require('chalk');
 var globalSettings = require('../../config');
 
-gulp.task('watch', function() {
+gulp.task('watch', ['build'], function() {
     var watchFunctions = {
         html: function() {
             console.log(chalk.bgYellow.gray(' FE Skeleton: Watching HTML.'));
