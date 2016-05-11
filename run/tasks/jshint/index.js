@@ -26,12 +26,5 @@ gulp.task('jshint', function() {
         .pipe(jshint())
         .pipe(debug({title: 'Lint:'}))
         .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jshint.reporter('fail'))
-        .on('error', function() {
-            if (args.viaCommit) {
-                setTimeout(function() {
-                    console.log(chalk.bgRed.white('\n FE Skeleton: Your commit failed! Fix errors then re-commit.'));
-                }, 0);
-            }
-        });
+        .pipe(jshint.reporter('fail'));
 });
