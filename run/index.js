@@ -7,9 +7,10 @@
  * @type {Object}
  */
 var loadingOverrides = {
-    'watch': ['html', 'styles', 'scripts', 'watch'],
     'build': ['html', 'images', 'styles', 'scripts', 'build'],
-    'default': ['html', 'images', 'styles', 'scripts', 'build', 'default']
+    'default': ['html', 'images', 'styles', 'scripts', 'build', 'default'],
+    'lint': ['jshint', 'jscs', 'lint'],
+    'watch': ['html', 'styles', 'scripts', 'watch']
 };
 
 /**
