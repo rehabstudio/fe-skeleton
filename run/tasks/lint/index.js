@@ -11,6 +11,6 @@
 var gulp = require('gulp');
 var chalk = require('chalk');
 
-gulp.task('lint', ['jshint', 'jscs'], function() {
+gulp.task('lint', ['eslint', 'jscs'], function() {
     console.log(chalk.bgGreen.white(' FE Skeleton: JSCS / JSHint checks have all passed! '));
 });

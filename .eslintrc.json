@@ -16,7 +16,7 @@
   },
   "parserOptions": {
     "ecmaVersion": 6,
-    "sourceType": "module"
+    "sourceType": "script"
   },
   "root": true,
   "rules": {
