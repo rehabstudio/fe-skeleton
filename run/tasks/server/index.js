@@ -15,6 +15,7 @@ var webserver = require('gulp-webserver');
 
 gulp.task('server', function() {
     var distFolderExists = false;
+
     try {
         distFolderExists = fs.statSync(globalSettings.destPath);
     } catch (e) {}
