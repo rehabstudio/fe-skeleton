@@ -1,7 +1,7 @@
 {
   "name": "rehab-fe-skeleton",
   "description": "A collection of tools, file structures and settings for front-end development.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "private": true,
   "repository": {
