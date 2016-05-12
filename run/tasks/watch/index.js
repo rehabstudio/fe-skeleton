@@ -35,6 +35,7 @@ gulp.task('watch', ['build'], function() {
     // If no arguments were supplied then we start all watches.
     // Else cycle supplied argumentss and build an array of method names.
     var watchMethods;
+
     if (!args.watchType) {
         watchMethods = Object.keys(watchFunctions);
     } else {

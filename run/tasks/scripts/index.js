@@ -45,6 +45,7 @@ gulp.task('scripts:watch', function() {
  *       as does source maps.
  *
  * @param {Object} taskOptions - Options from gulp tasks.
+ * @return {Object} - Gulp stream.
  */
 function _runWebpack(taskOptions) {
     // Ensure there is an options object (incase none were supplied to this function).
