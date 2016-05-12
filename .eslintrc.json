@@ -21,12 +21,17 @@
   "root": true,
   "rules": {
     "curly": 2,
+    "dot-notation": 2,
     "eqeqeq": [2, "allow-null"],
+    "indent": [2, 4],
+    "max-len": [2, {"code": 120, "ignoreComments": true, "ignoreUrls": true}],
     "new-cap": 2,
     "no-caller": 2,
     "no-undef": 2,
     "no-unused-vars": 2,
     "quotes": [2, "single"],
+    "semi": [2, "always"],
+    "semi-spacing": [2, { "before": false, "after": true }],
     "strict": [2, "global"],
     "wrap-iife": [2, "inside"]
   }

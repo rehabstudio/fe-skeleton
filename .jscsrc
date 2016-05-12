@@ -11,20 +11,8 @@
     "requireBlocksOnNewline": true,
     "requireCommaBeforeLineBreak": true,
     "requireLineBreakAfterVariableAssignment": true,
-    "requireSemicolons": true,
     "requireOperatorBeforeLineBreak": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
-    "maximumLineLength": {
-        "value": 120,
-        "tabSize": 4,
-        "allExcept": [
-            "comments",
-            "urlComments",
-            "regex",
-            "require"
-        ]
-    },
-    "validateIndentation": 4,
 
     "disallowMultipleLineStrings": true,
     "disallowMixedSpacesAndTabs": true,
@@ -32,7 +20,16 @@
     "disallowTrailingComma": true,
     "disallowSpaceAfterPrefixUnaryOperators": true,
     "disallowSpaceBeforePostfixUnaryOperators": true,
-    "disallowSpaceBeforeSemicolon": true,
+
+
+
+
+
+
+
+
+
+
     "disallowMultipleVarDecl": true,
     "disallowKeywordsOnNewLine": ["else"],
 
@@ -88,7 +85,6 @@
     "disallowSpaceAfterObjectKeys": true,
     "requireSpaceBeforeObjectValues": true,
     "requireCapitalizedConstructors": true,
-    "requireDotNotation": true,
     "validateParameterSeparator": ", ",
     "jsDoc": {
         "checkAnnotations": {
