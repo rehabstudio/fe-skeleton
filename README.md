@@ -14,6 +14,11 @@ structures and more. Below are some of the features provided:
 - Optimize image assets of various formats.
 - Convenience methods for building front-end style sheets and scripts.
 
+## Getting Started
+If you're unfamiliar with the skeleton and want to get a quick "Hello World!"
+style project running with HTML, CSS and JS compilation then give our
+["Getting Started: Your First Application"](https://github.com/rehabstudio/fe-skeleton/wiki/Getting-Started:-Your-First-Application) guide a read.
+
 ## Cloning
 There are many options available in how you use this repository to best suit
 your project.
