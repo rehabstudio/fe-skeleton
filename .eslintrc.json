@@ -40,6 +40,7 @@
     "no-mixed-spaces-and-tabs": 2,
     "no-multi-str": 2,
     "no-multiple-empty-lines": [2, {"max": 1, "maxEOF": 0}],
+    "no-spaced-func": 2,
     "no-trailing-spaces": 2,
     "no-undef": 2,
     "no-unused-vars": 2,
@@ -54,6 +55,11 @@
     "space-in-parens": [2, "never"],
     "space-infix-ops": 2,
     "strict": [2, "global"],
+    "valid-jsdoc": [2, {
+        "requireParamDescription": false,
+        "requireReturn": false,
+        "requireReturnDescription": false
+    }],
     "wrap-iife": [2, "inside"]
   }
 }
