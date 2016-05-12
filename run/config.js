@@ -3,18 +3,6 @@
 module.exports = {
 
     /**
-     * Locations of JavaScript source files. This array is used in
-     * conjunction with JSHint and JSCS tasks (keeping things DRY).
-     * Paths should be relative to the top-level gulpfile.
-     *
-     * @type {Array}
-     */
-    lintingSourcePaths: [
-        './js/src/**/*.js',
-        './run/**/*.js'
-    ],
-
-    /**
      * Settings for sourcemaps across JS and CSS bundles.
      *
      * @type {Object}
@@ -73,6 +61,9 @@ module.exports = {
         },
         html: {
             sourcePaths: ['./html/**/*.html']
+        },
+        lint: {
+            sourcePaths: ['./js/src/**/*.js', './run/**/*.js']
         },
         images: {
             sourcePaths: ['./img/**/!(dir.txt)'],
