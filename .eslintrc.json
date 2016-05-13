@@ -12,6 +12,7 @@
   },
   "globals": {
       "console": false,
+      "inject": false,
       "Modernizr": false
   },
   "parserOptions": {
