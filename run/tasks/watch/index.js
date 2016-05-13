@@ -7,6 +7,7 @@
  *
  * Example Usage:
  * gulp watch
+ * gulp watch --no-serve
  * gulp watch --watchType styles
  * gulp watch --watchType styles,html
  */

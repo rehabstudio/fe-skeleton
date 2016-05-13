@@ -11,6 +11,7 @@
 var gulp = require('gulp');
 var args = require('yargs').argv;
 var globalSettings = require('../../config');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var webpackStream = require('webpack-stream');
 var webpack = webpackStream.webpack;
 
@@ -69,8 +70,15 @@ function _runWebpack(taskOptions) {
     }
 
     // Asking webpack to watch will keep the process running until it's cancelled.
+    // It will also start up a BrowserSync server which hosts the `dist` folder.
     if (taskOptions.watch) {
         scriptSettings.webpackSettings.watch = true;
+
+        if (args.hasOwnProperty('serve') === false || (args.hasOwnProperty('serve') && args.serve !== false)) {
+            scriptSettings.webpackSettings.plugins.push(
+                new BrowserSyncPlugin(scriptSettings.browserSyncSettings)
+            );
+        }
     }
 
     // Open a stream, trigger webpack-stream compilation and push output to file system.

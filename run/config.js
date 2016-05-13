@@ -1,4 +1,4 @@
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+'use strict';
 
 module.exports = {
 
@@ -146,6 +146,23 @@ module.exports = {
             },
 
             /**
+             * Settings for the Browser-sync plugin.
+             *
+             * @type {Object}
+             */
+            browserSyncSettings: {
+                files: [
+                    'dist/css/**/*.css',
+                    'dist/js/**/*.js',
+                    'dist/img/**/*.*'
+                ],
+                logConnections: true,
+                open: false,
+                port: process.env.PORT || 4321,
+                server: './dist/'
+            },
+
+            /**
              * Base settings for webpack.
              *
              * NOTE: For a full list of options, please visit:
@@ -166,11 +183,6 @@ module.exports = {
                     ]
                 },
                 plugins: [
-                    new BrowserSyncPlugin({
-                        host: 'localhost',
-                        port: process.env.PORT || 4321,
-                        server: {baseDir: ['dist']}
-                    })
                 ]
             }
         },
