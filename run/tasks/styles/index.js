@@ -57,6 +57,7 @@ function _processBundle(resolve, reject) {
 
     // Apply particular options if global settings dictate source files should be referenced inside sourcemaps.
     var sourcemapOptions = {};
+
     if (globalSettings.sourcemapOptions.type === 'External_ReferencedFiles') {
         sourcemapOptions.includeContent = false;
         sourcemapOptions.sourceRoot = globalSettings.sourcemapOptions.sourceRoot;
@@ -65,6 +66,7 @@ function _processBundle(resolve, reject) {
     // Determine the output folder. Use a specified folder if one
     // is set, else use the generic output folder.
     var outputDirectory;
+
     if (self.outputFolder) {
         outputDirectory = self.outputFolder;
     } else {

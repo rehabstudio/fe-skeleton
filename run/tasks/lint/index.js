@@ -1,8 +1,11 @@
 'use strict';
 
 /**
- * Lints chosen source files and reports any errors.
- * Configure via `.jshintrc` file in project root.
+ * Checks chosen JS source files and reports any errors.
+ * Configure via `.eslintrc.js` file in project root.
+ *
+ * Potential Options:
+ * http://eslint.org/docs/rules/
  *
  * Example Usage:
  * gulp lint
@@ -10,25 +13,18 @@
  */
 
 var gulp = require('gulp');
-var chalk = require('chalk');
 var args = require('yargs').argv;
 var globalSettings = require('../../config');
 var debug = require('gulp-debug');
-var jshint = require('gulp-jshint');
+var eslint = require('gulp-eslint');
 
 gulp.task('lint', function() {
-    var sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] : globalSettings.lintingSourcePaths;
+    var sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] :
+    globalSettings.taskConfiguration.lint.sourcePaths;
 
     return gulp.src(sourceFiles)
-        .pipe(jshint())
-        .pipe(debug({title: 'Lint:'}))
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jshint.reporter('fail'))
-        .on('error', function() {
-            if (args.viaCommit) {
-                setTimeout(function() {
-                    console.log(chalk.bgRed.white('\n FE Skeleton: Your commit failed! Fix errors then re-commit.'));
-                }, 0);
-            }
-        });
+        .pipe(debug({title: 'ESLint:'}))
+        .pipe(eslint({configFile: './.eslintrc.json'}))
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
 });

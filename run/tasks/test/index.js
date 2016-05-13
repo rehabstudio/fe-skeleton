@@ -16,6 +16,7 @@ var globalSettings = require('../../config');
 
 // Attempt to load test suite package to see if it is present or not.
 var testSuiteWrapper = false;
+
 try {
     testSuiteWrapper = require('rehab-fe-skeleton-testsuite');
 } catch (e) {}
