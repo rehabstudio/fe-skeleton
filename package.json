@@ -15,7 +15,9 @@
   "scripts": {
     "gulp": "gulp",
     "lint": "gulp lint",
-    "postinstall": "gulp build --is-production"
+    "postinstall": "gulp build --is-production",
+    "pretest": "npm run-script lint",
+    "test": "gulp test"
   },
   "dependencies": {},
   "devDependencies": {
