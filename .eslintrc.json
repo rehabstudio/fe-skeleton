@@ -25,7 +25,7 @@
     "brace-style": 2,
     "camelcase": 2,
     "comma-dangle": 2,
-    "comma-spacing": [2, { "before": false, "after": true }],
+    "comma-spacing": [2, {"before": false, "after": true}],
     "comma-style": 2,
     "computed-property-spacing": [2, "never"],
     "curly": 2,
