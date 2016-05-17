@@ -172,7 +172,7 @@ An alias for `build`.
 
 ### `watch`
 A watch method that will look for changes to source files, then re-trigger
-compilation.
+compilation. Hosts the `dist` folder via Webpack BrowserSync.
 
 ### `images`
 Takes site image assets and optimizes them.
@@ -180,9 +180,6 @@ Takes site image assets and optimizes them.
 ### `lint`
 Examines JavaScript source files for errors and code that doesn't conform to the
 specified standards.
-
-### `server`
-Hosts the `dist` folder via a node webserver.
 
 ### `scripts`
 Compiles source files into minified, uglified payloads.

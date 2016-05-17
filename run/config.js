@@ -76,14 +76,6 @@ module.exports = {
                 ]
             }
         },
-        server: {
-            webserverSettings: {
-                host: '0.0.0.0',
-                port: process.env.PORT || 4321,
-                https: false,
-                open: true
-            }
-        },
         styles: {
             /**
              * A folder path that is prefixed with the global `destPath` to give a
@@ -151,6 +143,23 @@ module.exports = {
                     'drop_debugger': false,
                     'warnings': false
                 }
+            },
+
+            /**
+             * Settings for the Browser-sync plugin.
+             *
+             * @type {Object}
+             */
+            browserSyncSettings: {
+                files: [
+                    'dist/css/**/*.css',
+                    'dist/js/**/*.js',
+                    'dist/img/**/*.*'
+                ],
+                logConnections: true,
+                open: false,
+                port: process.env.PORT || 4321,
+                server: './dist/'
             },
 
             /**
