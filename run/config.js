@@ -192,8 +192,7 @@ module.exports = {
         watch: {
             sourcePaths: {
                 html: ['./html/**/*.html'],
-                styles: ['./css/libs/**/*.scss', './css/src/**/*.scss'],
-                scripts: ['./js/libs/**/*.js', './js/src/**/*.js']
+                styles: ['./css/libs/**/*.scss', './css/src/**/*.scss']
             }
         }
     }
