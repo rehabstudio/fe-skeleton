@@ -152,6 +152,7 @@ module.exports = {
              */
             browserSyncSettings: {
                 files: [
+                    'dist/**/*.html',
                     'dist/css/**/*.css',
                     'dist/js/**/*.js',
                     'dist/img/**/*.*'
