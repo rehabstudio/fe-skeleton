@@ -12,11 +12,11 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = false
 
-[*.py]
+[*.{js,py}]
 insert_final_newline = true
-
-[{package.json,.travis.yml}]
-indent_size = 2
 
 [Makefile]
 indent_style = tab
+
+[{package.json,.travis.yml}]
+indent_size = 2
