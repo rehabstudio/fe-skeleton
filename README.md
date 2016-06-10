@@ -73,6 +73,9 @@ tooling of this skeleton.
 [Karma](http://karma-runner.github.io/). It can also contain settings for Mocha,
 Chai and Sinon.
 
+`web-manifest.json` brings "Add to homescreen" functionality by allowing control
+over settings such as theme colour, orientation, homescreen name and icon.
+
 `run/config.js` is a global file included into each of the build tool tasks and
 acts as a central place for task configuration.
 
@@ -164,8 +167,8 @@ of each available task.
 
 ### `build`
 Convenience method that will ensure style sheets and javascript are compiled.
-After this, all assets (style sheets, images, html, fonts and scripts) are
-copied over to the `destPath`.
+After this, all assets (style sheets, images, html, fonts, web manifest and
+scripts) are copied over to the `destPath`.
 
 ### `default`
 An alias for `build`.
