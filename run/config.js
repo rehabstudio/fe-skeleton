@@ -57,7 +57,7 @@ module.exports = {
      */
     taskConfiguration: {
         build: {
-            sourcePaths: ['./fonts/**/!(dir.txt)']
+            sourcePaths: ['./fonts/**/!(dir.txt)', './web-manifest.json']
         },
         html: {
             sourcePaths: ['./html/**/*.html']

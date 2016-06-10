@@ -1,0 +1,12 @@
+{
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "lang": "en-GB",
+    "name": "Project Name",
+    "orientation": "any",
+    "short_name": "PN",
+    "start_url": "/?utm_source=web_app_manifest",
+    "theme_color": "#000000",
+    "icons": [
+    ]
+}
