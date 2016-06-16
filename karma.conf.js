@@ -38,31 +38,28 @@ module.exports = function(config) {
         ],
 
         /**
-         * Files for Karma to load. By default we're searching
-         * for any file that has our chosen test file suffix.
+         * Files for Karma to load. By default we're loading
+         * in the overall wrapper file which requires in all
+         * other test specification files.
          *
          * @type {Array}
          */
         files: [
-            'js/tests/**/*.spec.js'
+            'run/tasks/test/wrapper.js'
         ],
 
         /**
-         * Ensuring that any test specification will get
-         * piped through webpack and built into its own
-         * bundle.
+         * A map of preprocessors to run on files before
+         * testing their contents.
          *
-         * NOTE: If you have hundreds of tests, that means
-         * hundreds of bundles. If it gets to that stage it
-         * may be better to write one JS file that requires
-         * all of your tests and target that only that one
-         * JS file to load in Karma so only one bundle is
-         * ever created (See: Miyagi Project).
+         * By default we are loading one single file into
+         * the webpack preprocessor which results in a
+         * single bundle for all our test specifications.
          *
          * @type {Object}
          */
         preprocessors: {
-            'js/tests/**/*.spec.js': ['webpack']
+            'run/tasks/test/wrapper.js': ['webpack']
         },
 
         /**

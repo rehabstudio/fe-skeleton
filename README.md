@@ -91,8 +91,8 @@ in decoupling and organisation. Build files that are the end result of
 compilation are placed wherever the `destPath` of global settings points to,
 then nested inside `css` or `js` folders respectively.
 
-JavaScript test files are places within `js/tests` and should have the suffix
-`.spec.js` so they're picked up by the test runner.
+JavaScript test files are placed within `js/tests` and should have the suffix
+`.spec.js` so they're picked up by the test wrapper file and the test runner.
 
 Images are placed within an `img` folder and should be maintained by grouping
 related imagery (features, sections etc..) into sub-folders. They are copied
@@ -112,11 +112,12 @@ will have specific requirements and you should be adapting this structure to
 suit your needs!
 
 ## Test Suite
-As previously stated, test specifications should be placed into `js/tests/` with
-a suffix of `.spec.js`. This ensures they will be automatically picked up by
-Karma whenever it is run. The test specs themselves are piped through Webpack so
-be sure to write the spec file syntactically as you would any other JavaScript
-module in your project.
+Test specifications should be placed into `js/tests/` with a suffix of
+`.spec.js`. These files are then required into an overall test wrapper file
+(`run/tasks/test/wrapper.js`) from which webpack creates one single test bundle.
+This bundle is then used by Karma and any tests within are then processed. The
+test specs themselves are piped through Webpack so be sure to write the contents
+of the file syntactically as you would any other JavaScript file in the project.
 
 The testing stack is Mocha, Chai and Sinon, with Karma as the test runner. This
 gives you a full toolset of test frameworks, assertion libraries, spies and
