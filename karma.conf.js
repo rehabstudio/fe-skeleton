@@ -4,8 +4,20 @@
 var args = require('yargs').argv,
     globalSettings = require('./run/config');
 
-// Bind a shorter reference to the script settings from the global file.
-var scriptSettings = globalSettings.taskConfiguration.scripts;
+// Bind a shorter reference to the webpack settings from the global file.
+var webpackSettings = globalSettings.taskConfiguration.scripts.webpackSettings;
+
+// Ensure that any entry bundles pre-defined in the config are forgotten about.
+webpackSettings.entry = {};
+
+// Add babel-istanbul code coverage specific settings to the webpack config.
+webpackSettings.module.loaders.push(
+    {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components|spec\.js$|run\/tasks\/test\/wrapper\.js)/,
+        loader: 'babel-istanbul'
+    }
+);
 
 // Setting variables for upcoming checks and use in karma settings.
 var autoWatch,
@@ -69,7 +81,7 @@ module.exports = function(config) {
          *
          * @type {Object}
          */
-        webpack: scriptSettings.webpackSettings,
+        webpack: webpackSettings,
 
         /**
          * After a change the watcher waits for more changes.
@@ -84,12 +96,34 @@ module.exports = function(config) {
             }
         },
 
-        reporters: ['progress', 'junit'],
+        reporters: [
+            'progress',
+            'junit',
+            'coverage'
+        ],
 
         junitReporter: {
             outputDir: './test-results',
             outputFile: 'results.xml',
             useBrowserName: false
+        },
+
+        coverageReporter: {
+            dir: './test-results',
+            reporters: [
+                {
+                    type: 'html',
+                    subdir: 'html'
+                },
+                {
+                    type: 'text-summary'
+                },
+                {
+                    type: 'cobertura',
+                    subdir: 'cobertura',
+                    file: 'cobertura.xml'
+                }
+            ]
         },
 
         browsers: ['PhantomJS'],
