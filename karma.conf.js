@@ -7,6 +7,9 @@ var args = require('yargs').argv,
 // Bind a shorter reference to the webpack settings from the global file.
 var webpackSettings = globalSettings.taskConfiguration.scripts.webpackSettings;
 
+// Ensure that any entry bundles pre-defined in the config are forgotten about.
+webpackSettings.entry = {};
+
 // Add babel-istanbul code coverage specific settings to the webpack config.
 webpackSettings.module.loaders.push(
     {
