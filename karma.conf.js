@@ -117,6 +117,11 @@ module.exports = function(config) {
                 },
                 {
                     type: 'text-summary'
+                },
+                {
+                    type: 'cobertura',
+                    subdir: 'cobertura',
+                    file: 'cobertura.xml'
                 }
             ]
         },
