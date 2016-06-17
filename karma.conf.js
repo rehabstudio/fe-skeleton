@@ -12,10 +12,7 @@ webpackSettings.module.loaders.push(
     {
         test: /\.js$/,
         exclude: /(node_modules|bower_components|spec\.js$|run\/tasks\/test\/wrapper\.js)/,
-        loader: 'babel-istanbul',
-        query: {
-            cacheDirectory: true
-        }
+        loader: 'babel-istanbul'
     }
 );
 
