@@ -224,8 +224,7 @@ sftp-config.json
 docs/_build/doctrees/environment.pickle
 
 # Output by junit/cobertura via Karma for integration with Jenkins.
-test-results/results.xml
-fe-coverage-results.xml
+test-results/
 
 # Default destination for image minification.
 img-min
