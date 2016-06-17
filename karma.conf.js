@@ -7,14 +7,17 @@ var args = require('yargs').argv,
 // Bind a shorter reference to the webpack settings from the global file.
 var webpackSettings = globalSettings.taskConfiguration.scripts.webpackSettings;
 
-// Add istanbul code coverage specific settings to the webpack config
-webpackSettings.module.preLoaders = [
+// Add babel-istanbul code coverage specific settings to the webpack config.
+webpackSettings.module.loaders.push(
     {
         test: /\.js$/,
-        exclude: /(node_modules|spec\.js$|run\/tasks\/test\/wrapper\.js)/,
-        loader: 'istanbul-instrumenter'
+        exclude: /(node_modules|bower_components|spec\.js$|run\/tasks\/test\/wrapper\.js)/,
+        loader: 'babel-istanbul',
+        query: {
+            cacheDirectory: true
+        }
     }
-];
+);
 
 // Setting variables for upcoming checks and use in karma settings.
 var autoWatch,

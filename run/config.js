@@ -180,7 +180,14 @@ module.exports = {
                 },
                 module: {
                     loaders: [
-                        {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel?presets[]=es2015'}
+                        {
+                            test: /\.js$/,
+                            exclude: /(node_modules|bower_components|run\/tasks\/test\/wrapper\.js)/,
+                            loader: 'babel',
+                            query: {
+                                presets: ['es2015']
+                            }
+                        }
                     ]
                 },
                 plugins: [
