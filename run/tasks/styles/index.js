@@ -58,9 +58,9 @@ function _processBundle(resolve, reject) {
     // Apply particular options if global settings dictate source files should be referenced inside sourcemaps.
     var sourcemapOptions = {};
 
-    if (globalSettings.sourcemapOptions.type === 'External_ReferencedFiles') {
+    if (globalSettings.taskConfiguration.styles.sourcemapOptions.type === 'External_ReferencedFiles') {
         sourcemapOptions.includeContent = false;
-        sourcemapOptions.sourceRoot = globalSettings.sourcemapOptions.sourceRoot;
+        sourcemapOptions.sourceRoot = globalSettings.taskConfiguration.styles.sourcemapOptions.sourceRoot;
     }
 
     // Determine the output folder. Use a specified folder if one
