@@ -7,9 +7,9 @@
  * @type {Object}
  */
 var loadingOverrides = {
-    'build': ['html', 'images', 'styles', 'scripts', 'build'],
-    'default': ['html', 'images', 'styles', 'scripts', 'build', 'default'],
-    'watch': ['html', 'images', 'styles', 'scripts', 'build', 'watch']
+    'build': ['clean', 'copy', 'html', 'images', 'styles', 'scripts', 'build'],
+    'default': ['clean', 'copy', 'html', 'images', 'styles', 'scripts', 'build', 'default'],
+    'watch': ['clean', 'copy', 'html', 'images', 'styles', 'scripts', 'build', 'watch']
 };
 
 /**
