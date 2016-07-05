@@ -103,13 +103,13 @@ module.exports = function(config) {
         ],
 
         junitReporter: {
-            outputDir: './test-results',
+            outputDir: globalSettings.testResultsPath,
             outputFile: 'results.xml',
             useBrowserName: false
         },
 
         coverageReporter: {
-            dir: './test-results',
+            dir: globalSettings.testResultsPath,
             reporters: [
                 {
                     type: 'html',
