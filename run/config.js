@@ -57,7 +57,16 @@ module.exports = {
      */
     taskConfiguration: {
         build: {
+        },
+        copy: {
             sourcePaths: ['./fonts/**/!(dir.txt)', './web-manifest.json']
+        },
+        clean: {
+            additionalTargetPaths: [
+                './test-results/'
+            ],
+            delOptions: {
+            }
         },
         html: {
             sourcePaths: ['./html/**/*.html']
