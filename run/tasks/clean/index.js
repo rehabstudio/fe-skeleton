@@ -16,12 +16,8 @@ var globalSettings = require('../../config');
 var del = require('del');
 
 gulp.task('clean', function() {
-    var targetPaths = [globalSettings.destPath];
-
-    targetPaths = targetPaths.concat(globalSettings.taskConfiguration.clean.additionalTargetPaths);
-
     return del(
-        targetPaths,
+        globalSettings.taskConfiguration.clean.targetPaths,
         globalSettings.taskConfiguration.clean.delOptions
     ).then(function(paths) {
         console.log(chalk.bgGreen.white(' FE Skeleton: Folders Cleaned - ', paths.join('\n')));
