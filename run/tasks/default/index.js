@@ -5,7 +5,7 @@
  * gulp
  */
 
-import * as build from '../build/'; // eslint-disable-line
+import build from '../build/'; // eslint-disable-line
 import gulp from 'gulp';
 
 gulp.task('default', () => {
