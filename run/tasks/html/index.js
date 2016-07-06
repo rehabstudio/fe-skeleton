@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Moves HTML assets (maintaining folder structure) to
  * the global `destPath` directory.
@@ -8,14 +6,14 @@
  * gulp html
  */
 
-var gulp = require('gulp');
-var chalk = require('chalk');
-var globalSettings = require('../../config');
+import gulp from 'gulp';
+import chalk from 'chalk';
+import globalSettings from '../../config';
 
-gulp.task('html', function() {
+gulp.task('html', () => {
     return gulp.src(globalSettings.taskConfiguration.html.sourcePaths)
         .pipe(gulp.dest(globalSettings.destPath))
-        .on('finish', function() {
+        .on('finish', () => {
             console.log(chalk.bgGreen.white(' FE Skeleton: HTML assets moved.'));
         });
 });

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Copies a set of desired assets into the distribution folder.
  *
@@ -7,10 +5,10 @@
  * gulp copy
  */
 
-var gulp = require('gulp');
-var globalSettings = require('../../config');
+import gulp from 'gulp';
+import globalSettings from '../../config';
 
-gulp.task('copy', function() {
+gulp.task('copy', () => {
     return gulp.src(globalSettings.taskConfiguration.copy.sourcePaths, {base: './'})
                .pipe(gulp.dest(globalSettings.destPath));
 });

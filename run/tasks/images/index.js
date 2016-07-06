@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Loseless optimization of PNG, JPG & SVG assets.
  *
@@ -7,10 +5,11 @@
  * gulp images
  */
 
-var gulp = require('gulp');
-var globalSettings = require('../../config');
-var imagemin = require('gulp-imagemin');
-var options = globalSettings.taskConfiguration.images;
+import gulp from 'gulp';
+import globalSettings from '../../config';
+import imagemin from 'gulp-imagemin';
+
+let options = globalSettings.taskConfiguration.images;
 
 gulp.task('images', function() {
     return gulp.src(options.sourcePaths, {base: './'})
