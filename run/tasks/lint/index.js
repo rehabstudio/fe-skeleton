@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Checks chosen JS source files and reports any errors.
  * Configure via `.eslintrc.js` file in project root.
@@ -12,14 +10,14 @@
  * gulp lint --filePath js/src/app.js
  */
 
-var gulp = require('gulp');
-var args = require('yargs').argv;
-var globalSettings = require('../../config');
-var debug = require('gulp-debug');
-var eslint = require('gulp-eslint');
+import gulp from 'gulp';
+import {argv as args} from 'yargs';
+import globalSettings from '../../config';
+import debug from 'gulp-debug';
+import eslint from 'gulp-eslint';
 
 gulp.task('lint', function() {
-    var sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] :
+    let sourceFiles = (typeof(args.filePath) === 'string') ? [args.filePath] :
     globalSettings.taskConfiguration.lint.sourcePaths;
 
     return gulp.src(sourceFiles)

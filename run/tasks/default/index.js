@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * The default method of the task runner triggers a build task.
  *
@@ -7,10 +5,9 @@
  * gulp
  */
 
-require('../build/');
+import * as build from '../build/'; // eslint-disable-line
+import gulp from 'gulp';
 
-var gulp = require('gulp');
-
-gulp.task('default', function() {
+gulp.task('default', () => {
     gulp.start('build');
 });
