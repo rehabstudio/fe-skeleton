@@ -1,11 +1,9 @@
-'use strict';
-
 /**
  * Configuration object for all tasks.
  *
  * @type {Object}
  */
-var config = {};
+let config = {};
 
 /**
  * Where built output (CSS, JS, HTML, fonts, images) should be stored on the
@@ -228,4 +226,4 @@ config.taskConfiguration = {
     }
 };
 
-module.exports = config;
+export default config;
