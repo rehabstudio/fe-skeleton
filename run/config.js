@@ -47,13 +47,18 @@ config.taskConfiguration = {
     },
     images: {
         sourcePaths: ['./img/**/!(dir.txt)'],
-        imageminOptions: {
-            svgoPlugins: [
-                {removeViewBox: false},
-                {removeUselessStrokeAndFill: false},
-                {convertPathData: {straightCurves: false}},
-                {cleanupIDs: false}
-            ]
+        imageminPlugins: {
+            gifsicle: {},
+            jpegtran: {},
+            optipng: {},
+            svgo: {
+                plugins: [
+                    {removeViewBox: false},
+                    {removeUselessStrokeAndFill: false},
+                    {convertPathData: {straightCurves: false}},
+                    {cleanupIDs: false}
+                ]
+            }
         }
     },
     styles: {
