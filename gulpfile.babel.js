@@ -1,13 +1,13 @@
-'use strict';
+import {argv as args} from 'yargs';
 
-/*
-    gulpfile.js
-    ===========
-    Rather than manage one giant configuration file responsible
-    for creating multiple tasks, each task has been broken out into
-    its own file in /run/tasks.
+/**
+ * Requires in the relevant gulp task module.
+ *
+ * @param {String} moduleName - Corresponding gulp task name / folder.
+ */
+function loadModule(moduleName = 'default') {
+    console.log(`Loading Module: ${moduleName}`);
+    require(`./run/tasks/${moduleName}/`);
+}
 
-    To add a new task, simply add a new task file to run/tasks.
-*/
-
-require('./run/')();
+loadModule(args._[0]);
