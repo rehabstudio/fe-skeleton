@@ -54,6 +54,9 @@ are compiled and ready for usage within the browser.
 ## Settings and Configuration
 There are a multitude of settings files included in the root of the repository.
 
+`.babelrc` is a configuration file used by gulp when consuming skeleton gulp
+tasks. It is loaded automatically and isn't referenced anywhere in our codebase.
+
 `.editorconfig` is a configuration file for
 [EditorConfig](http://editorconfig.org/); a plugin / package that can be
 installed in most popular editors. It enforces all team members to use the same
