@@ -12,6 +12,8 @@
  * gulp watch --watchType styles,html
  */
 
+require('../build/');
+
 var gulp = require('gulp');
 var args = require('yargs').argv;
 var chalk = require('chalk');

@@ -8,6 +8,13 @@
  * gulp build
  */
 
+require('../clean/');
+require('../copy/');
+require('../html/');
+require('../images/');
+require('../styles/');
+require('../scripts/');
+
 var gulp = require('gulp');
 var chalk = require('chalk');
 var runSequence = require('run-sequence');

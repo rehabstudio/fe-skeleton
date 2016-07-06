@@ -7,6 +7,8 @@
  * gulp
  */
 
+require('../build/');
+
 var gulp = require('gulp');
 
 gulp.task('default', function() {
