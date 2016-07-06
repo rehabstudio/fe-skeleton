@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Starts the test runner which in turn loads test frameworks,
  * assertion libraries and then executes tests.
@@ -9,19 +7,19 @@
  * gulp test --watch
  */
 
-var gulp = require('gulp');
-var chalk = require('chalk');
-var args = require('yargs').argv;
-var globalSettings = require('../../config');
+import gulp from 'gulp';
+import chalk from 'chalk';
+import {argv as args} from 'yargs';
+import globalSettings from '../../config';
 
 // Attempt to load test suite package to see if it is present or not.
-var testSuiteWrapper = false;
+let testSuiteWrapper = false;
 
 try {
     testSuiteWrapper = require('rehab-fe-skeleton-testsuite');
 } catch (e) {}
 
-gulp.task('test', function(done) {
+gulp.task('test', (done) => {
     if (!testSuiteWrapper) {
         console.log(chalk.bgRed.white(
             ' FE Skeleton: Missing `rehab-fe-skeleton-testsuite` package. Please install in `devDependencies`.'

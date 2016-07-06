@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Compiles, minifies and prefixes SASS.
  *
@@ -7,14 +5,14 @@
  * gulp styles
  */
 
-var gulp = require('gulp');
-var chalk = require('chalk');
-var globalSettings = require('../../config');
-var sourcemaps = require('gulp-sourcemaps');
-var plumber = require('gulp-plumber');
-var rename = require('gulp-rename');
-var sass = require('gulp-sass');
-var prefix = require('gulp-autoprefixer');
+import gulp from 'gulp';
+import chalk from 'chalk';
+import globalSettings from '../../config';
+import sourcemaps from 'gulp-sourcemaps';
+import plumber from 'gulp-plumber';
+import rename from 'gulp-rename';
+import sass from 'gulp-sass';
+import prefix from 'gulp-autoprefixer';
 
 /**
  * Overall function that will cycle through each of the styles bundles
@@ -22,12 +20,12 @@ var prefix = require('gulp-autoprefixer');
  *
  * @param {Object} taskDone - Gulp task callback method.
  */
-gulp.task('styles', function(taskDone) {
-    var promises = [];
+gulp.task('styles', (taskDone) => {
+    let promises = [];
 
-    for (var index = 0, length = globalSettings.taskConfiguration.styles.bundles.length; index < length; index++) {
-        var thisBundle = globalSettings.taskConfiguration.styles.bundles[index];
-        var scopedProcessingMethod = _processBundle.bind(thisBundle);
+    for (let index = 0, length = globalSettings.taskConfiguration.styles.bundles.length; index < length; index++) {
+        let thisBundle = globalSettings.taskConfiguration.styles.bundles[index];
+        let scopedProcessingMethod = _processBundle.bind(thisBundle);
 
         thisBundle.index = index;
         thisBundle.promise = new Promise(scopedProcessingMethod);
@@ -35,10 +33,10 @@ gulp.task('styles', function(taskDone) {
     }
 
     Promise.all(promises).then(
-        function() {
+        () => {
             taskDone();
         },
-        function() {
+        () => {
             taskDone('Something went wrong.');
         }
     );
@@ -53,10 +51,10 @@ gulp.task('styles', function(taskDone) {
  * @param {Function} reject - Promise rejection callback.
  */
 function _processBundle(resolve, reject) {
-    var self = this;
+    let self = this;
 
     // Apply particular options if global settings dictate source files should be referenced inside sourcemaps.
-    var sourcemapOptions = {};
+    let sourcemapOptions = {};
 
     if (globalSettings.taskConfiguration.styles.sourcemapOptions.type === 'External_ReferencedFiles') {
         sourcemapOptions.includeContent = false;
@@ -74,12 +72,12 @@ function _processBundle(resolve, reject) {
     }
 
     // Compile SASS into CSS then prefix and save.
-    var stream = gulp.src(self.sourceFilePath)
+    let stream = gulp.src(self.sourceFilePath)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass(globalSettings.taskConfiguration.styles.sassSettings).on('error', sass.logError))
         .pipe(prefix(globalSettings.taskConfiguration.styles.autoPrefixSettings))
-        .pipe(rename(function(path) {
+        .pipe(rename((path) => {
             path.basename = self.outputFileName;
         }))
         .pipe(sourcemaps.write('./', sourcemapOptions))
@@ -87,15 +85,14 @@ function _processBundle(resolve, reject) {
 
     // Whenever the stream finishes, resolve or reject the deferred accordingly.
     stream
-        .on('error', function() {
+        .on('error', () => {
             console.log(chalk.bgRed.white(' FE Skeleton: Stylesheet Failed.'));
             reject();
         })
-        .on('end', function() {
-            console.log(chalk.bgGreen.white(' FE Skeleton: Stylesheet Completed - ' + self.sourceFilePath));
+        .on('end', () => {
+            console.log(chalk.bgGreen.white(` FE Skeleton: Stylesheet Completed - ${self.sourceFilePath}`));
             console.log(chalk.bgGreen.white(
-                '              Output location - ' +
-                outputDirectory + self.outputFileName + '.css'
+                `              Output location - ${outputDirectory + self.outputFileName}.css`
             ));
             resolve();
         });

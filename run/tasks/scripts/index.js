@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Bundles JS source files via Webpack.
  *
@@ -8,12 +6,12 @@
  * gulp scripts --is-production
  */
 
-var gulp = require('gulp');
-var args = require('yargs').argv;
-var globalSettings = require('../../config');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-var webpackStream = require('webpack-stream');
-var webpack = webpackStream.webpack;
+import gulp from 'gulp';
+import {argv as args} from 'yargs';
+import globalSettings from '../../config';
+import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
+import webpackStream from 'webpack-stream';
+let webpack = webpackStream.webpack;
 
 /**
  * Wrapper task that calls the webpack-stream package with
@@ -21,7 +19,7 @@ var webpack = webpackStream.webpack;
  *
  * @return {Object} - Stream.
  */
-gulp.task('scripts', function() {
+gulp.task('scripts', () => {
     return _runWebpack();
 });
 
@@ -32,7 +30,7 @@ gulp.task('scripts', function() {
  *
  * @return {Object} - Stream.
  */
-gulp.task('scripts:watch', function() {
+gulp.task('scripts:watch', () => {
     return _runWebpack({watch: true});
 });
 
@@ -48,10 +46,7 @@ gulp.task('scripts:watch', function() {
  * @param {Object} taskOptions - Options from gulp tasks.
  * @return {Object} - Gulp stream.
  */
-function _runWebpack(taskOptions) {
-    // Ensure there is an options object (incase none were supplied to this function).
-    taskOptions = taskOptions || {};
-
+function _runWebpack(taskOptions = {}) {
     // Bind a shorter reference to the script settings from the global file.
     var scriptSettings = globalSettings.taskConfiguration.scripts;
 

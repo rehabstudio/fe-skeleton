@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * NOTE: The path used in the first parameter of require.context cannot be
  * a variable or an expression because webpack parses this file differently
